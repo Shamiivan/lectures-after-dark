@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import styles from './Navbar.module.css';
 import { Mic } from 'lucide-react';
 
 const Navbar: React.FC = () => {
     const [isVisible, setIsVisible] = useState(false);
+    const location = useLocation();
 
     useEffect(() => {
+        // If not on home page, always show navbar
+        if (location.pathname !== '/') {
+            setIsVisible(true);
+            return;
+        }
+
         const handleScroll = () => {
             // Show navbar after scrolling 20% of the viewport height
             // This gives a "getting past the landing page" feel
@@ -23,7 +30,7 @@ const Navbar: React.FC = () => {
 
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [location.pathname]);
 
     return (
         <nav className={`${styles.nav} ${isVisible ? styles.navVisible : ''}`}>
