@@ -6,25 +6,25 @@ const events = [
     {
         id: 1,
         tag: 'Psychology',
-        title: "The Psychology of Ambition: Why Some Win & Most Don't",
+        title: "The Psychology of Ambition: Why Some People Win and Most Don't",
         date: 'Nov 22',
-        location: 'The Nightjar, London',
+        location: 'Montreal',
         image: 'https://images.unsplash.com/photo-1551843073-4a9a5b6fcd5f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
     },
     {
         id: 2,
         tag: 'Culture',
-        title: 'Modern Dating: Algorithms vs. Chemistry',
+        title: 'Modern Dating',
         date: 'Nov 29',
-        location: 'The Alchemist, NYC',
+        location: 'Montreal',
         image: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
     },
     {
         id: 3,
         tag: 'Power Dynamics',
-        title: 'How Power Really Works: From Machiavelli to Musk',
+        title: 'How Power Really Works',
         date: 'Dec 05',
-        location: 'Library Bar, LA',
+        location: 'Montreal',
         image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
     }
 ];
