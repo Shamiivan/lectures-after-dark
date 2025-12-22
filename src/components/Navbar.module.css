@@ -1,0 +1,115 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+    background-color: rgba(26, 22, 18, 0.85);
+    /* --midnight with opacity */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: var(--text-primary);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(245, 240, 232, 0.05);
+    /* Subtle border */
+    transition: all 0.3s ease;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.logo {
+    font-family: var(--font-headline);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--cream);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.highlightText {
+    color: var(--amber);
+}
+
+.links {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+}
+
+.link {
+    font-family: var(--font-headline);
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.3s ease, transform 0.2s ease;
+    position: relative;
+}
+
+.link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--amber);
+    transition: width 0.3s ease;
+}
+
+.link:hover {
+    color: var(--cream);
+}
+
+.link:hover::after {
+    width: 100%;
+}
+
+.activeLink {
+    color: var(--cream);
+}
+
+.activeLink::after {
+    width: 100%;
+}
+
+.contactBtn {
+    font-family: var(--font-headline);
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--amber);
+    color: var(--amber);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.contactBtn:hover,
+.contactBtnActive {
+    background-color: var(--amber);
+    color: var(--cream);
+}
+
+/* Mobile responsive adjustments could go here */
+@media (max-width: 768px) {
+    .links {
+        display: none;
+        /* For now, hide links on mobile or implement a hamburger menu later */
+    }
+}

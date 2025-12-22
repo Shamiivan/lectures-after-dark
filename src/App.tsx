@@ -1,23 +1,23 @@
-
-import Hero from './components/Hero';
-import UpcomingEvents from './components/UpcomingEvents';
-import IdeaSection from './components/IdeaSection';
-import Topics from './components/Topics';
-import Instagram from './components/Instagram';
-import FAQ from './components/FAQ';
-import CTA from './components/CTA';
+import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import Home from './pages/Home';
+import Events from './pages/Events';
+import Speakers from './pages/Speakers';
+import About from './pages/About';
+import Contact from './pages/Contact';
 
 function App() {
   return (
     <main>
-      <Hero />
-      <UpcomingEvents />
-      <IdeaSection />
-      <Topics />
-      <Instagram />
-      <FAQ />
-      <CTA />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/events" element={<Events />} />
+        <Route path="/speakers" element={<Speakers />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
       <Footer />
     </main>
   );

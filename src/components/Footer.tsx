@@ -1,4 +1,4 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Footer.module.css';
 
 const Footer: React.FC = () => {
@@ -14,18 +14,18 @@ const Footer: React.FC = () => {
                     <div className={styles.col}>
                         <h4>Events</h4>
                         <ul>
-                            <li><a href="#">Upcoming</a></li>
-                            <li><a href="#">Past Events</a></li>
-                            <li><a href="#">Locations</a></li>
+                            <li><Link to="/events">Upcoming</Link></li>
+                            <li><Link to="/events">Past Events</Link></li>
+                            <li><Link to="/events">Locations</Link></li>
                         </ul>
                     </div>
 
                     <div className={styles.col}>
                         <h4>Get Involved</h4>
                         <ul>
-                            <li><a href="#">Become a Speaker</a></li>
-                            <li><a href="#">Host an Event</a></li>
-                            <li><a href="#">Careers</a></li>
+                            <li><Link to="/speakers">Become a Speaker</Link></li>
+                            <li><Link to="/contact">Host an Event</Link></li>
+                            <li><Link to="/about">About</Link></li>
                         </ul>
                     </div>
 
@@ -34,7 +34,7 @@ const Footer: React.FC = () => {
                         <ul>
                             <li><a href="#">Instagram</a></li>
                             <li><a href="#">Twitter</a></li>
-                            <li><a href="#">Contact Us</a></li>
+                            <li><Link to="/contact">Contact Us</Link></li>
                         </ul>
                     </div>
                 </div>
