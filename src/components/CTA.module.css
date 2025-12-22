@@ -1,0 +1,73 @@
+.section {
+    padding: 8rem 0;
+    background: linear-gradient(rgba(26, 22, 18, 0.85), rgba(26, 22, 18, 0.85)), url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+}
+
+.content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.title {
+    font-family: var(--font-headline);
+    font-size: 3.5rem;
+    color: var(--cream);
+    margin-bottom: 1rem;
+}
+
+.text {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+}
+
+.form {
+    display: flex;
+    gap: 1rem;
+}
+
+.input {
+    flex: 1;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-color);
+    color: var(--cream);
+    font-family: var(--font-body);
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.input:focus {
+    border-color: var(--amber);
+}
+
+.button {
+    background-color: var(--amber);
+    color: var(--cream);
+    border: none;
+    padding: 1rem 2rem;
+    font-family: var(--font-headline);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: var(--amber-light);
+}
+
+@media (max-width: 768px) {
+    .form {
+        flex-direction: column;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+}

@@ -1,0 +1,108 @@
+:root {
+  /* Color Palette */
+  --midnight: #1a1612;
+  --warm-brown: #3D2B1F;
+  --amber: #D9532E;
+  --amber-light: #E67E52;
+  --cream: #F5F0E8;
+  --cream-dark: #D4C7B8;
+  --gold: #CC9966;
+  --card-bg: #2A1F1A;
+
+  /* Functional Colors */
+  --bg-primary: var(--midnight);
+  --bg-secondary: var(--warm-brown);
+  --text-primary: var(--cream);
+  --text-secondary: var(--cream-dark);
+  --accent: var(--amber);
+  --border-color: rgba(245, 240, 232, 0.1);
+
+  /* Typography */
+  --font-headline: 'Oswald', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-headline);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Global Utilities */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section-padding {
+  padding: 6rem 0;
+}
+
+/* Button Styles - Global for reuse */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  font-family: var(--font-headline);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+  /* Sharper edges for premium feel */
+}
+
+.btn-primary {
+  background-color: var(--cream);
+  color: var(--midnight);
+  border: 1px solid var(--cream);
+}
+
+.btn-primary:hover {
+  background-color: transparent;
+  color: var(--cream);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--cream);
+  border: 1px solid var(--cream);
+}
+
+.btn-outline:hover {
+  background-color: rgba(245, 240, 232, 0.1);
+}

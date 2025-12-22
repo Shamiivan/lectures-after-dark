@@ -1,0 +1,156 @@
+.hero {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: var(--midnight);
+    overflow: hidden;
+}
+
+/* Cinematic Background with Overlay */
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.backgroundImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.4;
+    /* Darken for text readability */
+    filter: contrast(1.1) saturate(1.1);
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(26, 22, 18, 0.4) 0%, rgba(26, 22, 18, 0.95) 90%);
+    z-index: 2;
+}
+
+.content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 900px;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logoIcon {
+    margin-bottom: 2rem;
+    color: var(--amber);
+    animation: glow 3s ease-in-out infinite alternate;
+}
+
+.logoImage {
+    width: 150px;
+    /* Adjusted size for visibility */
+    height: auto;
+    display: block;
+}
+
+.title {
+    font-family: var(--font-headline);
+    font-size: 5rem;
+    line-height: 0.9;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--cream);
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.subtitle {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--amber);
+    margin-bottom: 3rem;
+    letter-spacing: 0.05em;
+    font-weight: 400;
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.btnPrimary {
+    background-color: var(--cream);
+    color: var(--midnight);
+    border: 1px solid var(--cream);
+    padding: 1rem 2.5rem;
+    font-family: var(--font-headline);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+}
+
+.btnPrimary:hover {
+    background-color: transparent;
+    color: var(--cream);
+    box-shadow: 0 0 20px rgba(245, 240, 232, 0.2);
+}
+
+.btnSecondary {
+    background-color: transparent;
+    color: var(--cream);
+    border: 1px solid var(--cream);
+    padding: 1rem 2.5rem;
+    font-family: var(--font-headline);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+}
+
+.btnSecondary:hover {
+    background-color: rgba(245, 240, 232, 0.1);
+    border-color: var(--amber);
+    color: var(--amber);
+}
+
+@keyframes glow {
+    from {
+        filter: drop-shadow(0 0 5px rgba(217, 83, 46, 0.2));
+    }
+
+    to {
+        filter: drop-shadow(0 0 15px rgba(217, 83, 46, 0.6));
+    }
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 3.5rem;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+    }
+
+    .buttonGroup {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btnPrimary,
+    .btnSecondary {
+        width: 100%;
+    }
+}
