@@ -9,7 +9,7 @@ const events = [
         title: "The Psychology of Ambition: Why Some People Win and Most Don't",
         date: 'Jan 22, 2025',
         location: 'Montreal',
-        image: 'https://images.unsplash.com/photo-1551843073-4a9a5b6fcd5f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+        image: 'https://images.unsplash.com/photo-1528720208104-3d9bd03cc9d4?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
     },
     {
         id: 2,
@@ -72,7 +72,7 @@ const UpcomingEvents: React.FC = () => {
                         <h2 className={styles.title}>Upcoming Events</h2>
                         <p className={styles.subtitle}>Curated nights for the curious mind.</p>
                     </div>
-                    <a href="#" className="btn btn-outline" style={{ borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}>
+                    <a href="#" className={`btn btn-outline ${styles.viewAllBtn}`}>
                         View All Events
                     </a>
                 </div>

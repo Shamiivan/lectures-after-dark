@@ -10,7 +10,7 @@ const IdeaSection: React.FC = () => {
                     <div className={styles.content}>
                         <h2>The Idea</h2>
                         <p>
-                            Lectures After Dark is a growing movement of intellectual social events that combine academic learning in casual settings with the social experience of a bar.
+                            Lectures After Dark is a growing movement of intellectual social events that combine academic learning settings with the social experience of a bar.
                         </p>
                         <p>
                             Our events are designed to be accessible to everyone while still offering deep insights. Curiosity is the only requirement.
