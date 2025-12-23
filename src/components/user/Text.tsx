@@ -5,9 +5,11 @@ import ContentEditable from "react-contenteditable";
 export interface TextProps {
     text: string;
     fontSize?: string | number;
+    tagName?: string;
+    className?: string;
 }
 
-export const Text = ({ text, fontSize }: TextProps) => {
+export const Text = ({ text, fontSize, tagName = "p", className }: TextProps) => {
     const { connectors: { connect, drag }, actions: { setProp }, hasSelectedNode } = useNode((state) => ({
         hasSelectedNode: state.events.selected,
     }));
@@ -22,12 +24,14 @@ export const Text = ({ text, fontSize }: TextProps) => {
         <div
             ref={(ref: any) => connect(drag(ref))}
             onClick={() => hasSelectedNode && setEditable(true)}
+            style={{ display: "inline-block", width: "100%" }}
         >
             <ContentEditable
                 html={text}
                 disabled={!editable}
                 onChange={(e) => setProp((props: any) => props.text = e.target.value)}
-                tagName="p"
+                tagName={tagName}
+                className={className}
                 style={{ fontSize: typeof fontSize === 'number' ? `${fontSize}px` : fontSize, margin: 0 }}
             />
         </div>
@@ -69,6 +73,7 @@ Text.craft = {
     props: {
         text: "Hi",
         fontSize: 20,
+        tagName: "p"
     },
     related: {
         settings: TextSettings,
