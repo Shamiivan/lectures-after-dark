@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import styles from './Navbar.module.css';
-import { Mic } from 'lucide-react';
+
 
 const Navbar: React.FC = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -36,7 +36,7 @@ const Navbar: React.FC = () => {
         <nav className={`${styles.nav} ${isVisible ? styles.navVisible : ''}`}>
             <div className={styles.container}>
                 <NavLink to="/" className={styles.logo}>
-                    <Mic size={24} />
+                    <img src="/logo.png" alt="Lectures After Dark Logo" style={{ height: '40px', width: 'auto' }} />
                     <span className={styles.highlightText}>Lectures</span>&nbsp;After Dark
                 </NavLink>
                 <div className={styles.links}>

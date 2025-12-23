@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Hero.module.css';
-import { Mic } from 'lucide-react';
+
 
 const Hero: React.FC = () => {
     return (
@@ -22,7 +22,7 @@ const Hero: React.FC = () => {
 
             <div className={styles.content}>
                 <div className={styles.logoIcon}>
-                    <Mic size={48} strokeWidth={1.5} />
+                    <img src="/logo.png" alt="Lectures After Dark Logo" className={styles.logoImage} />
                 </div>
 
                 <h1 className={styles.title}>

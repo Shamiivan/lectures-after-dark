@@ -40,7 +40,7 @@ const Footer: React.FC = () => {
                 </div>
 
                 <div className={styles.copyright}>
-                    &copy; 2024 Lectures After Dark. All rights reserved.
+                    &copy; 2025 Lectures After Dark. All rights reserved.
                 </div>
             </div>
         </footer>
