@@ -6,6 +6,7 @@ import { Text } from '../components/user/Text';
 import { Button } from '../components/user/Button';
 import { Container } from '../components/user/Container';
 import { Card } from '../components/user/Card';
+import { IdeaSection } from '../components/user/IdeaSection';
 
 import { Toolbox } from '../components/Toolbox';
 import { SettingsPanel } from '../components/SettingsPanel';
@@ -64,7 +65,7 @@ const Admin: React.FC = () => {
     return (
         <div style={{ margin: "0 auto", width: "100%", height: "100vh", display: "flex", flexDirection: "column" }}>
             <Editor
-                resolver={{ Text, Button, Container, Card }}
+                resolver={{ Text, Button, Container, Card, IdeaSection }}
                 // If content exists, load it. Otherwise, use the default structure (Frame with children).
                 enabled={true}
             >

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNode } from "@craftjs/core";
 import { Check } from 'lucide-react';
 import styles from '../IdeaSection.module.css';
@@ -112,5 +111,8 @@ IdeaSection.craft = {
     },
     related: {
         settings: IdeaSectionSettings,
+    },
+    rules: {
+        canDrag: () => true,
     },
 };
