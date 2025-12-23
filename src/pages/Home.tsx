@@ -10,6 +10,7 @@ import { Button } from '../components/user/Button';
 import { Container } from '../components/user/Container';
 import { Card } from '../components/user/Card';
 import { IdeaSection } from '../components/user/IdeaSection';
+import { Image } from '../components/user/Image';
 
 // Legacy Components (for fallback/migration)
 import Hero from '../components/Hero';
@@ -38,7 +39,7 @@ const Home: React.FC = () => {
 
     return (
         <div className="home-page">
-            <Editor enabled={false} resolver={{ Text, Button, Container, Card, IdeaSection }}>
+            <Editor enabled={false} resolver={{ Text, Button, Container, Card, IdeaSection, Image }}>
                 {pageData?.content ? (
                     <Frame json={pageData.content} />
                 ) : (

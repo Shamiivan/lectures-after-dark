@@ -2,6 +2,7 @@ import { useNode, Element } from "@craftjs/core";
 import { Check } from 'lucide-react';
 import styles from '../IdeaSection.module.css';
 import { Text } from './Text';
+import { Image } from './Image';
 
 export const IdeaSection = () => {
     const { connectors: { connect, drag } } = useNode();
@@ -44,10 +45,12 @@ export const IdeaSection = () => {
                     </div>
 
                     <div className={styles.imageWrapper}>
-                        <img
-                            src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
+                        <Element
+                            id="idea-image"
+                            is={Image}
                             alt="Cocktails and Conversation"
-                            className={styles.image}
+                            width="100%"
+                            height="auto"
                         />
                     </div>
                 </div>
