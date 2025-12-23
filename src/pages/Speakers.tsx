@@ -1,16 +1,17 @@
 import React from 'react';
 import styles from './Speakers.module.css';
-import { Mic, Wine } from 'lucide-react';
+import { Mic } from 'lucide-react';
 
 const Speakers: React.FC = () => {
     return (
         <div className={styles.pageWrapper}>
             {/* Header Section */}
+            {/* Header Section */}
             <header className={styles.header}>
                 <div className="container">
-                    <h1 className={styles.title}>Bars and Speakers Page</h1>
+                    <h1 className={styles.title}>Our Speakers</h1>
                     <p className={styles.subtitle}>
-                        Bringing together the best minds and the best drinks.
+                        The minds behind the conversations.
                     </p>
                 </div>
             </header>
@@ -20,7 +21,7 @@ const Speakers: React.FC = () => {
                 <div className="container">
                     <div className={styles.infoContent}>
                         <div className={styles.infoText}>
-                            <h2>Information for Hosts and Speakers</h2>
+                            <h2>Information for Speakers</h2>
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                             </p>
@@ -31,7 +32,7 @@ const Speakers: React.FC = () => {
                         <div className={styles.infoImage}>
                             {/* Placeholder for an image if needed, or just text for now as per "add lorem ipsum" */}
                             <p style={{ color: 'var(--text-secondary)', fontStyle: 'italic' }}>
-                                [Placeholder for an engaging image of a speaker or a bar setting]
+                                [Placeholder for an engaging image of a speaker]
                             </p>
                         </div>
                     </div>
@@ -44,7 +45,7 @@ const Speakers: React.FC = () => {
                     <h2 className={styles.sectionTitle}>Past & Future Speakers</h2>
                     <div className={styles.speakersGrid}>
                         {/* Dummy Speakers */}
-                        {[1, 2, 3, 4, 5, 6].map((i) => (
+                        {[1, 2, 3].map((i) => (
                             <div key={i} className={styles.speakerCard}>
                                 <h3 className={styles.speakerName}>Speaker Name {i}</h3>
                                 <span className={styles.speakerTopic}>Topic of Discussion</span>
@@ -60,7 +61,7 @@ const Speakers: React.FC = () => {
             {/* CTAs */}
             <section className={styles.ctaSection}>
                 <div className="container">
-                    <div className={styles.ctaGrid}>
+                    <div className={styles.ctaGrid} style={{ gridTemplateColumns: '1fr', maxWidth: '600px', margin: '0 auto' }}>
                         <div className={styles.ctaCard}>
                             <Mic size={48} color="var(--amber)" />
                             <h3>Become a Speaker</h3>
@@ -68,14 +69,6 @@ const Speakers: React.FC = () => {
                                 Share your knowledge and passion with our community.
                             </p>
                             <button className="btn btn-primary">Apply Now</button>
-                        </div>
-                        <div className={styles.ctaCard}>
-                            <Wine size={48} color="var(--amber)" />
-                            <h3>Host an Event</h3>
-                            <p>
-                                Transform your venue into a hub of intellectual exchange.
-                            </p>
-                            <button className="btn btn-primary">Partner With Us</button>
                         </div>
                     </div>
                 </div>

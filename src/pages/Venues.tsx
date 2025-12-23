@@ -8,7 +8,7 @@ const Venues: React.FC = () => {
             {/* Header Section */}
             <header className={styles.header}>
                 <div className="container">
-                    <h1 className={styles.title}>Our Venues</h1>
+                    <h1 className={styles.title}>Our Bars</h1>
                     <p className={styles.subtitle}>
                         Great ideas need great atmosphere. We partner with the city's best bars and lounges.
                     </p>
@@ -42,16 +42,13 @@ const Venues: React.FC = () => {
             {/* Venues List */}
             <section className={styles.speakersSection}>
                 <div className="container">
-                    <h2 className={styles.sectionTitle}>Partner Venues</h2>
+                    <h2 className={styles.sectionTitle}>Partner Bars</h2>
                     <div className={styles.speakersGrid}>
                         {/* Dummy Venues */}
                         {[
                             { id: 1, name: "The Velvet Lounge", neighborhood: "Plateau", img: "https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
                             { id: 2, name: "Library Bar", neighborhood: "Downtown", img: "https://images.unsplash.com/photo-1543007630-9710e4a00a20?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
                             { id: 3, name: "Alchemy & Co.", neighborhood: "Old Port", img: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
-                            { id: 4, name: "The Study", neighborhood: "Mile End", img: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
-                            { id: 5, name: "Nocturne", neighborhood: "Griffintown", img: "https://images.unsplash.com/photo-1535403385226-0683400d3d53?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
-                            { id: 6, name: "Speakeasy 42", neighborhood: "Saint-Henri", img: "https://images.unsplash.com/photo-1596902852634-8b014c277363?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" }
                         ].map((venue) => (
                             <div key={venue.id} className={styles.speakerCard}>
                                 <div className={styles.imageWrapper}>

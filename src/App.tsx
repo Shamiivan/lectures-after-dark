@@ -7,6 +7,8 @@ import Speakers from './pages/Speakers';
 import About from './pages/About';
 import Contact from './pages/Contact';
 
+import Venues from './pages/Venues';
+
 function App() {
   return (
     <main>
@@ -15,6 +17,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/events" element={<Events />} />
         <Route path="/speakers" element={<Speakers />} />
+        <Route path="/bars" element={<Venues />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>

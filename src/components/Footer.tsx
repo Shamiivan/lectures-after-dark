@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
                         <ul>
                             <li><Link to="/events">Upcoming</Link></li>
                             <li><Link to="/events">Past Events</Link></li>
-                            <li><Link to="/events">Locations</Link></li>
+                            <li><Link to="/bars">Bars</Link></li>
                         </ul>
                     </div>
 
@@ -24,7 +24,7 @@ const Footer: React.FC = () => {
                         <h4>Get Involved</h4>
                         <ul>
                             <li><Link to="/speakers">Become a Speaker</Link></li>
-                            <li><Link to="/contact">Host an Event</Link></li>
+                            <li><Link to="/bars">Host an Event</Link></li>
                             <li><Link to="/about">About</Link></li>
                         </ul>
                     </div>
