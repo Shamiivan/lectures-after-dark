@@ -1,5 +1,5 @@
 import React from 'react';
-import { Editor, Frame, Element } from '@craftjs/core';
+import { Editor, Frame } from '@craftjs/core';
 import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { CircularProgress, Box } from "@mui/material";
