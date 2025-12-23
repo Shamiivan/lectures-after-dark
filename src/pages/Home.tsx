@@ -9,12 +9,13 @@ import { Text } from '../components/user/Text';
 import { Button } from '../components/user/Button';
 import { Container } from '../components/user/Container';
 import { Card } from '../components/user/Card';
+import { IdeaSection } from '../components/user/IdeaSection';
 
 // Legacy Components (for fallback/migration)
 import Hero from '../components/Hero';
 import UpcomingEvents from '../components/UpcomingEvents';
 import WhyWeDoIt from '../components/WhyWeDoIt';
-import IdeaSection from '../components/IdeaSection';
+import LegacyIdeaSection from '../components/IdeaSection';
 import Instagram from '../components/Instagram';
 import FAQ from '../components/FAQ';
 
@@ -37,7 +38,7 @@ const Home: React.FC = () => {
 
     return (
         <div className="home-page">
-            <Editor enabled={false} resolver={{ Text, Button, Container, Card }}>
+            <Editor enabled={false} resolver={{ Text, Button, Container, Card, IdeaSection }}>
                 {pageData?.content ? (
                     <Frame json={pageData.content} />
                 ) : (
@@ -47,7 +48,7 @@ const Home: React.FC = () => {
                     <>
                         <Hero />
                         <UpcomingEvents />
-                        <IdeaSection />
+                        <LegacyIdeaSection />
                         <WhyWeDoIt />
                         <Instagram />
                         <FAQ />

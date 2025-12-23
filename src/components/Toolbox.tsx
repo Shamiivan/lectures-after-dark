@@ -4,6 +4,7 @@ import { Container } from "./user/Container";
 import { Card } from "./user/Card";
 import { Button } from "./user/Button";
 import { Text } from "./user/Text";
+import { IdeaSection } from "./user/IdeaSection";
 import { Type, Square, Layout, CreditCard } from "lucide-react";
 
 export const Toolbox = () => {
@@ -57,6 +58,17 @@ export const Toolbox = () => {
                     >
                         <CreditCard size={20} style={{ marginBottom: 5 }} />
                         <Typography variant="caption">Card</Typography>
+                    </MaterialButton>
+                </Tooltip>
+                <Tooltip title="Idea Section" arrow>
+                    <MaterialButton
+                        variant="outlined"
+                        fullWidth
+                        style={{ flexDirection: "column", padding: "10px", textTransform: "none", borderColor: "#e0e0e0", color: "#555" }}
+                        ref={(ref: any) => connectors.create(ref, <IdeaSection />)}
+                    >
+                        <Type size={20} style={{ marginBottom: 5 }} />
+                        <Typography variant="caption">Idea</Typography>
                     </MaterialButton>
                 </Tooltip>
             </Box>
