@@ -30,6 +30,40 @@ const events = [
 ];
 
 const UpcomingEvents: React.FC = () => {
+    const scrollContainerRef = React.useRef<HTMLDivElement>(null);
+    const [showLeftButton, setShowLeftButton] = React.useState(false);
+
+    const checkScroll = () => {
+        if (scrollContainerRef.current) {
+            setShowLeftButton(scrollContainerRef.current.scrollLeft > 0);
+        }
+    };
+
+    React.useEffect(() => {
+        const container = scrollContainerRef.current;
+        if (container) {
+            container.addEventListener('scroll', checkScroll);
+            // Check initial state
+            checkScroll();
+        }
+        return () => {
+            if (container) {
+                container.removeEventListener('scroll', checkScroll);
+            }
+        };
+    }, []);
+
+    const scroll = (direction: 'left' | 'right') => {
+        if (scrollContainerRef.current) {
+            const scrollAmount = 400; // Adjust scroll amount as needed
+            const newScrollLeft = scrollContainerRef.current.scrollLeft + (direction === 'right' ? scrollAmount : -scrollAmount);
+            scrollContainerRef.current.scrollTo({
+                left: newScrollLeft,
+                behavior: 'smooth'
+            });
+        }
+    };
+
     return (
         <section id="events" className={styles.section}>
             <div className="container">
@@ -43,29 +77,46 @@ const UpcomingEvents: React.FC = () => {
                     </a>
                 </div>
 
-                <div className={styles.scrollContainer}>
-                    {events.map((event) => (
-                        <div key={event.id} className={styles.card}>
-                            <div className={styles.cardImage}>
-                                <img src={event.image} alt={event.title} />
-                            </div>
-                            <div className={styles.cardContent}>
-                                <span className={styles.tag}>{event.tag}</span>
-                                <h3 className={styles.cardTitle}>{event.title}</h3>
-                                <div className={styles.meta}>
-                                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                                        <Calendar size={14} /> {event.date}
-                                    </span>
-                                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                                        <MapPin size={14} /> {event.location}
-                                    </span>
+                <div className={styles.carouselWrapper}>
+                    <button
+                        onClick={() => scroll('left')}
+                        className={`${styles.floatingScrollButton} ${styles.left} ${showLeftButton ? styles.visible : ''}`}
+                        aria-label="Scroll left"
+                        disabled={!showLeftButton}
+                    >
+                        <ArrowRight size={24} style={{ transform: 'rotate(180deg)' }} />
+                    </button>
+                    <div className={styles.scrollContainer} ref={scrollContainerRef}>
+                        {events.map((event) => (
+                            <div key={event.id} className={styles.card}>
+                                <div className={styles.cardImage}>
+                                    <img src={event.image} alt={event.title} />
                                 </div>
-                                <a href="#" className={styles.link}>
-                                    Register <ArrowRight size={16} />
-                                </a>
+                                <div className={styles.cardContent}>
+                                    <span className={styles.tag}>{event.tag}</span>
+                                    <h3 className={styles.cardTitle}>{event.title}</h3>
+                                    <div className={styles.meta}>
+                                        <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                                            <Calendar size={14} /> {event.date}
+                                        </span>
+                                        <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                                            <MapPin size={14} /> {event.location}
+                                        </span>
+                                    </div>
+                                    <a href="#" className={styles.link}>
+                                        Register <ArrowRight size={16} />
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
+                    <button
+                        onClick={() => scroll('right')}
+                        className={`${styles.floatingScrollButton} ${styles.right}`}
+                        aria-label="Scroll right"
+                    >
+                        <ArrowRight size={24} />
+                    </button>
                 </div>
             </div>
         </section>

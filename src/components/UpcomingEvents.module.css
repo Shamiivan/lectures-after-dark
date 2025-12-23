@@ -12,6 +12,49 @@
     margin-bottom: 3rem;
 }
 
+.carouselWrapper {
+    position: relative;
+}
+
+.floatingScrollButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+    color: #000000;
+}
+
+.floatingScrollButton.right {
+    right: -20px;
+}
+
+.floatingScrollButton.left {
+    left: -20px;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.floatingScrollButton.left.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.floatingScrollButton:hover {
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
 .title {
     font-family: var(--font-headline);
     font-size: 3rem;
