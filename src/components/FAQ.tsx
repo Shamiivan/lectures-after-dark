@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNode } from '@craftjs/core';
 import styles from './FAQ.module.css';
 import { Plus } from 'lucide-react';

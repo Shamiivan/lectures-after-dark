@@ -12,7 +12,7 @@ import Admin from './pages/Admin';
 
 function App() {
   const location = useLocation();
-  const isAdmin = location.pathname === '/admin';
+  const isAdmin = location.pathname.startsWith('/admin');
 
   return (
     <main>

@@ -7,8 +7,8 @@ interface PageTabsProps {
 
 const PageTabs: React.FC<PageTabsProps> = ({ activePageSlug, onPageChange }) => {
     const tabs = [
-        { slug: 'home', label: 'Homepage' },
-        { slug: 'speakers', label: 'Speakers' },
+        { slug: 'home', label: 'Home Page' },
+        { slug: 'new-page', label: 'New Page' },
     ];
 
     return (
