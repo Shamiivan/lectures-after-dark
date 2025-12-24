@@ -14,15 +14,17 @@ interface ImageProps {
     className?: string;
     boxShadow?: string;
     borderRadius?: string;
+    margin?: string;
+    padding?: string;
 }
 
-export const Image = ({ storageId, alt = "Image", width = "100%", height = "auto", className, boxShadow = "none", borderRadius = "0px" }: ImageProps) => {
+export const Image = ({ storageId, alt = "Image", width = "100%", height = "auto", className, boxShadow = "none", borderRadius = "0px", margin = "0px", padding = "0px" }: ImageProps) => {
     const { connectors: { connect, drag } } = useNode();
 
     const imageUrl = useQuery(api.files.getFileUrl, storageId ? { storageId: storageId as Id<"_storage"> } : "skip");
 
     return (
-        <div ref={(ref: any) => connect(drag(ref))} className={className} style={{ width, height, boxShadow, borderRadius, display: "flex", overflow: "hidden" }}>
+        <div ref={(ref: any) => connect(drag(ref))} className={className} style={{ width, height, boxShadow, borderRadius, margin, padding, display: "flex", overflow: "hidden" }}>
             {imageUrl ? (
                 <img src={imageUrl} alt={alt} style={{ width: "100%", height: height === "auto" ? "auto" : "100%", objectFit: "cover", borderRadius: "inherit" }} />
             ) : (
@@ -46,10 +48,12 @@ export const Image = ({ storageId, alt = "Image", width = "100%", height = "auto
 
 
 export const ImageSettings = () => {
-    const { actions: { setProp }, storageId, boxShadow, borderRadius } = useNode((node) => ({
+    const { actions: { setProp }, storageId, boxShadow, borderRadius, margin, padding } = useNode((node) => ({
         storageId: node.data.props.storageId,
         boxShadow: node.data.props.boxShadow,
         borderRadius: node.data.props.borderRadius,
+        margin: node.data.props.margin,
+        padding: node.data.props.padding,
     }));
 
     const generateUploadUrl = useMutation(api.files.generateUploadUrl);
@@ -168,6 +172,32 @@ export const ImageSettings = () => {
                 />
             </Box>
 
+            <Box sx={{ mt: 2 }}>
+                <Typography variant="caption" color="text.secondary" display="block" gutterBottom>
+                    Margin
+                </Typography>
+                <input
+                    type="text"
+                    value={margin || ""}
+                    onChange={(e) => setProp((props: ImageProps) => props.margin = e.target.value)}
+                    style={{ width: "100%", padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }}
+                    placeholder="e.g., 10px or 10px 20px"
+                />
+            </Box>
+
+            <Box sx={{ mt: 2 }}>
+                <Typography variant="caption" color="text.secondary" display="block" gutterBottom>
+                    Padding
+                </Typography>
+                <input
+                    type="text"
+                    value={padding || ""}
+                    onChange={(e) => setProp((props: ImageProps) => props.padding = e.target.value)}
+                    style={{ width: "100%", padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }}
+                    placeholder="e.g., 10px or 10px 20px"
+                />
+            </Box>
+
             <Typography variant="caption" color="text.secondary" sx={{ mt: 2, display: 'block' }}>
                 Supported formats: JPG, PNG, GIF, WEBP
             </Typography>
@@ -184,6 +214,8 @@ Image.craft = {
         height: "auto",
         boxShadow: "none",
         borderRadius: "0px",
+        margin: "0px",
+        padding: "0px",
     },
     related: {
         settings: ImageSettings,

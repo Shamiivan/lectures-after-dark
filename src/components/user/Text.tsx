@@ -7,9 +7,11 @@ export interface TextProps {
     fontSize?: string | number;
     tagName?: string;
     className?: string;
+    margin?: string;
+    padding?: string;
 }
 
-export const Text = ({ text, fontSize, tagName = "p", className }: TextProps) => {
+export const Text = ({ text, fontSize, tagName = "p", className, margin = "0px", padding = "0px" }: TextProps) => {
     const { connectors: { connect, drag }, actions: { setProp }, hasSelectedNode } = useNode((state) => ({
         hasSelectedNode: state.events.selected,
     }));
@@ -24,7 +26,7 @@ export const Text = ({ text, fontSize, tagName = "p", className }: TextProps) =>
         <div
             ref={(ref: any) => connect(drag(ref))}
             onClick={() => hasSelectedNode && setEditable(true)}
-            style={{ display: "inline-block", width: "100%" }}
+            style={{ display: "inline-block", width: "100%", margin, padding }}
         >
             <ContentEditable
                 html={text}
@@ -39,9 +41,11 @@ export const Text = ({ text, fontSize, tagName = "p", className }: TextProps) =>
 };
 
 const TextSettings = () => {
-    const { actions: { setProp }, fontSize, text } = useNode((node) => ({
+    const { actions: { setProp }, fontSize, text, margin, padding } = useNode((node) => ({
         text: node.data.props.text,
         fontSize: node.data.props.fontSize,
+        margin: node.data.props.margin,
+        padding: node.data.props.padding,
     }));
 
     return (
@@ -64,6 +68,26 @@ const TextSettings = () => {
                     style={{ width: "100%", padding: "5px", border: "1px solid #e0e0e0", borderRadius: "4px" }}
                 />
             </div>
+            <div style={{ marginBottom: "10px" }}>
+                <label style={{ display: "block", marginBottom: "5px", fontSize: "12px", color: "#666" }}>Margin</label>
+                <input
+                    type="text"
+                    value={margin || ""}
+                    onChange={(e) => setProp((props: any) => props.margin = e.target.value)}
+                    style={{ width: "100%", padding: "5px", border: "1px solid #e0e0e0", borderRadius: "4px" }}
+                    placeholder="e.g., 10px or 10px 20px"
+                />
+            </div>
+            <div style={{ marginBottom: "10px" }}>
+                <label style={{ display: "block", marginBottom: "5px", fontSize: "12px", color: "#666" }}>Padding</label>
+                <input
+                    type="text"
+                    value={padding || ""}
+                    onChange={(e) => setProp((props: any) => props.padding = e.target.value)}
+                    style={{ width: "100%", padding: "5px", border: "1px solid #e0e0e0", borderRadius: "4px" }}
+                    placeholder="e.g., 10px or 10px 20px"
+                />
+            </div>
         </>
     );
 };
@@ -73,7 +97,9 @@ Text.craft = {
     props: {
         text: "Hi",
         fontSize: 20,
-        tagName: "p"
+        tagName: "p",
+        margin: "0px",
+        padding: "0px",
     },
     related: {
         settings: TextSettings,
