@@ -52,6 +52,8 @@ export const IdeaSection = () => {
                             width="100%"
                             height="auto"
                             className={styles.image}
+                            boxShadow="20px 20px 0 rgba(26, 22, 18, 0.5)"
+                            borderRadius="4px"
                         />
                     </div>
                 </div>

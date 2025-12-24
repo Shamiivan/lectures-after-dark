@@ -12,17 +12,19 @@ interface ImageProps {
     width?: string;
     height?: string;
     className?: string;
+    boxShadow?: string;
+    borderRadius?: string;
 }
 
-export const Image = ({ storageId, alt = "Image", width = "100%", height = "auto", className }: ImageProps) => {
+export const Image = ({ storageId, alt = "Image", width = "100%", height = "auto", className, boxShadow = "none", borderRadius = "0px" }: ImageProps) => {
     const { connectors: { connect, drag } } = useNode();
 
     const imageUrl = useQuery(api.files.getFileUrl, storageId ? { storageId: storageId as Id<"_storage"> } : "skip");
 
     return (
-        <div ref={(ref: any) => connect(drag(ref))} className={className} style={{ width, height, overflow: "hidden" }}>
+        <div ref={(ref: any) => connect(drag(ref))} className={className} style={{ width, height, boxShadow, borderRadius, display: "flex", overflow: "hidden" }}>
             {imageUrl ? (
-                <img src={imageUrl} alt={alt} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <img src={imageUrl} alt={alt} style={{ width: "100%", height: height === "auto" ? "auto" : "100%", objectFit: "cover", borderRadius: "inherit" }} />
             ) : (
                 <div style={{
                     width: "100%",
@@ -31,7 +33,8 @@ export const Image = ({ storageId, alt = "Image", width = "100%", height = "auto
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    color: "#888"
+                    color: "#888",
+                    borderRadius: "inherit"
                 }}>
                     {storageId ? "Loading..." : "Select an image"}
                 </div>
@@ -43,8 +46,10 @@ export const Image = ({ storageId, alt = "Image", width = "100%", height = "auto
 
 
 export const ImageSettings = () => {
-    const { actions: { setProp }, storageId } = useNode((node) => ({
+    const { actions: { setProp }, storageId, boxShadow, borderRadius } = useNode((node) => ({
         storageId: node.data.props.storageId,
+        boxShadow: node.data.props.boxShadow,
+        borderRadius: node.data.props.borderRadius,
     }));
 
     const generateUploadUrl = useMutation(api.files.generateUploadUrl);
@@ -137,7 +142,33 @@ export const ImageSettings = () => {
                 </Button>
             </Paper>
 
-            <Typography variant="caption" color="text.secondary">
+            <Box sx={{ mt: 2 }}>
+                <Typography variant="caption" color="text.secondary" display="block" gutterBottom>
+                    Box Shadow
+                </Typography>
+                <input
+                    type="text"
+                    value={boxShadow || ""}
+                    onChange={(e) => setProp((props: ImageProps) => props.boxShadow = e.target.value)}
+                    style={{ width: "100%", padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }}
+                    placeholder="e.g., 10px 10px 5px grey"
+                />
+            </Box>
+
+            <Box sx={{ mt: 2 }}>
+                <Typography variant="caption" color="text.secondary" display="block" gutterBottom>
+                    Border Radius
+                </Typography>
+                <input
+                    type="text"
+                    value={borderRadius || ""}
+                    onChange={(e) => setProp((props: ImageProps) => props.borderRadius = e.target.value)}
+                    style={{ width: "100%", padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }}
+                    placeholder="e.g., 10px or 50%"
+                />
+            </Box>
+
+            <Typography variant="caption" color="text.secondary" sx={{ mt: 2, display: 'block' }}>
                 Supported formats: JPG, PNG, GIF, WEBP
             </Typography>
         </Box>
@@ -151,6 +182,8 @@ Image.craft = {
         alt: "Image",
         width: "100%",
         height: "auto",
+        boxShadow: "none",
+        borderRadius: "0px",
     },
     related: {
         settings: ImageSettings,
