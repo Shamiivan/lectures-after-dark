@@ -91,7 +91,7 @@ const Sidebar = () => {
     }, [hasSelected]);
 
     return (
-        <Grid style={{ width: "300px", borderLeft: "1px solid #e0e0e0", backgroundColor: "#fff", overflowY: "auto" }}>
+        <Grid style={{ width: "300px", height: "100%", borderRight: "1px solid #e0e0e0", backgroundColor: "#fff", overflowY: "auto" }}>
             <Accordion expanded={customizeOpen} onChange={() => setCustomizeOpen(!customizeOpen)} disableGutters elevation={0} square>
                 <AccordionSummary expandIcon={<ChevronDown size={16} />}>
                     <Box display="flex" alignItems="center">
@@ -147,8 +147,11 @@ const Admin: React.FC = () => {
 
 
 
+    console.log('Admin Render - Text component:', Text);
+    console.log('Admin Render - Resolver keys:', Object.keys({ Text, Button, Container, Card, IdeaSection, Image, WhyWeDoIt, UpcomingEvents, EventCard, Hero }));
+
     return (
-        <div style={{ margin: "0 auto", width: "100%", height: "100vh", display: "flex", flexDirection: "column" }}>
+        <div style={{ margin: "0 auto", width: "100%", height: "100vh", display: "flex", flexDirection: "column", overflow: "hidden" }}>
             <Editor
                 resolver={{ Text, Button, Container, Card, IdeaSection, Image, WhyWeDoIt, UpcomingEvents, EventCard, Hero }}
                 onRender={RenderNode}
@@ -156,11 +159,12 @@ const Admin: React.FC = () => {
                 enabled={true}
             >
                 <Header device={device} setDevice={setDevice} />
-                <Grid container style={{ flex: 1, height: "calc(100vh - 48px)", overflow: "hidden" }}>
+                <Grid container style={{ flex: 1, overflow: "hidden", flexWrap: "nowrap" }}>
+                    <Sidebar />
                     <Grid style={{ flex: 1, backgroundColor: "#f0f2f5", padding: "40px", overflowY: "auto", display: "flex", justifyContent: "center" }}>
                         <div style={{
                             width: device === "mobile" ? "375px" : "100%",
-                            height: device === "mobile" ? "667px" : "100%",
+                            minHeight: device === "mobile" ? "667px" : "100%",
                             transition: "all 0.3s ease",
                             border: device === "mobile" ? "1px solid #ccc" : "none",
                             boxShadow: device === "mobile" ? "0 0 20px rgba(0,0,0,0.1)" : "none",
@@ -217,7 +221,6 @@ const Admin: React.FC = () => {
                             </Frame>
                         </div>
                     </Grid>
-                    <Sidebar />
                 </Grid>
             </Editor>
         </div>

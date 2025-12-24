@@ -38,7 +38,7 @@ export const Hero = ({ videoSrc = "/nano_banana_video.mp4", overlayOpacity = 0.4
                     text="Lectures After Dark"
                     tagName="h1"
                     className={styles.title}
-                    fontSize="5rem"
+                    fontSize="5.37rem"
                     color="var(--cream)"
                     fontFamily="var(--font-headline)"
                     textAlign="center"
