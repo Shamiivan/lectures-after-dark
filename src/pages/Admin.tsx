@@ -6,6 +6,8 @@ import { IdeaSection } from '../components/IdeaSection';
 import { WhyWeDoIt } from '../components/WhyWeDoIt';
 import { UpcomingEvents } from '../components/UpcomingEvents';
 import { EventCard } from '../components/EventCard';
+import { SpeakersHeader, SpeakersInfo, SpeakersList, SpeakersCTA } from '../components/Speakers';
+import { SpeakerCard } from '../components/SpeakerCard';
 import { FAQ } from '../components/FAQ';
 import { SettingsPanel } from '../components/SettingsPanel';
 import Navbar from '../components/Navbar';
@@ -49,8 +51,29 @@ const Admin: React.FC = () => {
                         <SettingsPanel />
                     </div>
                 </Editor>
+            ) : activePage === 'speakers' ? (
+                <Editor resolver={{ SpeakersHeader, SpeakersInfo, SpeakersList, SpeakersCTA, SpeakerCard }}>
+                    <Topbar />
+                    <PageTabs activePageSlug={activePage} onPageChange={setActivePage} />
+                    <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
+                        <div style={{ flex: 1, overflow: 'auto', padding: '20px', background: '#e0e0e0' }}>
+                            <div style={{ background: 'white', minHeight: '100%', boxShadow: '0 0 10px rgba(0,0,0,0.1)', position: 'relative', transform: 'translate(0)' }}>
+                                <Navbar />
+                                <Frame json={pageData?.layout}>
+                                    <Element is="div" style={{ padding: '20px', minHeight: '800px' }} canvas>
+                                        <SpeakersHeader />
+                                        <SpeakersInfo />
+                                        <SpeakersList />
+                                        <SpeakersCTA />
+                                    </Element>
+                                </Frame>
+                            </div>
+                        </div>
+                        <SettingsPanel />
+                    </div>
+                </Editor>
             ) : (
-                <Editor resolver={{ Hero, Instagram, IdeaSection, WhyWeDoIt, UpcomingEvents, EventCard, FAQ }}>
+                <Editor resolver={{ Hero, Instagram, IdeaSection, WhyWeDoIt, UpcomingEvents, EventCard, FAQ, SpeakersHeader, SpeakersInfo, SpeakersList, SpeakersCTA, SpeakerCard }}>
                     <Topbar />
                     <PageTabs activePageSlug={activePage} onPageChange={setActivePage} />
                     <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
