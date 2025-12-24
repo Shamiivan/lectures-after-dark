@@ -64,11 +64,11 @@ export const Hero = ({ videoSrc = "/nano_banana_video.mp4", overlayOpacity = 0.4
                         id="hero-cta"
                         is={Button}
                         text="Upcoming Events"
-                        variant="outlined"
-                        backgroundColor="transparent"
-                        textColor="var(--cream)"
-                        className={styles.btnPrimary}
+                        variant="contained"
+                        backgroundColor="var(--cream)"
+                        textColor="var(--midnight)"
                         padding="1rem 2.5rem"
+                        className={styles.heroButton}
                     />
                 </div>
             </div>
