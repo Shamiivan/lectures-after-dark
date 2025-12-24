@@ -16,6 +16,7 @@ import { useEditor } from '@craftjs/core';
 import { useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { Button as MuiButton } from "@mui/material";
+import { RenderNode } from '../components/editor/RenderNode';
 
 const Header = () => {
     const { query } = useEditor();
@@ -75,10 +76,13 @@ const Admin: React.FC = () => {
         );
     }
 
+
+
     return (
         <div style={{ margin: "0 auto", width: "100%", height: "100vh", display: "flex", flexDirection: "column" }}>
             <Editor
                 resolver={{ Text, Button, Container, Card, IdeaSection, Image }}
+                onRender={RenderNode}
                 // If content exists, load it. Otherwise, use the default structure (Frame with children).
                 enabled={true}
             >
