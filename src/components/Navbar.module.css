@@ -2,13 +2,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.75rem 0;
+    padding: 1rem 0;
 
     /* Base Glass Style (Always applied but hidden initially) */
-    background-color: rgba(26, 22, 18, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(245, 240, 232, 0.05);
+    background-color: rgba(26, 22, 18, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(245, 240, 232, 0.08);
     color: var(--text-primary);
 
     /* Positioning */
@@ -65,7 +65,7 @@
 
 .links {
     display: flex;
-    gap: 3rem;
+    gap: 2rem;
     align-items: center;
 }
 
@@ -73,62 +73,240 @@
     font-family: var(--font-headline);
     text-decoration: none;
     color: var(--text-secondary);
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    transition: color 0.3s ease, transform 0.2s ease;
+    transition: all 0.3s ease;
     position: relative;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
 }
 
 .link::after {
     content: '';
     position: absolute;
     width: 0;
-    height: 1px;
-    bottom: -4px;
-    left: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
     background-color: var(--amber);
-    transition: width 0.3s ease;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .link:hover {
     color: var(--cream);
+    background-color: rgba(245, 240, 232, 0.05);
 }
 
 .link:hover::after {
-    width: 100%;
+    width: 60%;
 }
 
 .activeLink {
     color: var(--cream);
+    background-color: rgba(245, 240, 232, 0.08);
 }
 
 .activeLink::after {
-    width: 100%;
+    width: 60%;
 }
 
 .contactBtn {
     font-family: var(--font-headline);
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    padding: 0.75rem 1.5rem;
-    border: 1px solid var(--amber);
+    padding: 0.75rem 2rem;
+    border: 2px solid var(--amber);
+    background-color: transparent;
     color: var(--amber);
-    border-radius: 2px;
-    transition: all 0.3s ease;
+    border-radius: 4px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 600;
+    box-shadow: 0 0 0 0 rgba(217, 83, 46, 0);
+    position: relative;
+    overflow: hidden;
 }
 
-.contactBtn:hover,
+.contactBtn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: var(--amber);
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+}
+
+.contactBtn:hover {
+    color: var(--midnight);
+    box-shadow: 0 4px 12px rgba(217, 83, 46, 0.3);
+    transform: translateY(-2px);
+}
+
+.contactBtn:hover::before {
+    left: 0;
+}
+
 .contactBtnActive {
     background-color: var(--amber);
+    color: var(--midnight);
+    box-shadow: 0 4px 12px rgba(217, 83, 46, 0.4);
+}
+
+/* Hamburger Menu Button */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1001;
+    transition: transform 0.3s ease;
+}
+
+.hamburger:hover {
+    transform: scale(1.1);
+}
+
+.hamburger span {
+    width: 25px;
+    height: 2px;
+    background-color: var(--cream);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+}
+
+.hamburgerOpen span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.hamburgerOpen span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.hamburgerOpen span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile Menu */
+.mobileMenu {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background-color: rgba(26, 22, 18, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 5rem 2rem 2rem;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
+    border-left: 1px solid rgba(245, 240, 232, 0.1);
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.mobileMenuOpen {
+    right: 0;
+}
+
+.mobileLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.mobileLink {
+    font-family: var(--font-headline);
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.mobileLink:hover {
     color: var(--cream);
+    background-color: rgba(245, 240, 232, 0.05);
+    border-left-color: var(--amber);
+    transform: translateX(8px);
+}
+
+.mobileActiveLink {
+    color: var(--cream);
+    background-color: rgba(245, 240, 232, 0.08);
+    border-left-color: var(--amber);
+}
+
+.mobileContactBtn {
+    font-family: var(--font-headline);
+    text-decoration: none;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    border: 2px solid var(--amber);
+    background-color: transparent;
+    color: var(--amber);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.mobileContactBtn:hover,
+.mobileContactBtnActive {
+    background-color: var(--amber);
+    color: var(--midnight);
+}
+
+/* Mobile Menu Overlay */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 998;
+    transition: background-color 0.3s ease;
+    pointer-events: none;
+}
+
+.overlayVisible {
+    background-color: rgba(0, 0, 0, 0.6);
+    pointer-events: auto;
 }
 
 /* Mobile responsive adjustments */
 @media (max-width: 768px) {
     .links {
         display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .mobileMenu {
+        display: block;
+    }
+
+    .overlay {
+        display: block;
     }
 }

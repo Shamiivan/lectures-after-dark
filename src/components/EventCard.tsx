@@ -9,6 +9,7 @@ interface EventCardProps {
     location?: string;
     image?: string;
     buttonText?: string;
+    price?: string;
 }
 
 export const EventCard = ({
@@ -17,7 +18,8 @@ export const EventCard = ({
     date = 'Jan 22, 2025',
     location = 'Montreal',
     image = 'https://images.unsplash.com/photo-1528720208104-3d9bd03cc9d4?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    buttonText = 'Register'
+    buttonText = 'Register',
+    price = '$29.99'
 }: EventCardProps) => {
     const { connectors: { connect, drag } } = useNode();
 
@@ -44,22 +46,28 @@ export const EventCard = ({
                         <MapPin size={14} /> {location}
                     </span>
                 </div>
-                <a href="#" className={styles.link}>
-                    {buttonText} <ArrowRight size={16} />
-                </a>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1rem' }}>
+                    <span style={{ fontSize: '1.5rem', fontWeight: '700', color: 'var(--amber)', fontFamily: 'var(--font-headline)' }}>
+                        {price}
+                    </span>
+                    <a href="#" className={styles.link}>
+                        {buttonText} <ArrowRight size={16} />
+                    </a>
+                </div>
             </div>
         </div>
     );
 };
 
 const EventCardSettings = () => {
-    const { actions: { setProp }, tag, title, date, location, image, buttonText } = useNode((node) => ({
+    const { actions: { setProp }, tag, title, date, location, image, buttonText, price } = useNode((node) => ({
         tag: node.data.props.tag,
         title: node.data.props.title,
         date: node.data.props.date,
         location: node.data.props.location,
         image: node.data.props.image,
         buttonText: node.data.props.buttonText,
+        price: node.data.props.price,
     }));
 
     return (
@@ -118,6 +126,15 @@ const EventCardSettings = () => {
                     style={{ width: '100%', padding: '5px' }}
                 />
             </div>
+            <div style={{ marginBottom: '10px' }}>
+                <label style={{ display: 'block', marginBottom: '5px' }}>Price</label>
+                <input
+                    type="text"
+                    value={price || ''}
+                    onChange={(e) => setProp((props: EventCardProps) => props.price = e.target.value)}
+                    style={{ width: '100%', padding: '5px' }}
+                />
+            </div>
         </div>
     );
 };
@@ -129,7 +146,8 @@ const EventCardSettings = () => {
         date: 'Jan 22, 2025',
         location: 'Montreal',
         image: 'https://images.unsplash.com/photo-1528720208104-3d9bd03cc9d4?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        buttonText: 'Register'
+        buttonText: 'Register',
+        price: '$29.99'
     },
     related: {
         settings: EventCardSettings
