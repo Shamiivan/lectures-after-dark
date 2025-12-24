@@ -14,7 +14,7 @@ import { Image } from '../components/user/Image';
 import { Hero } from '../components/user/Hero';
 
 // Legacy Components (for fallback/migration)
-import LegacyHero from '../components/Hero';
+// import LegacyHero from '../components/Hero';
 import { UpcomingEvents } from '../components/UpcomingEvents';
 import { WhyWeDoIt } from '../components/user/WhyWeDoIt';
 import LegacyWhyWeDoIt from '../components/WhyWeDoIt';
