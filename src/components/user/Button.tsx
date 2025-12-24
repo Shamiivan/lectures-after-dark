@@ -1,3 +1,4 @@
+import React from "react";
 import { Button as MaterialButton, type ButtonProps as MaterialButtonProps, Box, Typography, Divider, TextField } from "@mui/material";
 import { useNode } from "@craftjs/core";
 import { ColorControl } from "../editor/ColorControl";
@@ -15,7 +16,7 @@ export interface ButtonProps extends Omit<MaterialButtonProps, 'classes'> {
     textColor?: string;
 }
 
-export const Button = ({
+export const Button: React.FC<ButtonProps> = ({
     size,
     variant,
     color,

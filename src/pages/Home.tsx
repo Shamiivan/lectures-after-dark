@@ -11,9 +11,10 @@ import { Container } from '../components/user/Container';
 import { Card } from '../components/user/Card';
 import { IdeaSection } from '../components/user/IdeaSection';
 import { Image } from '../components/user/Image';
+import { Hero } from '../components/user/Hero';
 
 // Legacy Components (for fallback/migration)
-import Hero from '../components/Hero';
+import LegacyHero from '../components/Hero';
 import { UpcomingEvents } from '../components/UpcomingEvents';
 import { WhyWeDoIt } from '../components/user/WhyWeDoIt';
 import LegacyWhyWeDoIt from '../components/WhyWeDoIt';
@@ -42,18 +43,23 @@ const Home: React.FC = () => {
 
     return (
         <div className="home-page">
-            <Editor enabled={false} resolver={{ Text, Button, Container, Card, IdeaSection, Image, WhyWeDoIt, UpcomingEvents, EventCard }}>
+            <Editor enabled={false} resolver={{ Text, Button, Container, Card, IdeaSection, Image, WhyWeDoIt, UpcomingEvents, EventCard, Hero }}>
                 {pageData?.content ? (
                     <Frame data={pageData.content} />
                 ) : (
                     <Frame>
                         <Element is={Container} canvas width="100%" padding={0} background="transparent">
-                            <Hero />
+                            <LegacyHero />
                             <Element is={UpcomingEvents} />
                             <LegacyIdeaSection />
                             <LegacyWhyWeDoIt />
                             <Instagram />
                             <FAQ />
+                            <Element is={Container} padding={40} background="#1a1a1a" width="100%" alignItems="center" justifyContent="center">
+                                <Element is={Text} text="Stay Updated" fontSize="2rem" color="#ffffff" textAlign="center" margin="0 0 10px 0" />
+                                <Element is={Text} text="Join our newsletter to get the latest updates." fontSize="1rem" color="#cccccc" textAlign="center" margin="0 0 20px 0" />
+                                <Element is={Button} text="Join our newsletter" variant="contained" color="primary" size="large" />
+                            </Element>
                         </Element>
                     </Frame>
                 )}

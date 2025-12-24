@@ -72,7 +72,7 @@ export const Text = ({
     };
 
     const typographyStyles = {
-        fontSize: typeof fontSize === 'number' ? `${fontSize}px` : fontSize,
+        fontSize: (typeof fontSize === 'number' || (!isNaN(Number(fontSize)) && fontSize !== '')) ? `${fontSize}px` : fontSize,
         fontFamily,
         fontWeight,
         lineHeight,
@@ -151,6 +151,8 @@ const TextSettings = () => {
                 <MenuItem value="'Oswald', sans-serif">Oswald</MenuItem>
                 <MenuItem value="'Playfair Display', serif">Playfair Display</MenuItem>
                 <MenuItem value="'Inter', sans-serif">Inter</MenuItem>
+                <MenuItem value="var(--font-headline)">Headline (Oswald)</MenuItem>
+                <MenuItem value="var(--font-serif)">Serif (Playfair)</MenuItem>
             </Select>
 
             {/* Weight, Size and Color */}
@@ -179,9 +181,8 @@ const TextSettings = () => {
                     <MuiTypography variant="caption" sx={{ color: '#888', display: 'block', mb: 0.5 }}>Size</MuiTypography>
                     <TextField
                         size="small"
-                        type="number"
                         value={fontSize || 20}
-                        onChange={(e) => setProp((props: any) => props.fontSize = parseInt(e.target.value))}
+                        onChange={(e) => setProp((props: any) => props.fontSize = e.target.value)}
                         sx={{
                             width: '70px',
                             bgcolor: '#222',
@@ -241,9 +242,8 @@ const TextSettings = () => {
                         <MoveVertical size={14} color="#888" style={{ marginRight: 4 }} />
                         <TextField
                             variant="standard"
-                            type="number"
                             value={lineHeight || 1.7}
-                            onChange={(e) => setProp((props: any) => props.lineHeight = parseFloat(e.target.value))}
+                            onChange={(e) => setProp((props: any) => props.lineHeight = e.target.value)}
                             InputProps={{ disableUnderline: true, sx: { color: '#fff', fontSize: '13px' } }}
                         />
                     </Box>

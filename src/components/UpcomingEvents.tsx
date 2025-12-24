@@ -5,6 +5,7 @@ import { useNode, Element } from '@craftjs/core';
 import { Text } from './user/Text';
 import { Button } from './user/Button';
 import { EventCard } from './user/EventCard';
+import { Container } from './user/Container';
 
 export const UpcomingEvents = () => {
     const { connectors: { connect, drag } } = useNode();
@@ -75,7 +76,7 @@ export const UpcomingEvents = () => {
                     </div>
                     <Element
                         id="view-all-btn"
-                        is={Button as any}
+                        is={Button}
                         text="VIEW ALL EVENTS"
                         variant="outlined"
                         size="medium"
@@ -95,7 +96,16 @@ export const UpcomingEvents = () => {
                         <ArrowRight size={24} style={{ transform: 'rotate(180deg)' }} />
                     </button>
                     <div className={styles.scrollContainer} ref={scrollContainerRef}>
-                        <Element is="div" canvas className={styles.canvasContainer} id="events-canvas">
+                        <Element
+                            is={Container}
+                            canvas
+                            className={styles.canvasContainer}
+                            id="events-canvas"
+                            flexDirection="row"
+                            width="fit-content"
+                            background="transparent"
+                            padding={0}
+                        >
                             <Element is={EventCard} canvas />
                             <Element is={EventCard} canvas />
                             <Element is={EventCard} canvas />

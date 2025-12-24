@@ -9,7 +9,8 @@ import { WhyWeDoIt } from "./user/WhyWeDoIt";
 import { Image } from "./user/Image";
 import { UpcomingEvents } from "./UpcomingEvents";
 import { EventCard } from "./user/EventCard";
-import { Type, Square, Layout, CreditCard, Calendar } from "lucide-react";
+import { Hero } from "./user/Hero";
+import { Type, Square, Layout, CreditCard, Calendar, Monitor } from "lucide-react";
 
 export const Toolbox = () => {
     const { connectors } = useEditor();
@@ -174,6 +175,17 @@ export const Toolbox = () => {
                     >
                         <CreditCard size={20} style={{ marginBottom: 5 }} />
                         <Typography variant="caption">Event</Typography>
+                    </MaterialButton>
+                </Tooltip>
+                <Tooltip title="Hero Section" arrow>
+                    <MaterialButton
+                        variant="outlined"
+                        fullWidth
+                        style={{ flexDirection: "column", padding: "10px", textTransform: "none", borderColor: "#e0e0e0", color: "#555" }}
+                        ref={(ref: any) => connectors.create(ref, <Hero />)}
+                    >
+                        <Monitor size={20} style={{ marginBottom: 5 }} />
+                        <Typography variant="caption">Hero</Typography>
                     </MaterialButton>
                 </Tooltip>
             </Box>
