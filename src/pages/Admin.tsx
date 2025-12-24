@@ -81,6 +81,12 @@ const Admin: React.FC = () => {
                                         <AboutMission />
                                     </Element>
                                 </Frame>
+                            ) : activePage === 'events' ? (
+                                <Frame json={pageData?.layout}>
+                                    <Element is="div" style={{ padding: '20px', minHeight: '800px' }} canvas>
+                                        <UpcomingEvents />
+                                    </Element>
+                                </Frame>
                             ) : (
                                 <Frame>
                                     <Element is="div" style={{ padding: '20px', minHeight: '800px' }} canvas />

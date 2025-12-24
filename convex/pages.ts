@@ -45,7 +45,7 @@ export const deletePage = mutation({
 export const initializePages = mutation({
     args: {},
     handler: async (ctx) => {
-        const pages = ["home", "bars", "speakers", "about"];
+        const pages = ["home", "bars", "speakers", "about", "events"];
 
         for (const slug of pages) {
             const existing = await ctx.db
