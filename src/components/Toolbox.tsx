@@ -7,7 +7,9 @@ import { Text } from "./user/Text";
 import { IdeaSection } from "./user/IdeaSection";
 import { WhyWeDoIt } from "./user/WhyWeDoIt";
 import { Image } from "./user/Image";
-import { Type, Square, Layout, CreditCard } from "lucide-react";
+import { UpcomingEvents } from "./UpcomingEvents";
+import { EventCard } from "./user/EventCard";
+import { Type, Square, Layout, CreditCard, Calendar } from "lucide-react";
 
 export const Toolbox = () => {
     const { connectors } = useEditor();
@@ -150,6 +152,28 @@ export const Toolbox = () => {
                     >
                         <Type size={20} style={{ marginBottom: 5 }} />
                         <Typography variant="caption">Why</Typography>
+                    </MaterialButton>
+                </Tooltip>
+                <Tooltip title="Upcoming Events" arrow>
+                    <MaterialButton
+                        variant="outlined"
+                        fullWidth
+                        style={{ flexDirection: "column", padding: "10px", textTransform: "none", borderColor: "#e0e0e0", color: "#555" }}
+                        ref={(ref: any) => connectors.create(ref, <UpcomingEvents />)}
+                    >
+                        <Calendar size={20} style={{ marginBottom: 5 }} />
+                        <Typography variant="caption">Events</Typography>
+                    </MaterialButton>
+                </Tooltip>
+                <Tooltip title="Event Card" arrow>
+                    <MaterialButton
+                        variant="outlined"
+                        fullWidth
+                        style={{ flexDirection: "column", padding: "10px", textTransform: "none", borderColor: "#e0e0e0", color: "#555" }}
+                        ref={(ref: any) => connectors.create(ref, <EventCard />)}
+                    >
+                        <CreditCard size={20} style={{ marginBottom: 5 }} />
+                        <Typography variant="caption">Event</Typography>
                     </MaterialButton>
                 </Tooltip>
             </Box>

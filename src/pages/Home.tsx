@@ -1,5 +1,5 @@
 import React from 'react';
-import { Editor, Frame } from '@craftjs/core';
+import { Editor, Frame, Element } from '@craftjs/core';
 import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { CircularProgress, Box } from "@mui/material";
@@ -14,12 +14,14 @@ import { Image } from '../components/user/Image';
 
 // Legacy Components (for fallback/migration)
 import Hero from '../components/Hero';
-import UpcomingEvents from '../components/UpcomingEvents';
+import { UpcomingEvents } from '../components/UpcomingEvents';
 import { WhyWeDoIt } from '../components/user/WhyWeDoIt';
 import LegacyWhyWeDoIt from '../components/WhyWeDoIt';
 import LegacyIdeaSection from '../components/IdeaSection';
 import Instagram from '../components/Instagram';
 import FAQ from '../components/FAQ';
+
+import { EventCard } from '../components/user/EventCard';
 
 const Home: React.FC = () => {
     const pageData = useQuery(api.pages.getPage, { slug: "home" });
@@ -40,21 +42,20 @@ const Home: React.FC = () => {
 
     return (
         <div className="home-page">
-            <Editor enabled={false} resolver={{ Text, Button, Container, Card, IdeaSection, Image, WhyWeDoIt }}>
+            <Editor enabled={false} resolver={{ Text, Button, Container, Card, IdeaSection, Image, WhyWeDoIt, UpcomingEvents, EventCard }}>
                 {pageData?.content ? (
                     <Frame data={pageData.content} />
                 ) : (
-                    // Fallback to original layout if no saved data (optional, but good for safety)
-                    // For this demo, let's just show a message or empty frame if nothing saved.
-                    // Or better, let's render the original components as a static fallback.
-                    <>
-                        <Hero />
-                        <UpcomingEvents />
-                        <LegacyIdeaSection />
-                        <LegacyWhyWeDoIt />
-                        <Instagram />
-                        <FAQ />
-                    </>
+                    <Frame>
+                        <Element is={Container} canvas width="100%" padding={0} background="transparent">
+                            <Hero />
+                            <Element is={UpcomingEvents} />
+                            <LegacyIdeaSection />
+                            <LegacyWhyWeDoIt />
+                            <Instagram />
+                            <FAQ />
+                        </Element>
+                    </Frame>
                 )}
             </Editor>
         </div>
