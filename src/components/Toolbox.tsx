@@ -6,6 +6,7 @@ import { Button } from "./user/Button";
 import { Text } from "./user/Text";
 import { IdeaSection } from "./user/IdeaSection";
 import { WhyWeDoIt } from "./user/WhyWeDoIt";
+import { Image } from "./user/Image";
 import { Type, Square, Layout, CreditCard } from "lucide-react";
 
 export const Toolbox = () => {
@@ -66,7 +67,45 @@ export const Toolbox = () => {
                         variant="outlined"
                         fullWidth
                         style={{ flexDirection: "column", padding: "10px", textTransform: "none", borderColor: "#e0e0e0", color: "#555" }}
-                        ref={(ref: any) => connectors.create(ref, <IdeaSection />)}
+                        ref={(ref: any) => connectors.create(ref,
+                            <Element is={IdeaSection} canvas>
+                                <Box sx={{ gridColumn: 'span 1' }}>
+                                    <Text
+                                        text="The Idea"
+                                        tagName="h2"
+                                        fontSize="3.5rem"
+                                        fontFamily="var(--font-headline)"
+                                        color="var(--cream)"
+                                        margin="0px 0px 32px 0px"
+                                    />
+                                    <Text
+                                        text="Lectures After Dark is a growing movement of intellectual social events that combine academic learning settings with the social experience of a bar."
+                                        tagName="p"
+                                        fontSize="1.25rem"
+                                        fontFamily="var(--font-serif)"
+                                        color="var(--text-secondary)"
+                                        lineHeight={1.8}
+                                    />
+                                    <Text
+                                        text="Our events are designed to be accessible to everyone while still offering deep insights. Curiosity is the only requirement."
+                                        tagName="p"
+                                        fontSize="1.25rem"
+                                        fontFamily="var(--font-serif)"
+                                        color="var(--text-secondary)"
+                                        lineHeight={1.8}
+                                    />
+                                </Box>
+                                <Box sx={{ gridColumn: 'span 1' }}>
+                                    <Image
+                                        alt="Cocktails and Conversation"
+                                        width="100%"
+                                        height="auto"
+                                        boxShadow="20px 20px 0 rgba(26, 22, 18, 0.5)"
+                                        borderRadius="4px"
+                                    />
+                                </Box>
+                            </Element>
+                        )}
                     >
                         <Type size={20} style={{ marginBottom: 5 }} />
                         <Typography variant="caption">Idea</Typography>
@@ -77,7 +116,39 @@ export const Toolbox = () => {
                         variant="outlined"
                         fullWidth
                         style={{ flexDirection: "column", padding: "10px", textTransform: "none", borderColor: "#e0e0e0", color: "#555" }}
-                        ref={(ref: any) => connectors.create(ref, <WhyWeDoIt />)}
+                        ref={(ref: any) => connectors.create(ref,
+                            <Element is={WhyWeDoIt} canvas>
+                                <Text
+                                    text="Why We Do It"
+                                    tagName="span"
+                                    fontSize="0.875rem"
+                                    fontFamily="var(--font-headline)"
+                                    color="var(--gold)"
+                                    textTransform="uppercase"
+                                    letterSpacing="0.15em"
+                                    margin="0px 0px 24px 0px"
+                                    textAlign="center"
+                                />
+                                <Text
+                                    text="Make learning a night out."
+                                    tagName="h2"
+                                    fontSize="3.5rem"
+                                    fontFamily="var(--font-headline)"
+                                    color="var(--cream)"
+                                    margin="0px 0px 40px 0px"
+                                    textAlign="center"
+                                />
+                                <Text
+                                    text="A lot of us miss that campus vibe — hearing a great idea, debating it after, and leaving with something that sticks. Lectures After Dark brings that back, just in a bar: relaxed, social, and actually fun."
+                                    tagName="p"
+                                    fontSize="1.25rem"
+                                    fontFamily="var(--font-serif)"
+                                    color="var(--text-secondary)"
+                                    lineHeight={1.7}
+                                    textAlign="center"
+                                />
+                            </Element>
+                        )}
                     >
                         <Type size={20} style={{ marginBottom: 5 }} />
                         <Typography variant="caption">Why</Typography>

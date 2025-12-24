@@ -1,7 +1,8 @@
 import React from "react";
-import { Paper } from "@mui/material";
+import { Paper, Box, Typography, TextField, Divider } from "@mui/material";
 import { useNode } from "@craftjs/core";
 import { SpacingControl } from "../editor/SpacingControl";
+import { ColorControl } from "../editor/ColorControl";
 
 export interface ContainerProps {
     background?: string;
@@ -36,43 +37,52 @@ const ContainerSettings = () => {
     }));
 
     return (
-        <>
-            <div style={{ marginBottom: "10px" }}>
-                <label style={{ display: "block", marginBottom: "5px", fontSize: "12px", color: "#666" }}>Background Color</label>
-                <input
-                    type="color"
-                    value={background}
-                    onChange={(e) => setProp((props: any) => props.background = e.target.value)}
-                    style={{ width: "100%", height: "40px", padding: "5px", border: "1px solid #e0e0e0", borderRadius: "4px" }}
-                />
-            </div>
-            <div style={{ marginBottom: "10px" }}>
-                <SpacingControl
-                    margin={margin}
-                    padding={padding}
-                    setProp={setProp}
-                />
-            </div>
-            <div style={{ marginBottom: "10px" }}>
-                <label style={{ display: "block", marginBottom: "5px", fontSize: "12px", color: "#666" }}>Width</label>
-                <input
-                    type="text"
-                    value={width}
-                    onChange={(e) => setProp((props: any) => props.width = e.target.value)}
-                    style={{ width: "100%", padding: "5px", border: "1px solid #e0e0e0", borderRadius: "4px" }}
-                />
-            </div>
-            <div style={{ marginBottom: "10px" }}>
-                <label style={{ display: "block", marginBottom: "5px", fontSize: "12px", color: "#666" }}>Height</label>
-                <input
-                    type="text"
-                    value={height}
-                    onChange={(e) => setProp((props: any) => props.height = e.target.value)}
-                    style={{ width: "100%", padding: "5px", border: "1px solid #e0e0e0", borderRadius: "4px" }}
-                />
-            </div>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+            <ColorControl
+                label="Background Color"
+                value={background || ''}
+                onChange={(val) => setProp((props: any) => props.background = val)}
+            />
 
-        </>
+            <Box sx={{ display: 'flex', gap: 1 }}>
+                <Box sx={{ flex: 1 }}>
+                    <Typography variant="caption" sx={{ color: '#888', display: 'block', mb: 0.5 }}>Width</Typography>
+                    <TextField
+                        fullWidth
+                        size="small"
+                        value={width}
+                        onChange={(e) => setProp((props: any) => props.width = e.target.value)}
+                        sx={{
+                            bgcolor: '#222',
+                            '& .MuiInputBase-input': { color: '#fff', p: '8.5px 14px' },
+                            '& .MuiOutlinedInput-notchedOutline': { borderColor: '#444' },
+                        }}
+                    />
+                </Box>
+                <Box sx={{ flex: 1 }}>
+                    <Typography variant="caption" sx={{ color: '#888', display: 'block', mb: 0.5 }}>Height</Typography>
+                    <TextField
+                        fullWidth
+                        size="small"
+                        value={height}
+                        onChange={(e) => setProp((props: any) => props.height = e.target.value)}
+                        sx={{
+                            bgcolor: '#222',
+                            '& .MuiInputBase-input': { color: '#fff', p: '8.5px 14px' },
+                            '& .MuiOutlinedInput-notchedOutline': { borderColor: '#444' },
+                        }}
+                    />
+                </Box>
+            </Box>
+
+            <Divider sx={{ borderColor: '#333', my: 1 }} />
+
+            <SpacingControl
+                margin={margin}
+                padding={padding}
+                setProp={setProp}
+            />
+        </Box>
     );
 };
 

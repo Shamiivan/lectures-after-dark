@@ -1,5 +1,7 @@
-import { Button as MaterialButton, type ButtonProps as MaterialButtonProps } from "@mui/material";
+import { Button as MaterialButton, type ButtonProps as MaterialButtonProps, Box, Typography, Divider, TextField } from "@mui/material";
 import { useNode } from "@craftjs/core";
+import { ColorControl } from "../editor/ColorControl";
+import { SpacingControl } from "../editor/SpacingControl";
 
 export interface ButtonProps extends Omit<MaterialButtonProps, 'classes'> {
     size?: "small" | "medium" | "large";
@@ -9,10 +11,31 @@ export interface ButtonProps extends Omit<MaterialButtonProps, 'classes'> {
     text?: string;
     margin?: string;
     padding?: string;
+    backgroundColor?: string;
+    textColor?: string;
 }
 
-export const Button = ({ size, variant, color, children, text, margin = "0px", padding = "0px", ...props }: ButtonProps) => {
+export const Button = ({
+    size,
+    variant,
+    color,
+    children,
+    text,
+    margin = "0px",
+    padding = "0px",
+    backgroundColor,
+    textColor,
+    ...props
+}: ButtonProps) => {
     const { connectors: { connect, drag } } = useNode();
+
+    const styles = {
+        margin,
+        padding,
+        backgroundColor: variant === 'contained' ? backgroundColor : undefined,
+        color: textColor,
+        borderColor: variant === 'outlined' ? backgroundColor : undefined,
+    };
 
     return (
         <MaterialButton
@@ -20,7 +43,7 @@ export const Button = ({ size, variant, color, children, text, margin = "0px", p
             size={size}
             variant={variant}
             color={color}
-            style={{ margin, padding }}
+            style={styles}
             {...props}
         >
             {children || text}
@@ -29,87 +52,94 @@ export const Button = ({ size, variant, color, children, text, margin = "0px", p
 };
 
 const ButtonSettings = () => {
-    const { actions: { setProp }, text, size, variant, color, margin, padding } = useNode((node) => ({
+    const {
+        actions: { setProp },
+        text,
+        size,
+        variant,
+        margin,
+        padding,
+        backgroundColor,
+        textColor
+    } = useNode((node) => ({
         text: node.data.props.text,
         size: node.data.props.size,
         variant: node.data.props.variant,
-        color: node.data.props.color,
         margin: node.data.props.margin,
         padding: node.data.props.padding,
+        backgroundColor: node.data.props.backgroundColor,
+        textColor: node.data.props.textColor,
     }));
 
     return (
-        <>
-            <div style={{ marginBottom: "10px" }}>
-                <label style={{ display: "block", marginBottom: "5px", fontSize: "12px", color: "#666" }}>Text</label>
-                <input
-                    type="text"
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+            <Box>
+                <Typography variant="caption" sx={{ color: '#888', display: 'block', mb: 0.5 }}>Text</Typography>
+                <TextField
+                    fullWidth
+                    size="small"
                     value={text}
-                    onChange={(e) => setProp((props: any) => props.text = e.target.value)}
-                    style={{ width: "100%", padding: "5px", border: "1px solid #e0e0e0", borderRadius: "4px" }}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setProp((props: any) => props.text = e.target.value)}
+                    sx={{
+                        bgcolor: '#222',
+                        '& .MuiInputBase-input': { color: '#fff', p: '8.5px 14px' },
+                        '& .MuiOutlinedInput-notchedOutline': { borderColor: '#444' },
+                    }}
                 />
-            </div>
-            <div style={{ marginBottom: "10px" }}>
-                <label style={{ display: "block", marginBottom: "5px", fontSize: "12px", color: "#666" }}>Size</label>
-                <select
-                    value={size}
-                    onChange={(e) => setProp((props: any) => props.size = e.target.value)}
-                    style={{ width: "100%", padding: "5px", border: "1px solid #e0e0e0", borderRadius: "4px" }}
-                >
-                    <option value="small">Small</option>
-                    <option value="medium">Medium</option>
-                    <option value="large">Large</option>
-                </select>
-            </div>
-            <div style={{ marginBottom: "10px" }}>
-                <label style={{ display: "block", marginBottom: "5px", fontSize: "12px", color: "#666" }}>Variant</label>
-                <select
-                    value={variant}
-                    onChange={(e) => setProp((props: any) => props.variant = e.target.value)}
-                    style={{ width: "100%", padding: "5px", border: "1px solid #e0e0e0", borderRadius: "4px" }}
-                >
-                    <option value="text">Text</option>
-                    <option value="outlined">Outlined</option>
-                    <option value="contained">Contained</option>
-                </select>
-            </div>
-            <div style={{ marginBottom: "10px" }}>
-                <label style={{ display: "block", marginBottom: "5px", fontSize: "12px", color: "#666" }}>Color</label>
-                <select
-                    value={color}
-                    onChange={(e) => setProp((props: any) => props.color = e.target.value)}
-                    style={{ width: "100%", padding: "5px", border: "1px solid #e0e0e0", borderRadius: "4px" }}
-                >
-                    <option value="inherit">Inherit</option>
-                    <option value="primary">Primary</option>
-                    <option value="secondary">Secondary</option>
-                    <option value="success">Success</option>
-                    <option value="error">Error</option>
-                    <option value="info">Info</option>
-                    <option value="warning">Warning</option>
-                </select>
-            </div>
-            <div style={{ marginBottom: "10px" }}>
-                <label style={{ display: "block", marginBottom: "5px", fontSize: "12px", color: "#666" }}>Margin</label>
-                <input
-                    type="text"
-                    value={margin || ""}
-                    onChange={(e) => setProp((props: any) => props.margin = e.target.value)}
-                    style={{ width: "100%", padding: "5px", border: "1px solid #e0e0e0", borderRadius: "4px" }}
-                    placeholder="e.g., 10px or 10px 20px"
-                />
-            </div>
-            <div style={{ marginBottom: "10px" }}>
-                <label style={{ display: "block", marginBottom: "5px", fontSize: "12px", color: "#666" }}>Padding</label>
-                <input
-                    type="text"
-                    value={padding || ""}
-                    onChange={(e) => setProp((props: any) => props.padding = e.target.value)}
-                    style={{ width: "100%", padding: "5px", border: "1px solid #e0e0e0", borderRadius: "4px" }}
-                    placeholder="e.g., 10px or 10px 20px"
-                />
-            </div>
-        </>
+            </Box>
+
+            <Box sx={{ display: 'flex', gap: 1 }}>
+                <Box sx={{ flex: 1 }}>
+                    <Typography variant="caption" sx={{ color: '#888', display: 'block', mb: 0.5 }}>Size</Typography>
+                    <select
+                        value={size}
+                        onChange={(e) => setProp((props: any) => props.size = e.target.value)}
+                        style={{ width: "100%", padding: "8.5px", background: "#222", color: "#fff", border: "1px solid #444", borderRadius: "4px" }}
+                    >
+                        <option value="small">Small</option>
+                        <option value="medium">Medium</option>
+                        <option value="large">Large</option>
+                    </select>
+                </Box>
+                <Box sx={{ flex: 1 }}>
+                    <Typography variant="caption" sx={{ color: '#888', display: 'block', mb: 0.5 }}>Variant</Typography>
+                    <select
+                        value={variant}
+                        onChange={(e) => setProp((props: any) => props.variant = e.target.value)}
+                        style={{ width: "100%", padding: "8.5px", background: "#222", color: "#fff", border: "1px solid #444", borderRadius: "4px" }}
+                    >
+                        <option value="text">Text</option>
+                        <option value="outlined">Outlined</option>
+                        <option value="contained">Contained</option>
+                    </select>
+                </Box>
+            </Box>
+
+            <Box sx={{ display: 'flex', gap: 1 }}>
+                <Box sx={{ flex: 1 }}>
+                    <ColorControl
+                        label="Background"
+                        value={backgroundColor || ''}
+                        onChange={(val) => setProp((props: any) => props.backgroundColor = val)}
+                    />
+                </Box>
+                <Box sx={{ flex: 1 }}>
+                    <ColorControl
+                        label="Text Color"
+                        value={textColor || ''}
+                        onChange={(val) => setProp((props: any) => props.textColor = val)}
+                    />
+                </Box>
+            </Box>
+
+            <Divider sx={{ borderColor: '#333', my: 1 }} />
+
+            <SpacingControl
+                margin={margin}
+                padding={padding}
+                setProp={setProp}
+            />
+        </Box>
     );
 };
 
@@ -122,6 +152,8 @@ Button.craft = {
         text: "Click me",
         margin: "0px",
         padding: "0px",
+        backgroundColor: "#D9532E",
+        textColor: "#ffffff",
     },
     related: {
         settings: ButtonSettings,

@@ -15,7 +15,8 @@ import { Image } from '../components/user/Image';
 // Legacy Components (for fallback/migration)
 import Hero from '../components/Hero';
 import UpcomingEvents from '../components/UpcomingEvents';
-import WhyWeDoIt from '../components/WhyWeDoIt';
+import { WhyWeDoIt } from '../components/user/WhyWeDoIt';
+import LegacyWhyWeDoIt from '../components/WhyWeDoIt';
 import LegacyIdeaSection from '../components/IdeaSection';
 import Instagram from '../components/Instagram';
 import FAQ from '../components/FAQ';
@@ -39,9 +40,9 @@ const Home: React.FC = () => {
 
     return (
         <div className="home-page">
-            <Editor enabled={false} resolver={{ Text, Button, Container, Card, IdeaSection, Image }}>
+            <Editor enabled={false} resolver={{ Text, Button, Container, Card, IdeaSection, Image, WhyWeDoIt }}>
                 {pageData?.content ? (
-                    <Frame json={pageData.content} />
+                    <Frame data={pageData.content} />
                 ) : (
                     // Fallback to original layout if no saved data (optional, but good for safety)
                     // For this demo, let's just show a message or empty frame if nothing saved.
@@ -50,7 +51,7 @@ const Home: React.FC = () => {
                         <Hero />
                         <UpcomingEvents />
                         <LegacyIdeaSection />
-                        <WhyWeDoIt />
+                        <LegacyWhyWeDoIt />
                         <Instagram />
                         <FAQ />
                     </>

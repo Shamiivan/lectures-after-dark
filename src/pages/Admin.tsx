@@ -90,13 +90,50 @@ const Admin: React.FC = () => {
                 <Header />
                 <Grid container style={{ flex: 1, height: "calc(100vh - 48px)", overflow: "hidden" }}>
                     <Grid style={{ flex: 1, backgroundColor: "#f0f2f5", padding: "40px", overflowY: "auto", display: "flex", justifyContent: "center" }}>
-                        <Frame json={pageData?.content}>
+                        <Frame data={pageData?.content}>
                             <Element is={Container} padding={40} background="#fff" width="100%" height="auto" canvas>
-                                <Card />
-                                <Button size="small" variant="outlined" color="secondary" text="Click me" />
-                                <Text fontSize={20} text="Hi world!" />
-                                <Element is={Container} padding={20} background="#eee" canvas>
-                                    <Text fontSize={20} text="It's me again!" />
+                                <Element is={WhyWeDoIt} canvas>
+                                    <Text
+                                        text="Why We Do It"
+                                        tagName="span"
+                                        fontSize="0.875rem"
+                                        fontFamily="var(--font-headline)"
+                                        color="var(--gold)"
+                                        textTransform="uppercase"
+                                        letterSpacing="0.15em"
+                                        margin="0px 0px 24px 0px"
+                                        textAlign="center"
+                                    />
+                                    <Text
+                                        text="Make learning a night out."
+                                        tagName="h2"
+                                        fontSize="3.5rem"
+                                        fontFamily="var(--font-headline)"
+                                        color="var(--cream)"
+                                        margin="0px 0px 40px 0px"
+                                        textAlign="center"
+                                    />
+                                </Element>
+                                <Element is={IdeaSection} canvas>
+                                    <Box sx={{ gridColumn: 'span 1' }}>
+                                        <Text
+                                            text="The Idea"
+                                            tagName="h2"
+                                            fontSize="3.5rem"
+                                            fontFamily="var(--font-headline)"
+                                            color="var(--cream)"
+                                            margin="0px 0px 32px 0px"
+                                        />
+                                    </Box>
+                                    <Box sx={{ gridColumn: 'span 1' }}>
+                                        <Image
+                                            alt="Cocktails and Conversation"
+                                            width="100%"
+                                            height="auto"
+                                            boxShadow="20px 20px 0 rgba(26, 22, 18, 0.5)"
+                                            borderRadius="4px"
+                                        />
+                                    </Box>
                                 </Element>
                             </Element>
                         </Frame>
