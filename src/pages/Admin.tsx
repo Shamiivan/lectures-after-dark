@@ -8,6 +8,7 @@ import { Container } from '../components/user/Container';
 import { Card } from '../components/user/Card';
 import { Image } from '../components/user/Image';
 import { IdeaSection } from '../components/user/IdeaSection';
+import { WhyWeDoIt } from '../components/user/WhyWeDoIt';
 
 import { Toolbox } from '../components/Toolbox';
 import { SettingsPanel } from '../components/SettingsPanel';
@@ -81,7 +82,7 @@ const Admin: React.FC = () => {
     return (
         <div style={{ margin: "0 auto", width: "100%", height: "100vh", display: "flex", flexDirection: "column" }}>
             <Editor
-                resolver={{ Text, Button, Container, Card, IdeaSection, Image }}
+                resolver={{ Text, Button, Container, Card, IdeaSection, Image, WhyWeDoIt }}
                 onRender={RenderNode}
                 // If content exists, load it. Otherwise, use the default structure (Frame with children).
                 enabled={true}

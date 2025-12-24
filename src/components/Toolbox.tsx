@@ -5,6 +5,7 @@ import { Card } from "./user/Card";
 import { Button } from "./user/Button";
 import { Text } from "./user/Text";
 import { IdeaSection } from "./user/IdeaSection";
+import { WhyWeDoIt } from "./user/WhyWeDoIt";
 import { Type, Square, Layout, CreditCard } from "lucide-react";
 
 export const Toolbox = () => {
@@ -69,6 +70,17 @@ export const Toolbox = () => {
                     >
                         <Type size={20} style={{ marginBottom: 5 }} />
                         <Typography variant="caption">Idea</Typography>
+                    </MaterialButton>
+                </Tooltip>
+                <Tooltip title="Why We Do It" arrow>
+                    <MaterialButton
+                        variant="outlined"
+                        fullWidth
+                        style={{ flexDirection: "column", padding: "10px", textTransform: "none", borderColor: "#e0e0e0", color: "#555" }}
+                        ref={(ref: any) => connectors.create(ref, <WhyWeDoIt />)}
+                    >
+                        <Type size={20} style={{ marginBottom: 5 }} />
+                        <Typography variant="caption">Why</Typography>
                     </MaterialButton>
                 </Tooltip>
             </Box>
