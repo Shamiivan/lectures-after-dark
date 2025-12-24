@@ -172,7 +172,7 @@
 }
 
 .heroButton:hover {
-    background-color: #ffb339 !important;
+    background-color: var(--amber) !important;
     box-shadow: none !important;
 }
 
