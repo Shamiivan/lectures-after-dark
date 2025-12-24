@@ -1,0 +1,17 @@
+.emailListButton {
+    border: 1px solid #ffffff !important;
+    background-color: transparent !important;
+    color: #ffffff !important;
+    font-family: var(--font-headline) !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    transition: all 0.3s ease !important;
+    border-radius: 0 !important;
+}
+
+.emailListButton:hover {
+    background-color: var(--amber) !important;
+    border-color: var(--amber) !important;
+    color: var(--midnight) !important;
+}

@@ -168,7 +168,25 @@
     box-shadow: none !important;
 }
 
-.heroButton:hover {
-    background-color: #F5F0E8 !important;
+background-color: #F5F0E8 !important;
+box-shadow: none !important;
+}
+
+.heroButtonSecondary {
+    background-color: transparent !important;
+    color: var(--cream) !important;
+    border-radius: 0 !important;
+    font-family: var(--font-headline) !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    border: 1px solid var(--cream) !important;
+    transition: all 0.3s ease !important;
     box-shadow: none !important;
+}
+
+.heroButtonSecondary:hover {
+    background-color: rgba(245, 240, 232, 0.1) !important;
+    border-color: var(--amber) !important;
+    color: var(--amber) !important;
 }

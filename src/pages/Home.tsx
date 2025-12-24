@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './Home.module.css';
 import { Editor, Frame, Element } from '@craftjs/core';
 import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
@@ -58,7 +59,7 @@ const Home: React.FC = () => {
                             <Element is={Container} padding={40} background="#1a1a1a" width="100%" alignItems="center" justifyContent="center">
                                 <Element is={Text} text="Stay Updated" fontSize="2rem" color="#ffffff" textAlign="center" margin="0 0 10px 0" />
                                 <Element is={Text} text="Join our newsletter to get the latest updates." fontSize="1rem" color="#cccccc" textAlign="center" margin="0 0 20px 0" />
-                                <Element is={Button as any} text="Join our newsletter" variant="contained" color="primary" size="large" />
+                                <Element is={Button as any} text="JOIN THE EMAIL LIST" className={styles.emailListButton} variant="outlined" padding="1rem 3rem" />
                             </Element>
                         </Element>
                     </Frame>

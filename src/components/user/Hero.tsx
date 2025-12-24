@@ -70,6 +70,16 @@ export const Hero = ({ videoSrc = "/nano_banana_video.mp4", overlayOpacity = 0.4
                         padding="1rem 2.5rem"
                         className={styles.heroButton}
                     />
+                    <Element
+                        id="hero-secondary-btn"
+                        is={Button as any}
+                        text="Learn More"
+                        variant="outlined"
+                        backgroundColor="transparent"
+                        textColor="var(--cream)"
+                        padding="1rem 2.5rem"
+                        className={styles.heroButtonSecondary}
+                    />
                 </div>
             </div>
         </section>
