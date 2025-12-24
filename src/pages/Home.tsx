@@ -1,25 +1,26 @@
 import React from 'react';
-import Hero from '../components/Hero';
+import { Editor, Frame, Element } from '@craftjs/core';
+import { Hero } from '../components/Hero';
 import UpcomingEvents from '../components/UpcomingEvents';
 import WhyWeDoIt from '../components/WhyWeDoIt';
-import IdeaSection from '../components/IdeaSection';
-// import Topics from '../components/Topics';
-import Instagram from '../components/Instagram';
+import { IdeaSection } from '../components/IdeaSection';
+import { Instagram } from '../components/Instagram';
 import FAQ from '../components/FAQ';
-// import CTA from '../components/CTA';
 
 const Home: React.FC = () => {
     return (
-        <>
-            <Hero />
-            <UpcomingEvents />
-            <IdeaSection />
-            {/* <Topics /> */}
-            <WhyWeDoIt />
-            <Instagram />
-            <FAQ />
-            {/* <CTA /> */}
-        </>
+        <Editor enabled={false} resolver={{ Hero, Instagram, IdeaSection, UpcomingEvents, WhyWeDoIt, FAQ }}>
+            <Frame>
+                <Element is="div" canvas>
+                    <Hero />
+                    <UpcomingEvents />
+                    <IdeaSection />
+                    <WhyWeDoIt />
+                    <Instagram />
+                    <FAQ />
+                </Element>
+            </Frame>
+        </Editor>
     );
 };
 

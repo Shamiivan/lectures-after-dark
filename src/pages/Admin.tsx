@@ -1,10 +1,32 @@
 import React from 'react';
+import { Editor, Frame, Element } from '@craftjs/core';
+import { Hero } from '../components/Hero';
+import { Instagram } from '../components/Instagram';
+import { IdeaSection } from '../components/IdeaSection';
+import { SettingsPanel } from '../components/SettingsPanel';
+
+import { Topbar } from '../components/Topbar';
 
 const Admin: React.FC = () => {
     return (
-        <div className="p-10">
-            <h1 className="text-3xl font-bold">Visual Editor</h1>
-            <p>Welcome to the admin panel.</p>
+        <div style={{ height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+            <Editor resolver={{ Hero, Instagram, IdeaSection }}>
+                <Topbar />
+                <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
+                    <div style={{ flex: 1, overflow: 'auto', padding: '20px', background: '#e0e0e0' }}>
+                        <div style={{ background: 'white', minHeight: '100%', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
+                            <Frame>
+                                <Element is="div" style={{ padding: '20px', minHeight: '800px' }} canvas>
+                                    <Hero />
+                                    <IdeaSection />
+                                    <Instagram />
+                                </Element>
+                            </Frame>
+                        </div>
+                    </div>
+                    <SettingsPanel />
+                </div>
+            </Editor>
         </div>
     );
 };
