@@ -1,19 +1,18 @@
 
 import { useNode, Element } from '@craftjs/core';
-import styles from '../pages/Speakers.module.css';
-import { Mic } from 'lucide-react';
-import { SpeakerCard } from './SpeakerCard';
+import styles from '../pages/Venues.module.css';
+import { BarCard } from './BarCard';
 
-// --- SpeakersHeader ---
-interface SpeakersHeaderProps {
+// --- BarsHeader ---
+interface BarsHeaderProps {
     title?: string;
     subtitle?: string;
 }
 
-export const SpeakersHeader = ({
-    title = "Our Speakers",
-    subtitle = "The minds behind the conversations."
-}: SpeakersHeaderProps) => {
+export const BarsHeader = ({
+    title = "Our Bars",
+    subtitle = "Great ideas need great atmosphere. We partner with the city's best bars and lounges."
+}: BarsHeaderProps) => {
     const { connectors: { connect, drag } } = useNode();
     return (
         <header
@@ -28,7 +27,7 @@ export const SpeakersHeader = ({
     );
 };
 
-const SpeakersHeaderSettings = () => {
+const BarsHeaderSettings = () => {
     const { actions: { setProp }, title, subtitle } = useNode((node) => ({
         title: node.data.props.title,
         subtitle: node.data.props.subtitle,
@@ -47,25 +46,25 @@ const SpeakersHeaderSettings = () => {
     );
 };
 
-(SpeakersHeader as any).craft = {
-    props: { title: "Our Speakers", subtitle: "The minds behind the conversations." },
-    related: { settings: SpeakersHeaderSettings }
+(BarsHeader as any).craft = {
+    props: { title: "Our Bars", subtitle: "Great ideas need great atmosphere. We partner with the city's best bars and lounges." },
+    related: { settings: BarsHeaderSettings }
 };
 
-// --- SpeakersInfo ---
-interface SpeakersInfoProps {
+// --- BarsInfo ---
+interface BarsInfoProps {
     title?: string;
     text1?: string;
     text2?: string;
-    placeholderText?: string;
+    imageUrl?: string;
 }
 
-export const SpeakersInfo = ({
-    title = "Information for Speakers",
+export const BarsInfo = ({
+    title = "Information for Hosts",
     text1 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     text2 = "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    placeholderText = "[Placeholder for an engaging image of a speaker]"
-}: SpeakersInfoProps) => {
+    imageUrl = "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
+}: BarsInfoProps) => {
     const { connectors: { connect, drag } } = useNode();
     return (
         <section
@@ -80,9 +79,11 @@ export const SpeakersInfo = ({
                         <p>{text2}</p>
                     </div>
                     <div className={styles.infoImage}>
-                        <p style={{ color: 'var(--text-secondary)', fontStyle: 'italic' }}>
-                            {placeholderText}
-                        </p>
+                        <img
+                            src={imageUrl}
+                            alt="Bar interior"
+                            style={{ width: '100%', borderRadius: '4px', boxShadow: '0 4px 20px rgba(0,0,0,0.3)' }}
+                        />
                     </div>
                 </div>
             </div>
@@ -90,12 +91,12 @@ export const SpeakersInfo = ({
     );
 };
 
-const SpeakersInfoSettings = () => {
-    const { actions: { setProp }, title, text1, text2 } = useNode((node) => ({
+const BarsInfoSettings = () => {
+    const { actions: { setProp }, title, text1, text2, imageUrl } = useNode((node) => ({
         title: node.data.props.title,
         text1: node.data.props.text1,
         text2: node.data.props.text2,
-        placeholderText: node.data.props.placeholderText,
+        imageUrl: node.data.props.imageUrl,
     }));
     return (
         <div>
@@ -111,28 +112,32 @@ const SpeakersInfoSettings = () => {
                 <label>Text 2</label>
                 <textarea value={text2} onChange={e => setProp((p: any) => p.text2 = e.target.value)} style={{ width: '100%', minHeight: '80px' }} />
             </div>
+            <div style={{ marginBottom: '10px' }}>
+                <label>Image URL</label>
+                <input type="text" value={imageUrl} onChange={e => setProp((p: any) => p.imageUrl = e.target.value)} style={{ width: '100%' }} />
+            </div>
         </div>
     );
 };
 
-(SpeakersInfo as any).craft = {
+(BarsInfo as any).craft = {
     props: {
-        title: "Information for Speakers",
+        title: "Information for Hosts",
         text1: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
         text2: "Duis aute irure dolor in reprehenderit...",
-        placeholderText: "[Placeholder for an engaging image of a speaker]"
+        imageUrl: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
     },
-    related: { settings: SpeakersInfoSettings }
+    related: { settings: BarsInfoSettings }
 };
 
-// --- SpeakersList ---
-interface SpeakersListProps {
+// --- BarsList ---
+interface BarsListProps {
     title?: string;
 }
 
-export const SpeakersList = ({
-    title = "Past & Future Speakers"
-}: SpeakersListProps) => {
+export const BarsList = ({
+    title = "Partner Bars"
+}: BarsListProps) => {
     const { connectors: { connect, drag } } = useNode();
     return (
         <section
@@ -141,17 +146,17 @@ export const SpeakersList = ({
         >
             <div className="container">
                 <h2 className={styles.sectionTitle}>{title}</h2>
-                <Element is="div" id="speakers-grid" canvas className={styles.speakersGrid}>
-                    <SpeakerCard name="Speaker Name 1" />
-                    <SpeakerCard name="Speaker Name 2" />
-                    <SpeakerCard name="Speaker Name 3" />
+                <Element is="div" id="bars-grid" canvas className={styles.speakersGrid}>
+                    <BarCard name="The Velvet Lounge" neighborhood="Plateau" imageUrl="https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" />
+                    <BarCard name="Library Bar" neighborhood="Downtown" imageUrl="https://images.unsplash.com/photo-1543007630-9710e4a00a20?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" />
+                    <BarCard name="Alchemy & Co." neighborhood="Old Port" imageUrl="https://images.unsplash.com/photo-1551024709-8f23befc6f87?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" />
                 </Element>
             </div>
         </section>
     );
 };
 
-const SpeakersListSettings = () => {
+const BarsListSettings = () => {
     const { actions: { setProp }, title } = useNode((node) => ({
         title: node.data.props.title,
     }));
@@ -165,44 +170,40 @@ const SpeakersListSettings = () => {
     );
 };
 
-(SpeakersList as any).craft = {
-    props: { title: "Past & Future Speakers" },
-    related: { settings: SpeakersListSettings }
+(BarsList as any).craft = {
+    props: { title: "Partner Bars" },
+    related: { settings: BarsListSettings }
 };
 
-// --- SpeakersCTA ---
-interface SpeakersCTAProps {
+// --- BarsCTA ---
+interface BarsCTAProps {
     title?: string;
     description?: string;
     buttonText?: string;
 }
 
-export const SpeakersCTA = ({
-    title = "Become a Speaker",
-    description = "Share your knowledge and passion with our community.",
-    buttonText = "Apply Now"
-}: SpeakersCTAProps) => {
+export const BarsCTA = ({
+    title = "Bring the conversation to your bar.",
+    description = "Transform your venue into a hub of intellectual exchange. Host a Lectures After Dark event.",
+    buttonText = "Partner With Us"
+}: BarsCTAProps) => {
     const { connectors: { connect, drag } } = useNode();
     return (
         <section
             ref={(ref: HTMLElement | null) => { if (ref) connect(drag(ref)); }}
             className={styles.ctaSection}
         >
-            <div className="container">
-                <div className={styles.ctaGrid} style={{ gridTemplateColumns: '1fr', maxWidth: '600px', margin: '0 auto' }}>
-                    <div className={styles.ctaCard}>
-                        <Mic size={48} color="var(--amber)" />
-                        <h3>{title}</h3>
-                        <p>{description}</p>
-                        <button className="btn btn-primary">{buttonText}</button>
-                    </div>
-                </div>
+            <div className={styles.ctaOverlay}></div>
+            <div className={styles.ctaContent}>
+                <h2 className={styles.ctaTitle}>{title}</h2>
+                <p className={styles.ctaText}>{description}</p>
+                <button className="btn btn-primary">{buttonText}</button>
             </div>
         </section>
     );
 };
 
-const SpeakersCTASettings = () => {
+const BarsCTASettings = () => {
     const { actions: { setProp }, title, description, buttonText } = useNode((node) => ({
         title: node.data.props.title,
         description: node.data.props.description,
@@ -226,11 +227,11 @@ const SpeakersCTASettings = () => {
     );
 };
 
-(SpeakersCTA as any).craft = {
+(BarsCTA as any).craft = {
     props: {
-        title: "Become a Speaker",
-        description: "Share your knowledge and passion with our community.",
-        buttonText: "Apply Now"
+        title: "Bring the conversation to your bar.",
+        description: "Transform your venue into a hub of intellectual exchange. Host a Lectures After Dark event.",
+        buttonText: "Partner With Us"
     },
-    related: { settings: SpeakersCTASettings }
+    related: { settings: BarsCTASettings }
 };
