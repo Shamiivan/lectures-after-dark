@@ -12,7 +12,7 @@ import Admin from './pages/Admin';
 
 function App() {
   const location = useLocation();
-  const isAdmin = location.pathname === '/admin';
+  const isAdmin = location.pathname.startsWith('/admin');
 
   return (
     <main>
@@ -24,7 +24,7 @@ function App() {
         <Route path="/bars" element={<Venues />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/:slug?" element={<Admin />} />
       </Routes>
       {!isAdmin && <Footer />}
     </main>

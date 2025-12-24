@@ -1,16 +1,20 @@
 import { useEditor } from '@craftjs/core';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useMutation } from 'convex/react';
 import { api } from '../../convex/_generated/api';
 
 export const Topbar = () => {
     const { query } = useEditor();
+    const { slug } = useParams<{ slug: string }>();
+    const navigate = useNavigate();
+    const pageSlug = slug || "home";
     const savePage = useMutation(api.pages.savePage);
     const deletePage = useMutation(api.pages.deletePage);
 
     const handleSave = async () => {
         const json = query.serialize();
         try {
-            await savePage({ slug: "home", layout: json });
+            await savePage({ slug: pageSlug, layout: json });
             alert('Layout saved to database!');
         } catch (error) {
             console.error("Failed to save:", error);
@@ -21,7 +25,7 @@ export const Topbar = () => {
     const handleDelete = async () => {
         if (confirm("Are you sure you want to delete this page layout? This cannot be undone.")) {
             try {
-                await deletePage({ slug: "home" });
+                await deletePage({ slug: pageSlug });
                 alert('Layout deleted from database!');
                 // Optionally reload or clear editor
                 window.location.reload();
@@ -42,7 +46,24 @@ export const Topbar = () => {
             alignItems: 'center',
             height: '50px'
         }}>
-            <h2 style={{ margin: 0, fontSize: '1.2rem' }}>Admin Editor</h2>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                <h2 style={{ margin: 0, fontSize: '1.2rem' }}>Admin Editor</h2>
+                <select
+                    value={pageSlug}
+                    onChange={(e) => navigate(e.target.value === 'home' ? '/admin' : `/admin/${e.target.value}`)}
+                    style={{
+                        padding: '5px',
+                        borderRadius: '4px',
+                        border: 'none',
+                        background: '#34495e',
+                        color: 'white',
+                        cursor: 'pointer'
+                    }}
+                >
+                    <option value="home">Home</option>
+                    <option value="speakers">Speakers</option>
+                </select>
+            </div>
             <div style={{ display: 'flex', gap: '10px' }}>
                 <button
                     onClick={handleDelete}

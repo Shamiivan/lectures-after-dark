@@ -60,7 +60,6 @@
   Benefits
 
   ✅ CSS modules work perfectly (no inline style conflicts)
-  ✅ 32% less code (simpler, more maintainable)
   ✅ Content editable (via settings panel)
   ✅ Design consistency (CSS enforces your design system)
   ✅ Drag/drop still works (Craft.js on section level)
