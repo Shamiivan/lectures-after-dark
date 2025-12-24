@@ -7,7 +7,7 @@ const WhyWeDoIt: React.FC = () => {
             <div className="container">
                 <div className={styles.content}>
                     <span className={styles.kicker}>Why We Do It</span>
-                    <h2 className={styles.title}>Make learning a night out.</h2>
+                    <h2 className={styles.title}>Making learning a night out is why we do it.</h2>
                     <div className={styles.bodyText}>
                         <p>
                             A lot of us miss that campus vibe — hearing a great idea, debating it after, and leaving with something that sticks. Lectures After Dark brings that back, just in a bar: relaxed, social, and actually fun.
