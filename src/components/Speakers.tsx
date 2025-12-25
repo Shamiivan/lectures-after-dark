@@ -57,14 +57,12 @@ interface SpeakersInfoProps {
     title?: string;
     text1?: string;
     text2?: string;
-    placeholderText?: string;
 }
 
 export const SpeakersInfo = ({
     title = "Information for Speakers",
     text1 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    text2 = "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    placeholderText = "[Placeholder for an engaging image of a speaker]"
+    text2 = "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 }: SpeakersInfoProps) => {
     const { connectors: { connect, drag } } = useNode();
     return (
@@ -80,9 +78,7 @@ export const SpeakersInfo = ({
                         <p>{text2}</p>
                     </div>
                     <div className={styles.infoImage}>
-                        <p style={{ color: 'var(--text-secondary)', fontStyle: 'italic' }}>
-                            {placeholderText}
-                        </p>
+                        <img src="/idea.jpeg" alt="Engaging speaker at a past event" className={styles.infoImage} />
                     </div>
                 </div>
             </div>
@@ -95,7 +91,6 @@ const SpeakersInfoSettings = () => {
         title: node.data.props.title,
         text1: node.data.props.text1,
         text2: node.data.props.text2,
-        placeholderText: node.data.props.placeholderText,
     }));
     return (
         <div>
@@ -120,7 +115,6 @@ const SpeakersInfoSettings = () => {
         title: "Information for Speakers",
         text1: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
         text2: "Duis aute irure dolor in reprehenderit...",
-        placeholderText: "[Placeholder for an engaging image of a speaker]"
     },
     related: { settings: SpeakersInfoSettings }
 };

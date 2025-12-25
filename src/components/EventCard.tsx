@@ -1,6 +1,7 @@
 import { useNode } from '@craftjs/core';
-import styles from './UpcomingEvents.module.css';
+import { Card } from './Card';
 import { ArrowRight, Calendar, MapPin } from 'lucide-react';
+import styles from './EventCard.module.css';
 
 interface EventCardProps {
     tag?: string;
@@ -30,31 +31,34 @@ export const EventCard = ({
                     connect(drag(ref));
                 }
             }}
-            className={styles.card}
+            className={styles.eventCardWrapper}
         >
-            <div className={styles.cardImage}>
-                <img src={image} alt={title} />
-            </div>
-            <div className={styles.cardContent}>
+            <Card
+                variant="image-top"
+                image={image}
+                imageHeight="220px"
+                padding="medium"
+                hoverable={true}
+            >
                 <span className={styles.tag}>{tag}</span>
-                <h3 className={styles.cardTitle}>{title}</h3>
+                <h3 className={styles.eventTitle}>{title}</h3>
                 <div className={styles.meta}>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                        <Calendar size={14} /> {date}
-                    </span>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                        <MapPin size={14} /> {location}
-                    </span>
+                    <div className={styles.metaItem}>
+                        <Calendar size={14} />
+                        <span>{date}</span>
+                    </div>
+                    <div className={styles.metaItem}>
+                        <MapPin size={14} />
+                        <span>{location}</span>
+                    </div>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1rem' }}>
-                    <span style={{ fontSize: '1.5rem', fontWeight: '700', color: 'var(--amber)', fontFamily: 'var(--font-headline)' }}>
-                        {price}
-                    </span>
+                <div className={styles.footer}>
+                    <span className={styles.price}>{price}</span>
                     <a href="#" className={styles.link}>
                         {buttonText} <ArrowRight size={16} />
                     </a>
                 </div>
-            </div>
+            </Card>
         </div>
     );
 };

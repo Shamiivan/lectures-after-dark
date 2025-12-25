@@ -32,8 +32,9 @@
 }
 
 .missionSection {
-    padding: clamp(2.5rem, 6vw, 4rem) clamp(1rem, 4vw, 2rem);
-    background-color: var(--bg-primary);
+    padding: clamp(4rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem);
+    background-color: var(--cream);
+    color: var(--midnight);
 }
 
 .missionContent {
@@ -42,16 +43,16 @@
 }
 
 .missionText h2 {
-    font-size: clamp(1.75rem, 5vw, 2.5rem);
-    color: var(--cream);
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--midnight);
     margin-bottom: clamp(1rem, 3vw, 1.5rem);
     text-align: center;
 }
 
 .missionText p {
-    color: var(--text-secondary);
+    color: var(--warm-brown);
     margin-bottom: clamp(1rem, 3vw, 1.5rem);
-    font-size: clamp(1rem, 2vw, 1.1rem);
+    font-size: clamp(1.1rem, 2vw, 1.25rem);
     line-height: 1.8;
 }
 
