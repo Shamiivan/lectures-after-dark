@@ -11,8 +11,8 @@ const PageTabs: React.FC<PageTabsProps> = ({ activePageSlug, onPageChange }) => 
         { slug: 'speakers', label: 'Speakers' },
         { slug: 'bars', label: 'Bars' },
         { slug: 'about', label: 'About' },
-        { slug: 'events', label: 'Events' },
-        { slug: 'new-page', label: 'New Page' },
+        // { slug: 'events', label: 'Events' },
+        // { slug: 'new-page', label: 'New Page' },
     ];
 
     return (
