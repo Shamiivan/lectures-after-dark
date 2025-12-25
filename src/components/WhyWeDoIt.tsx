@@ -36,7 +36,7 @@ export const WhyWeDoIt = ({
                         <p>{paragraph2}</p>
                         <p>{paragraph3}</p>
                     </div>
-                    <div style={{ marginTop: '3rem' }}>
+                    {/* <div style={{ marginTop: '3rem' }}>
                         <a href="https://instagram.com" className="btn" style={{
                             backgroundColor: 'var(--midnight)',
                             color: 'var(--cream)',
@@ -44,7 +44,7 @@ export const WhyWeDoIt = ({
                         }}>
                             Follow us on Instagram
                         </a>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </section>
@@ -108,6 +108,7 @@ const WhyWeDoItSettings = () => {
     );
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (WhyWeDoIt as any).craft = {
     props: {
         kicker: "Why We Do It",

@@ -68,7 +68,7 @@ const CardSettings = () => {
                 <label style={{ display: 'block', marginBottom: '5px' }}>Variant</label>
                 <select
                     value={variant}
-                    onChange={(e) => setProp((props: CardProps) => props.variant = e.target.value as any)}
+                    onChange={(e) => setProp((props: CardProps) => props.variant = e.target.value as 'default' | 'elevated' | 'outlined' | 'image-top')}
                     style={{ width: '100%', padding: '5px' }}
                 >
                     <option value="default">Default</option>
@@ -99,7 +99,7 @@ const CardSettings = () => {
                 <label style={{ display: 'block', marginBottom: '5px' }}>Padding</label>
                 <select
                     value={padding}
-                    onChange={(e) => setProp((props: CardProps) => props.padding = e.target.value as any)}
+                    onChange={(e) => setProp((props: CardProps) => props.padding = e.target.value as 'none' | 'small' | 'medium' | 'large')}
                     style={{ width: '100%', padding: '5px' }}
                 >
                     <option value="none">None</option>
@@ -122,6 +122,7 @@ const CardSettings = () => {
     );
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (Card as any).craft = {
     props: {
         variant: 'default',

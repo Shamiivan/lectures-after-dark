@@ -143,6 +143,7 @@ const EventCardSettings = () => {
     );
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (EventCard as any).craft = {
     props: {
         tag: 'Psychology',

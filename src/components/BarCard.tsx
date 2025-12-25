@@ -87,6 +87,7 @@ const BarCardSettings = () => {
     );
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (BarCard as any).craft = {
     props: {
         name: "Bar Name",

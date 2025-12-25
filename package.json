@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "lint": "npx eslint",
+    "lint:fix": "npx eslint --fix --max-warnings 0",
+    "type-check": "npx tsc --noEmit --pretty",
+    "check": "pnpm run lint:fix && pnpm run type-check && pnpm run build",
     "preview": "vite preview"
   },
   "dependencies": {

@@ -75,6 +75,7 @@ const InstagramSettings = () => {
     );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (Instagram as any).craft = {
     props: {
         title: "Follow us on Instagram",

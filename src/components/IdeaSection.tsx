@@ -100,6 +100,7 @@ const IdeaSectionSettings = () => {
     );
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (IdeaSection as any).craft = {
     props: {
         title: "The Idea",

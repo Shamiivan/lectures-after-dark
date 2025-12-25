@@ -124,6 +124,7 @@ const HeroSettings = () => {
     );
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (Hero as any).craft = {
     props: {
         title: "Lectures After Dark",

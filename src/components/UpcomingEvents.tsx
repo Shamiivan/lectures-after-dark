@@ -17,11 +17,11 @@ export const UpcomingEvents = ({
 }: UpcomingEventsProps) => {
     const { connectors: { connect, drag } } = useNode();
     const scrollContainerRef = React.useRef<HTMLDivElement>(null);
-    const [showLeftButton, setShowLeftButton] = React.useState(false);
+    // const [showLeftButton, setShowLeftButton] = React.useState(false);
 
     const checkScroll = () => {
         if (scrollContainerRef.current) {
-            setShowLeftButton(scrollContainerRef.current.scrollLeft > 0);
+            // setShowLeftButton(scrollContainerRef.current.scrollLeft > 0);
         }
     };
 
@@ -41,7 +41,7 @@ export const UpcomingEvents = ({
 
     const scroll = (direction: 'left' | 'right') => {
         if (scrollContainerRef.current) {
-            const scrollAmount = 400; // Adjust scroll amount as needed
+            const scrollAmount = 400;
             const newScrollLeft = scrollContainerRef.current.scrollLeft + (direction === 'right' ? scrollAmount : -scrollAmount);
             scrollContainerRef.current.scrollTo({
                 left: newScrollLeft,
@@ -72,14 +72,6 @@ export const UpcomingEvents = ({
                 </div>
 
                 <div className={styles.carouselWrapper}>
-                    <button
-                        onClick={() => scroll('left')}
-                        className={`${styles.floatingScrollButton} ${styles.left} ${showLeftButton ? styles.visible : ''}`}
-                        aria-label="Scroll left"
-                        disabled={!showLeftButton}
-                    >
-                        <ArrowRight size={24} style={{ transform: 'rotate(180deg)' }} />
-                    </button>
                     <div className={styles.scrollContainer} ref={scrollContainerRef}>
                         <Element is="div" id="events-list" canvas className={styles.eventsListCanvas}>
                             <EventCard
@@ -158,6 +150,7 @@ const UpcomingEventsSettings = () => {
     );
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (UpcomingEvents as any).craft = {
     props: {
         title: "Upcoming Events",

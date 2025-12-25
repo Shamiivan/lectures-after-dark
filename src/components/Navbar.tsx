@@ -10,15 +10,13 @@ const Navbar: React.FC = () => {
     const location = useLocation();
 
     useEffect(() => {
-        // If not on home page, always show navbar
-        if (location.pathname !== '/') {
-            setIsVisible(true);
-            return;
-        }
-
         const handleScroll = () => {
+            if (location.pathname !== '/') {
+                setIsVisible(true);
+                return;
+            }
+
             // Show navbar after scrolling 20% of the viewport height
-            // This gives a "getting past the landing page" feel
             const threshold = window.innerHeight * 0.2;
             if (window.scrollY > threshold) {
                 setIsVisible(true);
@@ -36,7 +34,11 @@ const Navbar: React.FC = () => {
 
     // Close mobile menu when route changes
     useEffect(() => {
-        setIsMobileMenuOpen(false);
+        // Wrap in setTimeout to avoid synchronous state update warning during render phase
+        const timer = setTimeout(() => {
+            setIsMobileMenuOpen(false);
+        }, 0);
+        return () => clearTimeout(timer);
     }, [location.pathname]);
 
     // Prevent body scroll when mobile menu is open

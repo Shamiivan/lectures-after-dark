@@ -35,16 +35,17 @@ const AboutHeaderSettings = () => {
         <div>
             <div style={{ marginBottom: '10px' }}>
                 <label>Title</label>
-                <input type="text" value={title} onChange={e => setProp((p: any) => p.title = e.target.value)} style={{ width: '100%' }} />
+                <input type="text" value={title} onChange={e => setProp((p: AboutHeaderProps) => p.title = e.target.value)} style={{ width: '100%' }} />
             </div>
             <div style={{ marginBottom: '10px' }}>
                 <label>Subtitle</label>
-                <input type="text" value={subtitle} onChange={e => setProp((p: any) => p.subtitle = e.target.value)} style={{ width: '100%' }} />
+                <input type="text" value={subtitle} onChange={e => setProp((p: AboutHeaderProps) => p.subtitle = e.target.value)} style={{ width: '100%' }} />
             </div>
         </div>
     );
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (AboutHeader as any).craft = {
     props: { title: "About Us", subtitle: "Where curiosity meets conversation in the heart of the city." },
     related: { settings: AboutHeaderSettings }
@@ -93,20 +94,21 @@ const AboutMissionSettings = () => {
         <div>
             <div style={{ marginBottom: '10px' }}>
                 <label>Title</label>
-                <input type="text" value={title} onChange={e => setProp((p: any) => p.title = e.target.value)} style={{ width: '100%' }} />
+                <input type="text" value={title} onChange={e => setProp((p: AboutMissionProps) => p.title = e.target.value)} style={{ width: '100%' }} />
             </div>
             <div style={{ marginBottom: '10px' }}>
                 <label>Mission Statement</label>
-                <textarea value={missionStatement} onChange={e => setProp((p: any) => p.missionStatement = e.target.value)} style={{ width: '100%', minHeight: '100px' }} />
+                <textarea value={missionStatement} onChange={e => setProp((p: AboutMissionProps) => p.missionStatement = e.target.value)} style={{ width: '100%', minHeight: '100px' }} />
             </div>
             <div style={{ marginBottom: '10px' }}>
                 <label>Image URL</label>
-                <input type="text" value={imageUrl} onChange={e => setProp((p: any) => p.imageUrl = e.target.value)} style={{ width: '100%' }} />
+                <input type="text" value={imageUrl} onChange={e => setProp((p: AboutMissionProps) => p.imageUrl = e.target.value)} style={{ width: '100%' }} />
             </div>
         </div>
     );
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (AboutMission as any).craft = {
     props: {
         title: "Our Mission",
@@ -159,20 +161,21 @@ const OurVisionSettings = () => {
         <div>
             <div style={{ marginBottom: '10px' }}>
                 <label>Title</label>
-                <input type="text" value={title} onChange={e => setProp((p: any) => p.title = e.target.value)} style={{ width: '100%' }} />
+                <input type="text" value={title} onChange={e => setProp((p: OurVisionProps) => p.title = e.target.value)} style={{ width: '100%' }} />
             </div>
             <div style={{ marginBottom: '10px' }}>
                 <label>Vision Statement</label>
-                <textarea value={visionStatement} onChange={e => setProp((p: any) => p.visionStatement = e.target.value)} style={{ width: '100%', minHeight: '100px' }} />
+                <textarea value={visionStatement} onChange={e => setProp((p: OurVisionProps) => p.visionStatement = e.target.value)} style={{ width: '100%', minHeight: '100px' }} />
             </div>
             <div style={{ marginBottom: '10px' }}>
                 <label>Image URL</label>
-                <input type="text" value={imageUrl} onChange={e => setProp((p: any) => p.imageUrl = e.target.value)} style={{ width: '100%' }} />
+                <input type="text" value={imageUrl} onChange={e => setProp((p: OurVisionProps) => p.imageUrl = e.target.value)} style={{ width: '100%' }} />
             </div>
         </div>
     );
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (OurVision as any).craft = {
     props: {
         title: "Our Vision",

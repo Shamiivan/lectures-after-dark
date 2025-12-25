@@ -37,16 +37,17 @@ const SpeakersHeaderSettings = () => {
         <div>
             <div style={{ marginBottom: '10px' }}>
                 <label>Title</label>
-                <input type="text" value={title} onChange={e => setProp((p: any) => p.title = e.target.value)} style={{ width: '100%' }} />
+                <input type="text" value={title} onChange={e => setProp((p: SpeakersHeaderProps) => p.title = e.target.value)} style={{ width: '100%' }} />
             </div>
             <div style={{ marginBottom: '10px' }}>
                 <label>Subtitle</label>
-                <input type="text" value={subtitle} onChange={e => setProp((p: any) => p.subtitle = e.target.value)} style={{ width: '100%' }} />
+                <input type="text" value={subtitle} onChange={e => setProp((p: SpeakersHeaderProps) => p.subtitle = e.target.value)} style={{ width: '100%' }} />
             </div>
         </div>
     );
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (SpeakersHeader as any).craft = {
     props: { title: "Our Speakers", subtitle: "The minds behind the conversations." },
     related: { settings: SpeakersHeaderSettings }
@@ -100,20 +101,21 @@ const SpeakersInfoSettings = () => {
         <div>
             <div style={{ marginBottom: '10px' }}>
                 <label>Title</label>
-                <input type="text" value={title} onChange={e => setProp((p: any) => p.title = e.target.value)} style={{ width: '100%' }} />
+                <input type="text" value={title} onChange={e => setProp((p: SpeakersInfoProps) => p.title = e.target.value)} style={{ width: '100%' }} />
             </div>
             <div style={{ marginBottom: '10px' }}>
                 <label>Text 1</label>
-                <textarea value={text1} onChange={e => setProp((p: any) => p.text1 = e.target.value)} style={{ width: '100%', minHeight: '80px' }} />
+                <textarea value={text1} onChange={e => setProp((p: SpeakersInfoProps) => p.text1 = e.target.value)} style={{ width: '100%', minHeight: '80px' }} />
             </div>
             <div style={{ marginBottom: '10px' }}>
                 <label>Text 2</label>
-                <textarea value={text2} onChange={e => setProp((p: any) => p.text2 = e.target.value)} style={{ width: '100%', minHeight: '80px' }} />
+                <textarea value={text2} onChange={e => setProp((p: SpeakersInfoProps) => p.text2 = e.target.value)} style={{ width: '100%', minHeight: '80px' }} />
             </div>
         </div>
     );
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (SpeakersInfo as any).craft = {
     props: {
         title: "Information for Speakers",
@@ -157,12 +159,13 @@ const SpeakersListSettings = () => {
         <div>
             <div style={{ marginBottom: '10px' }}>
                 <label>Title</label>
-                <input type="text" value={title} onChange={e => setProp((p: any) => p.title = e.target.value)} style={{ width: '100%' }} />
+                <input type="text" value={title} onChange={e => setProp((p: SpeakersListProps) => p.title = e.target.value)} style={{ width: '100%' }} />
             </div>
         </div>
     );
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (SpeakersList as any).craft = {
     props: { title: "Past & Future Speakers" },
     related: { settings: SpeakersListSettings }
@@ -217,28 +220,29 @@ const SpeakersCTASettings = () => {
         <div>
             <div style={{ marginBottom: '10px' }}>
                 <label>Title</label>
-                <input type="text" value={title} onChange={e => setProp((p: any) => p.title = e.target.value)} style={{ width: '100%' }} />
+                <input type="text" value={title} onChange={e => setProp((p: SpeakersCTAProps) => p.title = e.target.value)} style={{ width: '100%' }} />
             </div>
             <div style={{ marginBottom: '10px' }}>
                 <label>Description</label>
-                <textarea value={description} onChange={e => setProp((p: any) => p.description = e.target.value)} style={{ width: '100%', minHeight: '80px' }} />
+                <textarea value={description} onChange={e => setProp((p: SpeakersCTAProps) => p.description = e.target.value)} style={{ width: '100%', minHeight: '80px' }} />
             </div>
             <div style={{ marginBottom: '10px' }}>
                 <label>Button Text</label>
-                <input type="text" value={buttonText} onChange={e => setProp((p: any) => p.buttonText = e.target.value)} style={{ width: '100%' }} />
+                <input type="text" value={buttonText} onChange={e => setProp((p: SpeakersCTAProps) => p.buttonText = e.target.value)} style={{ width: '100%' }} />
             </div>
             <div style={{ marginBottom: '10px' }}>
                 <label>Secondary Button Text</label>
-                <input type="text" value={secondaryButtonText} onChange={e => setProp((p: any) => p.secondaryButtonText = e.target.value)} style={{ width: '100%' }} />
+                <input type="text" value={secondaryButtonText} onChange={e => setProp((p: SpeakersCTAProps) => p.secondaryButtonText = e.target.value)} style={{ width: '100%' }} />
             </div>
             <div style={{ marginBottom: '10px' }}>
                 <label>Secondary Button Link</label>
-                <input type="text" value={secondaryButtonLink} onChange={e => setProp((p: any) => p.secondaryButtonLink = e.target.value)} style={{ width: '100%' }} />
+                <input type="text" value={secondaryButtonLink} onChange={e => setProp((p: SpeakersCTAProps) => p.secondaryButtonLink = e.target.value)} style={{ width: '100%' }} />
             </div>
         </div>
     );
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (SpeakersCTA as any).craft = {
     props: {
         title: "Share Your Voice",

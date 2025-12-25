@@ -132,6 +132,7 @@ const SpeakerCardSettings = () => {
     );
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (SpeakerCard as any).craft = {
     props: {
         name: "Speaker Name",
