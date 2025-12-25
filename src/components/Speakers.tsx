@@ -78,7 +78,11 @@ export const SpeakersInfo = ({
                         <p>{text2}</p>
                     </div>
                     <div className={styles.infoImage}>
-                        <img src="/idea.jpeg" alt="Engaging speaker at a past event" className={styles.infoImage} />
+                        <img
+                            src="https://images.unsplash.com/photo-1597290282695-edc43d0e7129?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmFyfGVufDB8fDB8fHww"
+                            alt="Engaging speaker at a past event"
+                            style={{ width: '100%', borderRadius: '4px', boxShadow: '0 4px 20px rgba(0,0,0,0.3)' }}
+                        />
                     </div>
                 </div>
             </div>
@@ -136,9 +140,9 @@ export const SpeakersList = ({
             <div className="container">
                 <h2 className={styles.sectionTitle}>{title}</h2>
                 <Element is="div" id="speakers-grid" canvas className={styles.speakersGrid}>
-                    <SpeakerCard name="Speaker Name 1" />
-                    <SpeakerCard name="Speaker Name 2" />
-                    <SpeakerCard name="Speaker Name 3" />
+                    <SpeakerCard name="John Doe" topic="React" image="https://images.unsplash.com/photo-1599566150163-29194d6f4675?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" twitter="https://twitter.com/johndoe" linkedin="https://linkedin.com/in/johndoe" website="https://johndoe.com" />
+                    <SpeakerCard name="Jane Doe" topic="Vue" image="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" twitter="https://twitter.com/janedoe" linkedin="https://linkedin.com/in/janedoe" website="https://janedoe.com" />
+                    <SpeakerCard name="Peter Jones" topic="Angular" image="https://images.unsplash.com/photo-1597290282695-edc43d0e7129?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmFyfGVufDB8fDB8fHww" twitter="https://twitter.com/peterjones" linkedin="https://linkedin.com/in/peterjones" website="https://peterjones.com" />
                 </Element>
             </div>
         </section>
@@ -169,27 +173,32 @@ interface SpeakersCTAProps {
     title?: string;
     description?: string;
     buttonText?: string;
+    secondaryButtonText?: string;
+    secondaryButtonLink?: string;
 }
 
 export const SpeakersCTA = ({
-    title = "Become a Speaker",
-    description = "Share your knowledge and passion with our community.",
-    buttonText = "Apply Now"
+    title = "Share Your Voice",
+    description = "If you have a topic you're passionate about, we'd love to hear from you.",
+    buttonText = "Apply to Speak",
+    secondaryButtonText = "Learn More",
+    secondaryButtonLink = "/about"
 }: SpeakersCTAProps) => {
     const { connectors: { connect, drag } } = useNode();
     return (
         <section
             ref={(ref: HTMLElement | null) => { if (ref) connect(drag(ref)); }}
             className={styles.ctaSection}
+            style={{ backgroundImage: `url(/bg.jpeg)` }}
         >
-            <div className="container">
-                <div className={styles.ctaGrid} style={{ gridTemplateColumns: '1fr', maxWidth: '600px', margin: '0 auto' }}>
-                    <div className={styles.ctaCard}>
-                        <Mic size={48} color="var(--amber)" />
-                        <h3>{title}</h3>
-                        <p>{description}</p>
-                        <button className="btn btn-primary">{buttonText}</button>
-                    </div>
+            <div className={styles.ctaOverlay}></div>
+            <div className={styles.ctaContent}>
+                <Mic size={48} color="var(--amber)" />
+                <h2 className={styles.ctaTitle}>{title}</h2>
+                <p className={styles.ctaText}>{description}</p>
+                <div className={styles.ctaButtons}>
+                    <button className="btn btn-primary">{buttonText}</button>
+                    <a href={secondaryButtonLink} className="btn btn-secondary">{secondaryButtonText}</a>
                 </div>
             </div>
         </section>
@@ -197,10 +206,12 @@ export const SpeakersCTA = ({
 };
 
 const SpeakersCTASettings = () => {
-    const { actions: { setProp }, title, description, buttonText } = useNode((node) => ({
+    const { actions: { setProp }, title, description, buttonText, secondaryButtonText, secondaryButtonLink } = useNode((node) => ({
         title: node.data.props.title,
         description: node.data.props.description,
         buttonText: node.data.props.buttonText,
+        secondaryButtonText: node.data.props.secondaryButtonText,
+        secondaryButtonLink: node.data.props.secondaryButtonLink,
     }));
     return (
         <div>
@@ -210,11 +221,19 @@ const SpeakersCTASettings = () => {
             </div>
             <div style={{ marginBottom: '10px' }}>
                 <label>Description</label>
-                <input type="text" value={description} onChange={e => setProp((p: any) => p.description = e.target.value)} style={{ width: '100%' }} />
+                <textarea value={description} onChange={e => setProp((p: any) => p.description = e.target.value)} style={{ width: '100%', minHeight: '80px' }} />
             </div>
             <div style={{ marginBottom: '10px' }}>
                 <label>Button Text</label>
                 <input type="text" value={buttonText} onChange={e => setProp((p: any) => p.buttonText = e.target.value)} style={{ width: '100%' }} />
+            </div>
+            <div style={{ marginBottom: '10px' }}>
+                <label>Secondary Button Text</label>
+                <input type="text" value={secondaryButtonText} onChange={e => setProp((p: any) => p.secondaryButtonText = e.target.value)} style={{ width: '100%' }} />
+            </div>
+            <div style={{ marginBottom: '10px' }}>
+                <label>Secondary Button Link</label>
+                <input type="text" value={secondaryButtonLink} onChange={e => setProp((p: any) => p.secondaryButtonLink = e.target.value)} style={{ width: '100%' }} />
             </div>
         </div>
     );
@@ -222,9 +241,11 @@ const SpeakersCTASettings = () => {
 
 (SpeakersCTA as any).craft = {
     props: {
-        title: "Become a Speaker",
-        description: "Share your knowledge and passion with our community.",
-        buttonText: "Apply Now"
+        title: "Share Your Voice",
+        description: "Lectures After Dark is a platform for passionate people to share their ideas with a curious audience. We're always looking for new speakers to join our community. If you have a topic you're passionate about, we'd love to hear from you.",
+        buttonText: "Apply to Speak",
+        secondaryButtonText: "Learn More",
+        secondaryButtonLink: "/about"
     },
     related: { settings: SpeakersCTASettings }
 };

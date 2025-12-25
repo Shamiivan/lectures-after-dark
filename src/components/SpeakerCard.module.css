@@ -25,6 +25,21 @@
     font-family: var(--font-body);
 }
 
+.socialLinks {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.socialLinks a {
+    color: var(--text-secondary);
+    transition: color 0.2s ease-in-out;
+}
+
+.socialLinks a:hover {
+    color: var(--accent);
+}
+
 /* Mobile Optimizations */
 @media (max-width: 480px) {
     .speakerName {
