@@ -161,14 +161,6 @@ export default {
 }
 ```
 
-**Validation Checklist:**
-- [ ] `npm run dev` starts without errors
-- [ ] Site appearance unchanged
-- [ ] Test Tailwind class works: `<div className="tw-bg-amber">Test</div>`
-- [ ] No console errors or warnings
-
----
-
 ### Phase 2: Component Library Creation (New Code Only)
 **Duration:** 1-2 hours
 **Risk:** Low (no existing code modified)

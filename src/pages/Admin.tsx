@@ -12,6 +12,7 @@ import { BarsHeader, BarsInfo, BarsList, BarsCTA } from '../components/Bars';
 import { BarCard } from '../components/BarCard';
 import { AboutHeader, AboutMission } from '../components/About';
 import { FAQ } from '../components/FAQ';
+import { TestTailwind } from '../components/TestTailwind';
 import { SettingsPanel } from '../components/SettingsPanel';
 
 
@@ -24,7 +25,7 @@ const MAIN_RESOLVER = {
     Hero, Instagram, IdeaSection, WhyWeDoIt, UpcomingEvents, EventCard, FAQ,
     SpeakersHeader, SpeakersInfo, SpeakersList, SpeakersCTA, SpeakerCard,
     BarsHeader, BarsInfo, BarsList, BarsCTA, BarCard,
-    AboutHeader, AboutMission
+    AboutHeader, AboutMission, TestTailwind
 };
 
 const Admin: React.FC = () => {
@@ -85,6 +86,12 @@ const Admin: React.FC = () => {
                                 <Frame json={pageData?.layout}>
                                     <Element is="div" style={{ padding: '20px', minHeight: '800px' }} canvas>
                                         <UpcomingEvents />
+                                    </Element>
+                                </Frame>
+                            ) : activePage === 'test-tailwind' ? (
+                                <Frame json={pageData?.layout}>
+                                    <Element is="div" style={{ padding: '20px', minHeight: '800px' }} canvas>
+                                        <TestTailwind />
                                     </Element>
                                 </Frame>
                             ) : (
