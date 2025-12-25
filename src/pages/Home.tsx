@@ -1,25 +1,36 @@
 import React from 'react';
-import Hero from '../components/Hero';
-import UpcomingEvents from '../components/UpcomingEvents';
-import WhyWeDoIt from '../components/WhyWeDoIt';
-import IdeaSection from '../components/IdeaSection';
-// import Topics from '../components/Topics';
-import Instagram from '../components/Instagram';
-import FAQ from '../components/FAQ';
-// import CTA from '../components/CTA';
+import { Editor, Frame, Element } from '@craftjs/core';
+import { Hero } from '../components/Hero';
+import { UpcomingEvents } from '../components/UpcomingEvents';
+import { WhyWeDoIt } from '../components/WhyWeDoIt';
+import { IdeaSection } from '../components/IdeaSection';
+import { Instagram } from '../components/Instagram';
+import { FAQ } from '../components/FAQ';
+import { EventCard } from '../components/EventCard';
+
+import { useQuery } from 'convex/react';
+import { api } from '../../convex/_generated/api';
 
 const Home: React.FC = () => {
+    const pageData = useQuery(api.pages.getPage, { slug: "home" });
+
+    if (pageData === undefined) {
+        return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>Loading...</div>;
+    }
+
     return (
-        <>
-            <Hero />
-            <UpcomingEvents />
-            <IdeaSection />
-            {/* <Topics /> */}
-            <WhyWeDoIt />
-            <Instagram />
-            <FAQ />
-            {/* <CTA /> */}
-        </>
+        <Editor enabled={false} resolver={{ Hero, Instagram, IdeaSection, UpcomingEvents, WhyWeDoIt, FAQ, EventCard }}>
+            <Frame json={pageData?.layout}>
+                <Element is="div" canvas>
+                    <Hero />
+                    <UpcomingEvents />
+                    <IdeaSection />
+                    <WhyWeDoIt />
+                    <Instagram />
+                    <FAQ />
+                </Element>
+            </Frame>
+        </Editor>
     );
 };
 

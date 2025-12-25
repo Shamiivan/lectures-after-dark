@@ -1,19 +1,19 @@
 .section {
     padding: 4rem 0;
-    background-color: #120f0c;
+    background-color: var(--cream);
     text-align: center;
 }
 
 .title {
     font-family: var(--font-headline);
     font-size: 1.5rem;
-    color: var(--cream);
+    color: var(--midnight);
     margin-bottom: 0.5rem;
 }
 
 .handle {
     font-family: var(--font-body);
-    color: var(--text-secondary);
+    color: var(--warm-brown);
     margin-bottom: 2rem;
     display: block;
     font-size: 0.9rem;
