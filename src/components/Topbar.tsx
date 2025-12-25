@@ -9,7 +9,7 @@ interface TopbarProps {
 export const Topbar = ({ activePageSlug }: TopbarProps) => {
     const { query } = useEditor();
     const savePage = useMutation(api.pages.savePage);
-    const deletePage = useMutation(api.pages.deletePage);
+    // const deletePage = useMutation(api.pages.deletePage);
 
     const handleSave = async () => {
         const json = query.serialize();
@@ -22,19 +22,19 @@ export const Topbar = ({ activePageSlug }: TopbarProps) => {
         }
     };
 
-    const handleDelete = async () => {
-        if (confirm(`Are you sure you want to delete the "${activePageSlug}" page layout? This cannot be undone.`)) {
-            try {
-                await deletePage({ slug: activePageSlug });
-                alert(`"${activePageSlug}" page deleted from database!`);
-                // Optionally reload or clear editor
-                window.location.reload();
-            } catch (error) {
-                console.error("Failed to delete:", error);
-                alert('Failed to delete layout.');
-            }
-        }
-    };
+    // const handleDelete = async () => {
+    //     if (confirm(`Are you sure you want to delete the "${activePageSlug}" page layout? This cannot be undone.`)) {
+    //         try {
+    //             await deletePage({ slug: activePageSlug });
+    //             alert(`"${activePageSlug}" page deleted from database!`);
+    //             // Optionally reload or clear editor
+    //             window.location.reload();
+    //         } catch (error) {
+    //             console.error("Failed to delete:", error);
+    //             alert('Failed to delete layout.');
+    //         }
+    //     }
+    // };
 
     return (
         <div style={{
@@ -53,7 +53,7 @@ export const Topbar = ({ activePageSlug }: TopbarProps) => {
                 </p>
             </div>
             <div style={{ display: 'flex', gap: '10px' }}>
-                <button
+                {/* <button
                     onClick={handleDelete}
                     style={{
                         padding: '8px 16px',
@@ -66,7 +66,7 @@ export const Topbar = ({ activePageSlug }: TopbarProps) => {
                     }}
                 >
                     Delete Page
-                </button>
+                </button> */}
                 <button
                     onClick={handleSave}
                     style={{
