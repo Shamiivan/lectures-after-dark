@@ -53,6 +53,23 @@ export const Topbar = ({ activePageSlug }: TopbarProps) => {
                 </p>
             </div>
             <div style={{ display: 'flex', gap: '10px' }}>
+                <a
+                    href="/"
+                    style={{
+                        padding: '8px 16px',
+                        background: '#3498db',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '4px',
+                        cursor: 'pointer',
+                        fontWeight: 'bold',
+                        textDecoration: 'none',
+                        display: 'flex',
+                        alignItems: 'center'
+                    }}
+                >
+                    Back to Homepage
+                </a>
                 {/* <button
                     onClick={handleDelete}
                     style={{

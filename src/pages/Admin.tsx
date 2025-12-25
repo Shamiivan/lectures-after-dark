@@ -13,7 +13,7 @@ import { BarCard } from '../components/BarCard';
 import { AboutHeader, AboutMission } from '../components/About';
 import { FAQ } from '../components/FAQ';
 import { SettingsPanel } from '../components/SettingsPanel';
-import Navbar from '../components/Navbar';
+
 
 import { useQuery } from 'convex/react';
 import { api } from '../../convex/_generated/api';
@@ -44,7 +44,7 @@ const Admin: React.FC = () => {
                 <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
                     <div style={{ flex: 1, overflow: 'auto', padding: '20px', background: '#e0e0e0' }}>
                         <div style={{ background: 'white', minHeight: '100%', boxShadow: '0 0 10px rgba(0,0,0,0.1)', position: 'relative', transform: 'translate(0)' }}>
-                            <Navbar />
+
                             {activePage === 'home' ? (
                                 <Frame json={pageData?.layout}>
                                     <Element is="div" style={{ padding: '20px', minHeight: '800px' }} canvas>
