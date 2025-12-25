@@ -6,12 +6,14 @@ interface HeroProps {
     title?: string;
     subtitle?: string;
     buttonText?: string;
+    secondaryButtonText?: string;
 }
 
 export const Hero = ({
     title = "Lectures After Dark",
     subtitle = "Where Ambition, Psychology & Culture Collide",
-    buttonText = "Upcoming Events"
+    buttonText = "Upcoming Events",
+    secondaryButtonText = "Join Our Email List"
 }: HeroProps) => {
     const { connectors: { connect, drag } } = useNode();
 
@@ -63,6 +65,9 @@ export const Hero = ({
                     <a href="#events" className={styles.btnPrimary}>
                         {buttonText}
                     </a>
+                    <a href="#email-list" className={styles.btnSecondary}>
+                        {secondaryButtonText}
+                    </a>
                 </div>
             </div>
         </section>
@@ -70,10 +75,11 @@ export const Hero = ({
 };
 
 const HeroSettings = () => {
-    const { actions: { setProp }, title, subtitle, buttonText } = useNode((node) => ({
+    const { actions: { setProp }, title, subtitle, buttonText, secondaryButtonText } = useNode((node) => ({
         title: node.data.props.title,
         subtitle: node.data.props.subtitle,
         buttonText: node.data.props.buttonText,
+        secondaryButtonText: node.data.props.secondaryButtonText,
     }));
 
     return (
@@ -105,6 +111,15 @@ const HeroSettings = () => {
                     style={{ width: '100%', padding: '5px' }}
                 />
             </div>
+            <div style={{ marginBottom: '10px' }}>
+                <label style={{ display: 'block', marginBottom: '5px' }}>Secondary Button Text</label>
+                <input
+                    type="text"
+                    value={secondaryButtonText || ''}
+                    onChange={(e) => setProp((props: HeroProps) => props.secondaryButtonText = e.target.value)}
+                    style={{ width: '100%', padding: '5px' }}
+                />
+            </div>
         </div>
     );
 };
@@ -113,7 +128,8 @@ const HeroSettings = () => {
     props: {
         title: "Lectures After Dark",
         subtitle: "Where Ambition, Psychology & Culture Collide",
-        buttonText: "Upcoming Events"
+        buttonText: "Upcoming Events",
+        secondaryButtonText: "Join Our Email List"
     },
     related: {
         settings: HeroSettings
