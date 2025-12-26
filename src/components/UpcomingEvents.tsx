@@ -71,8 +71,8 @@ export const UpcomingEvents = ({
                 </div>
 
                 <div className="relative">
-                    <div className="flex gap-8 overflow-x-auto pb-8 scrollbar-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden max-md:scroll-snap-x-mandatory max-md:pl-4" ref={scrollContainerRef}>
-                        <Element is="div" id="events-list" canvas className="flex gap-8 w-auto max-md:pr-4">
+                    <div className="flex gap-8 overflow-x-auto pb-8 scrollbar-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden max-md:scroll-snap-x-mandatory max-md:pl-4 max-md:gap-4" ref={scrollContainerRef}>
+                        <Element is="div" id="events-list" canvas className="flex gap-8 w-auto">
                             <EventCard
                                 tag="Psychology"
                                 title="The Psychology of Ambition: Why Some People Win and Most Don't"

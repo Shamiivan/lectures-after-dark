@@ -54,7 +54,7 @@ export const MigratingFrame: React.FC<MigratingFrameProps> = ({ json, children }
 
                             if (linkedNodeKey) {
                                 // This is the events-list canvas, apply correct Tailwind classes
-                                node.props.className = 'flex gap-8 w-auto max-md:pr-4';
+                                node.props.className = 'flex gap-8 w-auto max-md:gap-4';
                             }
                         }
                         return;

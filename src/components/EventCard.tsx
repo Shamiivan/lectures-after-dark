@@ -32,7 +32,7 @@ export const EventCard = ({
                     connect(drag(ref));
                 }
             }}
-            className="w-[300px] shrink-0"
+            className="w-[300px] shrink-0 max-md:w-[calc(82vw-2rem)] scroll-snap-align-start"
         >
             <Card className="h-full flex flex-col relative overflow-hidden group bg-card-bg border border-cream/10 hover:border-gold/30 transition-all duration-300">
                 {/* Image Section */}
@@ -67,19 +67,19 @@ export const EventCard = ({
 
                 <CardContent className="flex-1 pt-5 px-5 pb-2">
                     {/* Location & Time Row */}
-                    <div className="flex items-center justify-between text-sm text-cream-dark/80 mb-3 font-medium">
-                        <div className="flex items-center gap-1.5">
-                            <MapPin size={14} className="text-gold" />
+                    <div className="flex items-center justify-between text-xs text-cream-dark/80 mb-3 font-medium">
+                        <div className="flex items-center gap-1">
+                            <MapPin size={10} className="text-gold" />
                             <span>{location}</span>
                         </div>
-                        <div className="flex items-center gap-1.5">
-                            <Clock size={14} className="text-gold" />
+                        <div className="flex items-center gap-1">
+                            <Clock size={10} className="text-gold" />
                             <span>{time}</span>
                         </div>
                     </div>
 
                     {/* Title */}
-                    <h3 className="font-headline text-xl text-cream leading-tight mb-2 line-clamp-2 min-h-[3.5rem]">
+                    <h3 className="font-headline text-lg text-cream leading-tight mb-2 line-clamp-2 min-h-[3.5rem]">
                         {title}
                     </h3>
                 </CardContent>
