@@ -1,1 +1,18 @@
-@import "tailwindcss" prefix(tw);
+@import "tailwindcss";
+/* Force rebuild */
+
+@theme {
+    --spacing: 0.25rem;
+    --color-midnight: #1a1612;
+    --color-warm-brown: #3D2B1F;
+    --color-amber: #D9532E;
+    --color-amber-light: #E67E52;
+    --color-cream: #F5F0E8;
+    --color-cream-dark: #D4C7B8;
+    --color-gold: #CC9966;
+    --color-card-bg: #2A1F1A;
+
+    --font-family-headline: var(--font-headline);
+    --font-family-serif: var(--font-serif);
+    --font-family-body: var(--font-body);
+}

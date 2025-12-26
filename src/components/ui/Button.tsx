@@ -10,18 +10,18 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ({ variant = 'primary', size = 'md', className = '', children, ...props }, ref) => {
-        const baseClasses = 'tw:rounded tw:font-semibold tw:uppercase tw:transition-all tw:duration-200 tw:cursor-pointer disabled:tw:opacity-50 disabled:tw:cursor-not-allowed'
+        const baseClasses = 'flex items-center justify-center font-headline font-semibold uppercase transition-all duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed border tracking-[0.1em] min-h-[48px]'
 
         const variantClasses = {
-            primary: 'tw:bg-amber tw:text-white hover:tw:bg-amber-light hover:tw:shadow-lg',
-            secondary: 'tw:bg-white tw:text-midnight hover:tw:bg-cream hover:tw:shadow-md',
-            outline: 'tw:border-2 tw:border-amber tw:text-amber tw:bg-transparent hover:tw:bg-amber hover:tw:text-white',
+            primary: 'bg-gold text-midnight border-gold hover:bg-transparent hover:text-gold hover:shadow-[0_0_20px_rgba(245,240,232,0.2)]',
+            secondary: 'bg-transparent text-cream border-gold hover:bg-gold/10 hover:border-gold hover:text-gold',
+            outline: 'bg-transparent text-cream border-gold hover:bg-gold/10',
         }
 
         const sizeClasses = {
-            sm: 'tw:px-4 tw:py-2 tw:text-sm',
-            md: 'tw:px-8 tw:py-4 tw:text-base',
-            lg: 'tw:px-10 tw:py-5 tw:text-lg',
+            sm: 'px-4 py-2',
+            md: 'px-8 py-3',
+            lg: 'px-12 py-4',
         }
 
         return (
