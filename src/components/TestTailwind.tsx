@@ -15,48 +15,48 @@ export const TestTailwind = ({ text = "Tailwind Test" }: TestTailwindProps) => {
             ref={(ref: HTMLDivElement | null) => {
                 if (ref) connect(drag(ref));
             }}
-            className="tw-p-8 tw-bg-midnight tw-text-center tw-border-2 tw-border-amber tw-rounded-xl tw-m-4"
+            className="p-8 bg-midnight text-center border-2 border-amber rounded-xl m-4"
         >
             <SectionTitle>Tailwind Integration Check</SectionTitle>
 
-            <Paragraph maxWidth="prose" className="tw-text-cream-dark tw-mb-8 tw-mx-auto">
+            <Paragraph maxWidth="prose" className="text-cream-dark mb-8 mx-auto">
                 {text}
             </Paragraph>
 
-            <div className="tw-flex tw-gap-4 tw-justify-center tw-mb-12">
-                <div className="tw-w-16 tw-h-16 tw-bg-amber tw-rounded-full tw-flex tw-items-center tw-justify-center tw-text-white tw-font-bold">
+            <div className="flex gap-4 justify-center mb-12">
+                <div className="w-16 h-16 bg-amber rounded-full flex items-center justify-center text-white font-bold">
                     Amber
                 </div>
-                <div className="tw-w-16 tw-h-16 tw-bg-cream tw-rounded-full tw-flex tw-items-center tw-justify-center tw-text-midnight tw-font-bold">
+                <div className="w-16 h-16 bg-cream rounded-full flex items-center justify-center text-midnight font-bold">
                     Cream
                 </div>
-                <div className="tw-w-16 tw-h-16 tw-bg-warm-brown tw-rounded-full tw-flex tw-items-center tw-justify-center tw-text-white tw-font-bold">
+                <div className="w-16 h-16 bg-warm-brown rounded-full flex items-center justify-center text-white font-bold">
                     Brown
                 </div>
             </div>
 
-            <div className="tw-space-y-8">
-                <div className="tw-p-6 tw-border tw-border-white/10 tw-rounded-lg">
-                    <h3 className="tw-text-cream tw-text-xl tw-mb-4 tw-font-headline">Buttons</h3>
-                    <div className="tw-flex tw-flex-wrap tw-gap-4 tw-justify-center tw-items-center">
+            <div className="space-y-8">
+                <div className="p-6 border border-white/10 rounded-lg">
+                    <h3 className="text-cream text-xl mb-4 font-headline">Buttons</h3>
+                    <div className="flex flex-wrap gap-4 justify-center items-center">
                         <Button variant="primary">Primary</Button>
                         <Button variant="secondary">Secondary</Button>
                         <Button variant="outline">Outline</Button>
                     </div>
-                    <div className="tw-flex tw-flex-wrap tw-gap-4 tw-justify-center tw-items-center tw-mt-4">
+                    <div className="flex flex-wrap gap-4 justify-center items-center mt-4">
                         <Button size="sm">Small</Button>
                         <Button size="md">Medium</Button>
                         <Button size="lg">Large</Button>
                     </div>
                 </div>
 
-                <div className="tw-p-6 tw-border tw-border-white/10 tw-rounded-lg tw-text-left">
-                    <h3 className="tw-text-cream tw-text-xl tw-mb-4 tw-font-headline tw-text-center">Typography</h3>
-                    <SectionTitle className="!tw-mb-4">Section Title Example</SectionTitle>
-                    <Paragraph maxWidth="prose" className="tw-mb-4">
+                <div className="p-6 border border-white/10 rounded-lg text-left">
+                    <h3 className="text-cream text-xl mb-4 font-headline text-center">Typography</h3>
+                    <SectionTitle className="!mb-4">Section Title Example</SectionTitle>
+                    <Paragraph maxWidth="prose" className="mb-4">
                         This is a standard paragraph with prose width. It's designed for optimal reading experience, limiting the characters per line to around 65.
                     </Paragraph>
-                    <Paragraph maxWidth="narrow" className="tw-text-cream/80">
+                    <Paragraph maxWidth="narrow" className="text-cream/80">
                         This is a narrow paragraph, useful for captions or side notes. It has a tighter max-width constraint.
                     </Paragraph>
                 </div>

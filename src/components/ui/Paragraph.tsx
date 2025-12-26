@@ -12,13 +12,13 @@ export default function Paragraph({
     maxWidth = 'full'
 }: ParagraphProps) {
     const widthClasses = {
-        prose: 'tw-max-w-prose', // ~65ch - optimal readability
-        narrow: 'tw-max-w-2xl',
-        full: 'tw-max-w-full',
+        prose: 'max-w-prose', // ~65ch - optimal readability
+        narrow: 'max-w-2xl',
+        full: 'max-w-full',
     }
 
     return (
-        <p className={`tw-text-base tw-leading-relaxed ${widthClasses[maxWidth]} ${className}`}>
+        <p className={`text-base leading-relaxed ${widthClasses[maxWidth]} ${className}`}>
             {children}
         </p>
     )

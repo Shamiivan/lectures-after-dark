@@ -11,10 +11,10 @@ export default function SectionTitle({
     className = '',
     dark = false
 }: SectionTitleProps) {
-    const textColor = dark ? 'tw-text-midnight' : 'tw-text-cream'
+    const textColor = dark ? 'text-midnight' : 'text-cream'
 
     return (
-        <h2 className={`tw-text-section-title tw-font-headline tw-uppercase tw-mb-8 ${textColor} ${className}`}>
+        <h2 className={`text-section-title font-headline uppercase mb-8 ${textColor} ${className}`}>
             {children}
         </h2>
     )
