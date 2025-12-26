@@ -4,6 +4,7 @@ import { MigratingFrame } from '../components/MigratingFrame';
 import { Hero } from '../components/Hero';
 import { Instagram } from '../components/Instagram';
 import { IdeaSection } from '../components/IdeaSection';
+import { HowToJoin } from '../components/HowToJoin';
 import { WhyWeDoIt } from '../components/WhyWeDoIt';
 import { UpcomingEvents } from '../components/UpcomingEvents';
 import { EventCard } from '../components/EventCard';
@@ -23,7 +24,7 @@ import { Topbar } from '../components/Topbar';
 import PageTabs from '../components/PageTabs';
 
 const MAIN_RESOLVER = {
-    Hero, Instagram, IdeaSection, WhyWeDoIt, UpcomingEvents, EventCard, FAQ,
+    Hero, Instagram, IdeaSection, HowToJoin, WhyWeDoIt, UpcomingEvents, EventCard, FAQ,
     SpeakersHeader, SpeakersInfo, SpeakersList, SpeakersCTA, SpeakerCard,
     BarsHeader, BarsInfo, BarsList, BarsCTA, BarCard,
     AboutHeader, AboutMission, TestTailwind

@@ -3,6 +3,7 @@ import { useEditor } from '@craftjs/core';
 import { Hero } from './Hero';
 import { Instagram } from './Instagram';
 import { IdeaSection } from './IdeaSection';
+import { HowToJoin } from './HowToJoin';
 
 export const Toolbox = () => {
     const { connectors } = useEditor();
@@ -34,6 +35,14 @@ export const Toolbox = () => {
                     style={{ padding: '10px', cursor: 'grab', background: 'white', border: '1px solid #ccc' }}
                 >
                     Idea Section
+                </button>
+                <button
+                    ref={(ref: HTMLButtonElement | null) => {
+                        if (ref) connectors.create(ref, <HowToJoin />);
+                    }}
+                    style={{ padding: '10px', cursor: 'grab', background: 'white', border: '1px solid #ccc' }}
+                >
+                    How To Join
                 </button>
             </div>
         </div>
