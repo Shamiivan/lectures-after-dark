@@ -84,7 +84,7 @@ export const UpcomingEvents = ({
                     <div className="flex gap-6 overflow-x-auto pb-2 scrollbar-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden max-md:scroll-snap-x-mandatory max-md:gap-4" ref={scrollContainerRef}>
                         <Element is="div" id="events-list" canvas className="flex gap-6 w-auto max-md:gap-4">
                             <EventCard
-                                tag="Psychology"
+                                category="Psychology"
                                 title="The Psychology of Ambition: Why Some People Win and Most Don't"
                                 date="Jan 22, 2025"
                                 time="7:00 PM"
@@ -93,7 +93,7 @@ export const UpcomingEvents = ({
                                 image="/the_psychology _of_ambition.png"
                             />
                             <EventCard
-                                tag="Culture"
+                                category="Culture"
                                 title="Modern Dating is Negotiating"
                                 date="Jan 29, 2025"
                                 time="6:30 PM"
@@ -102,7 +102,7 @@ export const UpcomingEvents = ({
                                 image="/modern_dating.png"
                             />
                             <EventCard
-                                tag="Psychology"
+                                category="Psychology"
                                 title="How Power Really Works"
                                 date="Feb 05, 2025"
                                 time="8:00 PM"
@@ -111,7 +111,7 @@ export const UpcomingEvents = ({
                                 image="/how_power_works.png"
                             />
                             <EventCard
-                                tag="Music"
+                                category="Music"
                                 title="The Art of Jazz Improvisation"
                                 date="Feb 12, 2025"
                                 time="9:00 PM"

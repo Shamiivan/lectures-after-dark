@@ -27,7 +27,7 @@ export const EventCard = ({
     location = "Central Park, New York City, United States",
     image = 'https://images.unsplash.com/photo-1528720208104-3d9bd03cc9d4?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     price = "From $99.99",
-    organizer = "World Fusion Events",
+
     attendeeCount = '23+',
     eventbriteUrl = 'https://www.eventbrite.com'
 }: EventCardProps) => {
