@@ -132,6 +132,10 @@ const Navbar: React.FC = () => {
                 {/* Mobile Menu Header */}
                 <div className={styles.mobileMenuHeader}>
                     <div className={styles.mobileMenuLogo}>
+                        <img
+                            src="/logo.svg"
+                            alt="Logo"
+                        />
                         <span>Lectures</span> After Dark
                     </div>
                     <button

@@ -56,7 +56,7 @@ export const UpcomingEvents = ({
                 }
             }}
             id="events"
-            className="pt-12 pb-8 bg-gradient-to-b from-cream via-cream to-cream-dark/80 border-t border-b border-midnight/10"
+            className="pt-12 pb-8 bg-white border-t border-b border-midnight/10"
         >
             <div className="container">
                 {/* Header with decorative elements */}

@@ -54,7 +54,7 @@
 }
 
 .logoImg {
-    height: clamp(40px, 5vw, 52px); /* Full logo with text needs more height */
+    height: clamp(48px, 6vw, 56px); /* Full logo with text needs more height */
     width: auto;
     flex-shrink: 0; /* Prevent logo from shrinking */
 }
@@ -238,13 +238,13 @@
     width: 85%;
     max-width: 400px;
     height: 100vh;
-    background: linear-gradient(135deg, rgba(26, 22, 18, 0.98) 0%, rgba(61, 43, 31, 0.98) 100%);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: linear-gradient(135deg, rgba(26, 22, 18, 0.99) 0%, rgba(61, 43, 31, 0.99) 100%); /* Increased opacity from 0.98 */
+    backdrop-filter: blur(24px); /* Increased from 20px */
+    -webkit-backdrop-filter: blur(24px);
     padding: 0;
     transition: right 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 999;
-    border-left: 2px solid var(--gold);
+    border-left: 1px solid var(--gold); /* Changed from 2px */
     box-shadow: -8px 0 32px rgba(0, 0, 0, 0.7);
     overflow-y: auto;
 }
@@ -254,8 +254,8 @@
 }
 
 .mobileMenuHeader {
-    padding: 2rem;
-    border-bottom: 1px solid rgba(245, 240, 232, 0.1);
+    padding: 1.75rem 2rem; /* Adjusted padding */
+    border-bottom: 1px solid rgba(245, 240, 232, 0.15); /* Slightly more visible */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -268,6 +268,14 @@
     color: var(--cream);
     text-transform: uppercase;
     letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Add gap for icon */
+}
+
+.mobileMenuLogo img {
+    height: 28px;
+    width: auto;
 }
 
 .mobileMenuLogo span {
@@ -502,8 +510,15 @@
         display: none;
     }
 
+    .container {
+        justify-content: center; /* Center the logo */
+        position: relative;
+    }
+
     .hamburger {
         display: flex;
+        position: absolute; /* Position hamburger on the right */
+        right: clamp(1rem, 4vw, 2rem);
     }
 
     .mobileMenu {
@@ -516,6 +531,10 @@
 
     .nav {
         padding: 0.75rem 0;
+    }
+
+    .logoImg {
+        height: clamp(52px, 8vw, 60px); /* Larger logo on mobile */
     }
 }
 
