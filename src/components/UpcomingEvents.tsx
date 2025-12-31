@@ -58,8 +58,8 @@ export const UpcomingEvents = ({
             id="events"
             className="pt-12 pb-8 bg-white border-t border-b border-midnight/10"
         >
+            {/* Header with decorative elements */}
             <div className="container">
-                {/* Header with decorative elements */}
                 <div className="flex !mb-8 max-md:flex-col max-md:items-start max-md:!mb-6">
                     <div className="w-full">
                         {/* Title with gold accent */}
@@ -79,7 +79,10 @@ export const UpcomingEvents = ({
                         </div>
                     </div>
                 </div>
+            </div>
 
+            {/* Carousel - container only on desktop */}
+            <div className="md:container">
                 <div className="relative">
                     <div className="flex gap-6 overflow-x-auto pb-2 pr-12 scrollbar-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden max-md:scroll-snap-x-mandatory max-md:gap-4" ref={scrollContainerRef}>
                         <Element is="div" id="events-list" canvas className="flex gap-6 w-auto max-md:gap-4">
@@ -90,7 +93,7 @@ export const UpcomingEvents = ({
                                 time="7:00 PM"
                                 location="Montreal"
                                 attendeeCount="+120"
-                                image="/the_psychology _of_ambition.png"
+                                image="/the_psychology_of_ambition.webp"
                             />
                             <EventCard
                                 category="Culture"
@@ -99,7 +102,7 @@ export const UpcomingEvents = ({
                                 time="6:30 PM"
                                 location="Montreal"
                                 attendeeCount="+85"
-                                image="/modern_dating.png"
+                                image="/modern_dating.webp"
                             />
                             <EventCard
                                 category="Psychology"
@@ -108,7 +111,7 @@ export const UpcomingEvents = ({
                                 time="8:00 PM"
                                 location="Montreal"
                                 attendeeCount="+200"
-                                image="/how_power_works.png"
+                                image="/how_power_works.webp"
                             />
                             <EventCard
                                 category="Music"
