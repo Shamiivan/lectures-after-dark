@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { ConvexProvider, ConvexReactClient } from "convex/react";
+import { AuthProvider } from './contexts/AuthContext'
 import './index.css'
 import './tailwind.css'
 import App from './App.tsx'
@@ -12,7 +13,9 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ConvexProvider client={convex}>
       <BrowserRouter>
-        <App />
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </BrowserRouter>
     </ConvexProvider>
   </StrictMode>,

@@ -1,6 +1,8 @@
 import { useEditor } from '@craftjs/core';
 import { useMutation } from 'convex/react';
+import { useNavigate } from 'react-router-dom';
 import { api } from '../../convex/_generated/api';
+import { useAuth } from '../contexts/AuthContext';
 
 interface TopbarProps {
     activePageSlug: string;
@@ -9,6 +11,8 @@ interface TopbarProps {
 export const Topbar = ({ activePageSlug }: TopbarProps) => {
     const { query } = useEditor();
     const savePage = useMutation(api.pages.savePage);
+    const { logout } = useAuth();
+    const navigate = useNavigate();
     // const deletePage = useMutation(api.pages.deletePage);
 
     const handleSave = async () => {
@@ -20,6 +24,11 @@ export const Topbar = ({ activePageSlug }: TopbarProps) => {
             console.error("Failed to save:", error);
             alert('Failed to save layout.');
         }
+    };
+
+    const handleLogout = () => {
+        logout();
+        navigate('/admin/login');
     };
 
     // const handleDelete = async () => {
@@ -97,6 +106,20 @@ export const Topbar = ({ activePageSlug }: TopbarProps) => {
                     }}
                 >
                     Save Changes
+                </button>
+                <button
+                    onClick={handleLogout}
+                    style={{
+                        padding: '8px 16px',
+                        background: '#e74c3c',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '4px',
+                        cursor: 'pointer',
+                        fontWeight: 'bold'
+                    }}
+                >
+                    Logout
                 </button>
             </div>
         </div>
