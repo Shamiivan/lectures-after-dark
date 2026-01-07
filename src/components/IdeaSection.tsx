@@ -36,21 +36,6 @@ export const IdeaSection = ({
 
                         <p className="font-serif text-xl leading-[2] text-warm-brown !mb-10">{description1}</p>
                         <p className="font-serif text-xl leading-[2] text-warm-brown !mb-12">{description2}</p>
-
-                        <ul className="space-y-5 mt-16">
-                            <li className="flex items-start gap-3 text-lg text-midnight">
-                                <Check size={22} className="text-gold mt-0.5 shrink-0 stroke-[2.5]" />
-                                <span className="font-medium">Fun and Engaging Speakers</span>
-                            </li>
-                            <li className="flex items-start gap-3 text-lg text-midnight">
-                                <Check size={22} className="text-gold mt-0.5 shrink-0 stroke-[2.5]" />
-                                <span className="font-medium">Professors and Industry Leaders</span>
-                            </li>
-                            <li className="flex items-start gap-3 text-lg text-midnight">
-                                <Check size={22} className="text-gold mt-0.5 shrink-0 stroke-[2.5]" />
-                                <span className="font-medium">Education and Entertainment</span>
-                            </li>
-                        </ul>
                     </div>
 
                     <div className="relative">
