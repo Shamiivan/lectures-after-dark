@@ -24,9 +24,9 @@ const Home: React.FC = () => {
             <MigratingFrame json={pageData?.layout}>
                 <Element is="div" canvas>
                     <Hero />
-                    <UpcomingEvents />
-                    <IdeaSection />
                     <WhyWeDoIt />
+                    <IdeaSection />
+                    <UpcomingEvents />
                     <Instagram />
                     <FAQ />
                 </Element>

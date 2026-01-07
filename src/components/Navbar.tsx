@@ -77,12 +77,6 @@ const Navbar: React.FC = () => {
                     {/* Desktop Navigation */}
                     <div className={styles.links}>
                         <NavLink
-                            to="/events"
-                            className={({ isActive }) => isActive ? `${styles.link} ${styles.activeLink}` : styles.link}
-                        >
-                            Events
-                        </NavLink>
-                        <NavLink
                             to="/speakers"
                             className={({ isActive }) => isActive ? `${styles.link} ${styles.activeLink}` : styles.link}
                         >
@@ -155,12 +149,6 @@ const Navbar: React.FC = () => {
 
                 {/* Mobile Menu Links */}
                 <div className={styles.mobileLinks}>
-                    <NavLink
-                        to="/events"
-                        className={({ isActive }) => isActive ? `${styles.mobileLink} ${styles.mobileActiveLink}` : styles.mobileLink}
-                    >
-                        Events
-                    </NavLink>
                     <NavLink
                         to="/speakers"
                         className={({ isActive }) => isActive ? `${styles.mobileLink} ${styles.mobileActiveLink}` : styles.mobileLink}

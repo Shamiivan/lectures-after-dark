@@ -2,7 +2,6 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
-import Events from './pages/Events';
 import Speakers from './pages/Speakers';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -20,11 +19,10 @@ function App() {
   const isAdmin = location.pathname.startsWith('/admin');
 
   return (
-    <main className="!pt-20">
+    <main className="!pt-0 lg:!pt-20">
       {!isAdmin && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/events" element={<Events />} />
         <Route path="/speakers" element={<Speakers />} />
         <Route path="/sponsors" element={<Sponsors />} />
         <Route path="/bars" element={<Venues />} />

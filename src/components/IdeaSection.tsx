@@ -1,6 +1,5 @@
 
 import { useNode } from '@craftjs/core';
-import { Check } from 'lucide-react';
 
 interface IdeaSectionProps {
     title?: string;

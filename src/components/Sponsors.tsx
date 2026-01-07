@@ -14,11 +14,16 @@ export const SponsorsHeader = ({
     return (
         <header
             ref={(ref: HTMLElement | null) => { if (ref) connect(drag(ref)); }}
-            className="text-center py-16 px-8 bg-cream-dark"
+            className="text-center py-16 px-8 bg-cover bg-center relative flex flex-col items-center justify-center"
+            style={{
+                backgroundImage: 'url(https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80)',
+                padding: 'clamp(2rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem) clamp(1.5rem, 6vw, 4rem)'
+            }}
         >
-            <div className="container mx-auto">
-                <h1 className="text-5xl !text-center text-midnight mb-4">{title}</h1>
-                <p className="font-serif text-xl !text-center text-warm-brown max-w-2xl !mx-auto">{subtitle}</p>
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/30 via-black/50 to-black/70 z-[1]"></div>
+            <div className="container mx-auto relative z-[2]">
+                <h1 className="text-5xl !text-center text-cream mb-4" style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)', fontSize: 'clamp(2.5rem, 8vw, 4rem)', marginBottom: 'clamp(0.75rem, 2vw, 1rem)' }}>{title}</h1>
+                <p className="font-serif text-xl !text-center text-cream-dark max-w-2xl !mx-auto" style={{ fontSize: 'clamp(1.1rem, 3vw, 1.5rem)' }}>{subtitle}</p>
             </div>
         </header>
     );
@@ -54,6 +59,7 @@ interface SponsorsWhyProps {
     title?: string;
 }
 
+
 export const SponsorsWhy = ({
     title = "Why Sponsor Us?"
 }: SponsorsWhyProps) => {
@@ -61,27 +67,34 @@ export const SponsorsWhy = ({
     return (
         <section
             ref={(ref: HTMLElement | null) => { if (ref) connect(drag(ref)); }}
-            className="py-20 px-8 bg-cream"
+            className="pt-16 pb-32 bg-white relative overflow-hidden"
         >
-            <div className="container mx-auto">
-                <h2 className="text-4xl text-center mb-16 text-midnight">{title}</h2>
-                <div className="grid md:grid-cols-3 gap-8">
-                    <div className="bg-white p-10 rounded-lg border border-cream-dark transition-transform transform hover:-translate-y-2 hover:shadow-xl">
-                        <h3 className="text-2xl text-warm-brown mb-6">Access a Premium Audience</h3>
-                        <ul className="list-disc list-inside text-midnight">
-                            <li><strong>25-45 years old</strong>, college-educated professionals</li>
-                            <li><strong>High-engagement</strong>: They read, debate, and share ideas</li>
-                            <li><strong>Quality-conscious</strong>: They value experiences over entertainment</li>
-                            <li><strong>Socially active</strong>: They bring friends and build community</li>
-                        </ul>
+            <div className="container">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                    <div>
+                        {/* Title with gold accent bar */}
+                        <div className="flex items-center gap-6 !mb-8">
+                            <div className="w-16 h-1 bg-gold"></div>
+                            <h2 className="font-headline text-3xl text-midnight md:text-4xl lg:text-5xl">{title}</h2>
+                        </div>
+
+                        <p className="font-serif text-base md:text-lg leading-[1.8] text-warm-brown !mb-10">We don't interrupt the experience—we integrate. Sponsors become part of an intellectual movement, not just another logo on a banner. Associate your brand with curiosity, ambition, and meaningful conversation.</p>
+                        <p className="font-serif text-base md:text-lg leading-[1.8] text-warm-brown !mb-12">Intellectual social events are filling a gap in adult life. As we expand to new cities and venues, early sponsors position themselves at the forefront of this cultural shift.</p>
                     </div>
-                    <div className="bg-white p-10 rounded-lg border border-cream-dark transition-transform transform hover:-translate-y-2 hover:shadow-xl">
-                        <h3 className="text-2xl text-warm-brown mb-6">Authentic Brand Alignment</h3>
-                        <p className="text-midnight">We don't interrupt the experience—we integrate. Sponsors become part of an intellectual movement, not just another logo on a banner. Associate your brand with curiosity, ambition, and meaningful conversation.</p>
-                    </div>
-                    <div className="bg-white p-10 rounded-lg border border-cream-dark transition-transform transform hover:-translate-y-2 hover:shadow-xl">
-                        <h3 className="text-2xl text-warm-brown mb-6">Growing Movement</h3>
-                        <p className="text-midnight">Intellectual social events are filling a gap in adult life. As we expand to new cities and venues, early sponsors position themselves at the forefront of this cultural shift.</p>
+
+                    <div className="relative">
+                        <div className="relative p-1 bg-gradient-to-br from-gold/20 to-transparent rounded-lg">
+                            <picture>
+                                <source srcSet="/idea.webp" type="image/webp" />
+                                <img
+                                    src="/idea.png"
+                                    alt="Cocktails and Conversation"
+                                    className="w-full rounded-lg shadow-2xl"
+                                    loading="lazy"
+                                    decoding="async"
+                                />
+                            </picture>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -96,6 +109,8 @@ export const SponsorsWhy = ({
 };
 
 // --- SponsorsOpportunities ---
+
+import { SponsorCard } from './SponsorCard';
 interface SponsorsOpportunitiesProps {
     title?: string;
 }
@@ -107,51 +122,36 @@ export const SponsorsOpportunities = ({
     return (
         <section
             ref={(ref: HTMLElement | null) => { if (ref) connect(drag(ref)); }}
-            className="py-20 px-8 bg-midnight text-cream"
+            className="py-20 px-8 bg-cream text-midnight"
         >
             <div className="container mx-auto">
-                <h2 className="text-4xl text-center mb-16 text-cream">{title}</h2>
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div className="bg-card-bg p-8 rounded-lg text-center transition-colors hover:bg-warm-brown border border-border-color">
-                        <span className="text-5xl text-gold mb-6 block">🥃</span>
-                        <h3 className="text-2xl text-cream mb-4">Beverage Partner</h3>
-                        <span className="text-sm uppercase text-cream-dark block mb-6">Ideal for: Craft breweries, cocktail brands, wine distributors</span>
-                        <ul className="text-left list-disc list-inside text-text-secondary">
-                            <li>Featured drink at every event</li>
-                            <li>Brand presence on all promotional materials</li>
-                            <li>Social media mentions</li>
-                        </ul>
+                <h2 className="text-2xl md:text-3xl lg:text-4xl text-center !mb-10 text-midnight">{title}</h2>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" style={{ gridAutoRows: '1fr' }}>
+                    <div style={{ display: 'flex' }}>
+                        <SponsorCard
+                            name="Beverage Partner"
+                            tier="Ideal for: Craft breweries, cocktail brands, wine distributors"
+                            description="Featured drink at every event. Brand presence on all promotional materials. Social media mentions."
+                            image="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&auto=format&fit=crop&q=80"
+                        />
                     </div>
-                    <div className="bg-card-bg p-8 rounded-lg text-center transition-colors hover:bg-warm-brown border border-border-color">
-                        <span className="text-5xl text-gold mb-6 block">📚</span>
-                        <h3 className="text-2xl text-cream mb-4">Title Sponsor</h3>
-                        <span className="text-sm uppercase text-cream-dark block mb-6">Ideal for: Publishers, educational platforms, productivity tools</span>
-                        <ul className="text-left list-disc list-inside text-text-secondary">
-                            <li>Event naming rights</li>
-                            <li>Speaking opportunities or book giveaways</li>
-                            <li>Logo on website, emails, and social content</li>
-                        </ul>
+                    <div style={{ display: 'flex' }}>
+                        <SponsorCard
+                            name="Title Sponsor"
+                            tier="Ideal for: Publishers, educational platforms, productivity tools"
+                            description="Event naming rights. Speaking opportunities or book giveaways. Logo on website, emails, and social content."
+                            image="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&auto=format&fit=crop&q=80"
+                        />
                     </div>
-                    <div className="bg-card-bg p-8 rounded-lg text-center transition-colors hover:bg-warm-brown border border-border-color">
-                        <span className="text-5xl text-gold mb-6 block">🎤</span>
-                        <h3 className="text-2xl text-cream mb-4">Speaker Series Sponsor</h3>
-                        <span className="text-sm uppercase text-cream-dark block mb-6">Ideal for: Tech companies, consulting firms</span>
-                        <ul className="text-left list-disc list-inside text-text-secondary">
-                            <li>Sponsor an entire topic series</li>
-                            <li>Thought leadership positioning</li>
-                            <li>Content collaboration opportunities</li>
-                        </ul>
+                    <div style={{ display: 'flex' }}>
+                        <SponsorCard
+                            name="Speaker Series Sponsor"
+                            tier="Ideal for: Tech companies, consulting firms"
+                            description="Sponsor an entire topic series. Thought leadership positioning. Content collaboration opportunities."
+                            image="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&auto=format&fit=crop&q=80"
+                        />
                     </div>
-                    <div className="bg-card-bg p-8 rounded-lg text-center transition-colors hover:bg-warm-brown border border-border-color">
-                        <span className="text-5xl text-gold mb-6 block">📍</span>
-                        <h3 className="text-2xl text-cream mb-4">Venue Partner</h3>
-                        <span className="text-sm uppercase text-cream-dark block mb-6">Ideal for: Bars, restaurants, event spaces</span>
-                        <ul className="text-left list-disc list-inside text-text-secondary">
-                            <li>Regular monthly events at your location</li>
-                            <li>Increased weeknight traffic</li>
-                            <li>Promotional support driving customers</li>
-                        </ul>
-                    </div>
+
                 </div>
             </div>
         </section>
@@ -165,46 +165,6 @@ export const SponsorsOpportunities = ({
 };
 
 
-// --- SponsorsPastEvents ---
-interface SponsorsPastEventsProps {
-    title?: string;
-}
-
-export const SponsorsPastEvents = ({
-    title = "Past Events"
-}: SponsorsPastEventsProps) => {
-    const { connectors: { connect, drag } } = useNode();
-    return (
-        <section
-            ref={(ref: HTMLElement | null) => { if (ref) connect(drag(ref)); }}
-            className="py-20 px-8 bg-cream"
-        >
-            <div className="container mx-auto max-w-3xl">
-                <h2 className="text-4xl text-center mb-16 text-midnight">{title}</h2>
-                <div className="space-y-6">
-                    <div className="bg-white p-6 rounded-lg border border-cream-dark flex justify-between items-center transition-transform transform hover:scale-105">
-                        <div className="text-xl font-medium text-midnight">"The Psychology of Ambition: Why Some People Win and Most Don't"</div>
-                        <div className="text-lg font-bold text-amber">85 attendees</div>
-                    </div>
-                    <div className="bg-white p-6 rounded-lg border border-cream-dark flex justify-between items-center transition-transform transform hover:scale-105">
-                        <div className="text-xl font-medium text-midnight">"How Power Really Works"</div>
-                        <div className="text-lg font-bold text-amber">92 attendees</div>
-                    </div>
-                    <div className="bg-white p-6 rounded-lg border border-cream-dark flex justify-between items-center transition-transform transform hover:scale-105">
-                        <div className="text-xl font-medium text-midnight">"Modern Dating: The Data Behind Connection"</div>
-                        <div className="text-lg font-bold text-amber">78 attendees</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
-};
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(SponsorsPastEvents as any).craft = {
-    props: { title: "Past Events" },
-    related: { settings: () => <div>Static content for now</div> }
-};
 
 // --- SponsorsCTA ---
 interface SponsorsCTAProps {
@@ -224,11 +184,11 @@ export const SponsorsCTA = ({
     return (
         <section
             ref={(ref: HTMLElement | null) => { if (ref) connect(drag(ref)); }}
-            className="py-20 px-8 bg-amber text-center"
+            className="py-20 px-8 bg-white text-center"
         >
             <div className="container mx-auto max-w-2xl">
-                <h2 className="text-4xl font-bold text-midnight mb-6">{title}</h2>
-                <p className="text-lg text-warm-brown mb-8">{text}</p>
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-midnight mb-6">{title}</h2>
+                <p className="text-base md:text-lg text-warm-brown mb-8">{text}</p>
                 <a href={`mailto:${email}`} className="bg-midnight text-cream py-4 px-12 text-lg font-semibold rounded-full transition-transform transform hover:scale-105 inline-block">{buttonText}</a>
             </div>
         </section>

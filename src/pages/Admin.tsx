@@ -13,7 +13,7 @@ import { SpeakerCard } from '../components/SpeakerCard';
 import { BarsHeader, BarsInfo, BarsList, BarsCTA } from '../components/Bars';
 import { BarCard } from '../components/BarCard';
 import { AboutHeader, AboutMission } from '../components/About';
-import { SponsorsHeader, SponsorsWhy, SponsorsOpportunities, SponsorsPastEvents, SponsorsCTA } from '../components/Sponsors';
+import { SponsorsHeader, SponsorsWhy, SponsorsOpportunities, SponsorsCTA } from '../components/Sponsors';
 import { FAQ } from '../components/FAQ';
 import { TestTailwind } from '../components/TestTailwind';
 import { SettingsPanel } from '../components/SettingsPanel';
@@ -29,7 +29,7 @@ const MAIN_RESOLVER = {
     SpeakersHeader, SpeakersInfo, SpeakersList, SpeakersCTA, SpeakerCard,
     BarsHeader, BarsInfo, BarsList, BarsCTA, BarCard,
     AboutHeader, AboutMission, TestTailwind,
-    SponsorsHeader, SponsorsWhy, SponsorsOpportunities, SponsorsPastEvents, SponsorsCTA
+    SponsorsHeader, SponsorsWhy, SponsorsOpportunities, SponsorsCTA
 };
 
 const Admin: React.FC = () => {
@@ -92,14 +92,7 @@ const Admin: React.FC = () => {
                                         <SponsorsHeader />
                                         <SponsorsWhy />
                                         <SponsorsOpportunities />
-                                        <SponsorsPastEvents />
                                         <SponsorsCTA />
-                                    </Element>
-                                </MigratingFrame>
-                            ) : activePage === 'events' ? (
-                                <MigratingFrame json={pageData?.layout}>
-                                    <Element is="div" style={{ minHeight: '800px' }} canvas>
-                                        <UpcomingEvents />
                                     </Element>
                                 </MigratingFrame>
                             ) : activePage === 'test-tailwind' ? (

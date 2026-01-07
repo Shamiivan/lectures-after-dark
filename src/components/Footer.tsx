@@ -12,11 +12,11 @@ const Footer: React.FC = () => {
                     </div>
 
                     <div className={styles.col}>
-                        <h4>Events</h4>
+                        <h4>Venues</h4>
                         <ul>
-                            <li><Link to="/events">Upcoming</Link></li>
-                            <li><Link to="/events">Past Events</Link></li>
                             <li><Link to="/bars">Bars</Link></li>
+                            <li><Link to="/speakers">Speakers</Link></li>
+                            <li><Link to="/sponsors">Sponsors</Link></li>
                         </ul>
                     </div>
 
