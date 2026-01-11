@@ -3,6 +3,34 @@ import { Card, CardContent } from './ui/Card';
 import { Calendar, MapPin, DollarSign } from 'lucide-react';
 import { ImageUploadField } from './ImageUploadField';
 
+
+// Safe hook that returns editor state or defaults when outside Editor
+const useSafeEditor = () => {
+    try {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        return useEditor((state) => ({
+            enabled: state.options.enabled
+        }));
+    } catch {
+        return { enabled: false };
+    }
+};
+
+// Safe hook that returns node connectors or no-ops when outside Editor
+const useSafeNode = () => {
+    try {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        return useNode();
+    } catch {
+        return {
+            connectors: {
+                connect: (ref: HTMLElement | null) => ref as HTMLElement,
+                drag: (ref: HTMLElement | null) => ref as HTMLElement
+            }
+        };
+    }
+};
+
 interface EventCardProps {
     category?: string;
     title?: string;
@@ -32,10 +60,8 @@ export const EventCard = ({
     attendeeCount = '23+',
     eventbriteUrl = 'https://www.eventbrite.com'
 }: EventCardProps) => {
-    const { connectors: { connect, drag } } = useNode();
-    const { enabled } = useEditor((state) => ({
-        enabled: state.options.enabled
-    }));
+    const { connectors: { connect, drag } } = useSafeNode();
+    const { enabled } = useSafeEditor();
 
     const cardContent = (
         <div className="max-w-[380px] h-full p-[10px] bg-cream border-2 border-cream-dark rounded-lg shadow-event-card hover:shadow-event-card-hover transition-all duration-300">

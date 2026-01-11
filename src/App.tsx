@@ -10,8 +10,8 @@ import Venues from './pages/Venues';
 import Admin from './pages/Admin';
 import AdminLogin from './pages/AdminLogin';
 import ProtectedRoute from './components/ProtectedRoute';
-import TestButtonPage from './pages/TestButtonPage';
 import TestEventCardPage from './pages/TestEventCardPage';
+import TestCardPage from './pages/TestCardPage';
 import Sponsors from './pages/Sponsors';
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
         <Route path="/bars" element={<Venues />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/test" element={<TestButtonPage />} />
+        <Route path="/test" element={<TestCardPage />} />
         <Route path="/test-event-card" element={<TestEventCardPage />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
