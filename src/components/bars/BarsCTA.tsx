@@ -25,7 +25,7 @@ export const BarsCTA = ({
             <div className={styles.ctaContent}>
                 <h2 className={styles.ctaTitle}>{title}</h2>
                 <p className={styles.ctaText}>{description}</p>
-                <a target='_blank' href={buttonLink} className="btn btn-primary">{buttonLink}</a>
+                <a target='_blank' href={buttonLink} className="btn btn-primary">{buttonText}</a>
             </div>
         </section>
     );

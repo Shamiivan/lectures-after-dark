@@ -7,12 +7,14 @@ interface SpeakersCTAProps {
     title?: string;
     description?: string;
     buttonText?: string;
+    buttonLink?: string;
 }
 
 export const SpeakersCTA = ({
     title = "Share Your Voice",
     description = "If you have a topic you're passionate about, we'd love to hear from you.",
     buttonText = "Apply to Speak",
+    buttonLink = "/"
 }: SpeakersCTAProps) => {
     const { connectors: { connect, drag } } = useNode();
     return (
@@ -27,7 +29,7 @@ export const SpeakersCTA = ({
                 <h2 className={styles.ctaTitle}>{title}</h2>
                 <p className={styles.ctaText}>{description}</p>
                 <div className={styles.ctaButtons}>
-                    <button className="btn btn-primary">{buttonText}</button>
+                    <a target='_blank' href={buttonLink} className="btn btn-primary">{buttonText}</a>
                 </div>
             </div>
         </section>
@@ -35,12 +37,11 @@ export const SpeakersCTA = ({
 };
 
 const SpeakersCTASettings = () => {
-    const { actions: { setProp }, title, description, buttonText, secondaryButtonText, secondaryButtonLink } = useNode((node) => ({
+    const { actions: { setProp }, title, description, buttonText, buttonLink } = useNode((node) => ({
         title: node.data.props.title,
         description: node.data.props.description,
         buttonText: node.data.props.buttonText,
-        secondaryButtonText: node.data.props.secondaryButtonText,
-        secondaryButtonLink: node.data.props.secondaryButtonLink,
+        buttonLink: node.data.props.buttonLink,
     }));
     return (
         <div>
@@ -71,20 +72,11 @@ const SpeakersCTASettings = () => {
                 />
             </div>
             <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Secondary Button Text</label>
+                <label style={settingsStyles.label}>Button Link</label>
                 <input
                     type="text"
-                    value={secondaryButtonText}
-                    onChange={e => setProp((p: SpeakersCTAProps) => p.secondaryButtonText = e.target.value)}
-                    style={settingsStyles.input}
-                />
-            </div>
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Secondary Button Link</label>
-                <input
-                    type="text"
-                    value={secondaryButtonLink}
-                    onChange={e => setProp((p: SpeakersCTAProps) => p.secondaryButtonLink = e.target.value)}
+                    value={buttonLink}
+                    onChange={e => setProp((p: SpeakersCTAProps) => p.buttonLink = e.target.value)}
                     style={settingsStyles.input}
                 />
             </div>
@@ -98,8 +90,6 @@ const SpeakersCTASettings = () => {
         title: "Share Your Voice",
         description: "Lectures After Dark is a platform for passionate people to share their ideas with a curious audience. We're always looking for new speakers to join our community. If you have a topic you're passionate about, we'd love to hear from you.",
         buttonText: "Apply to Speak",
-        secondaryButtonText: "Learn More",
-        secondaryButtonLink: "/about"
     },
     related: { settings: SpeakersCTASettings }
 };
