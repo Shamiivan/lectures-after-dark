@@ -9,13 +9,15 @@ interface BarCardProps {
     neighborhood?: string;
     description?: string;
     imageUrl?: string;
+    mapsLink?: string;
 }
 
 export const BarCard = ({
     name = "Bar Name",
     neighborhood = "Neighborhood",
     description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    imageUrl = "https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    imageUrl = "https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    mapsLink = "https://maps.app.goo.gl/sLmJFrbS25dbyEzR7"
 }: BarCardProps) => {
     const { connectors: { connect, drag } } = useNode();
 
@@ -28,24 +30,27 @@ export const BarCard = ({
             }}
             className={styles.speakerCard}
         >
-            <div className={styles.imageWrapper}>
-                <img src={imageUrl} alt={name} className={styles.speakerImage} />
-            </div>
-            <h3 className={styles.speakerName}>{name}</h3>
-            <span className={styles.speakerTopic} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <MapPin size={14} /> {neighborhood}
-            </span>
-            <p className={styles.speakerBio}>{description}</p>
-        </div>
+            <a target='_blank' href={mapsLink}>
+                <div className={styles.imageWrapper}>
+                    <img src={imageUrl} alt={name} className={styles.speakerImage} />
+                </div>
+                <h3 className={styles.speakerName}>{name}</h3>
+                <span className={styles.speakerTopic} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <MapPin size={14} /> {neighborhood}
+                </span>
+                <p className={styles.speakerBio}>{description}</p>
+            </a>
+        </div >
     );
 };
 
 const BarCardSettings = () => {
-    const { actions: { setProp }, name, neighborhood, description, imageUrl } = useNode((node) => ({
+    const { actions: { setProp }, name, neighborhood, description, imageUrl, mapsLink } = useNode((node) => ({
         name: node.data.props.name,
         neighborhood: node.data.props.neighborhood,
         description: node.data.props.description,
         imageUrl: node.data.props.imageUrl,
+        mapsLink: node.data.props.mapsLink,
     }));
 
     return (
@@ -81,6 +86,14 @@ const BarCardSettings = () => {
                 value={imageUrl || ''}
                 onChange={(newUrl) => setProp((props: BarCardProps) => props.imageUrl = newUrl)}
             />
+            <div style={settingsStyles.field}>
+                <label style={settingsStyles.label}>Maps Link</label>
+                <textarea
+                    value={mapsLink || ''}
+                    onChange={(e) => setProp((props: BarCardProps) => props.mapsLink = e.target.value)}
+                    style={settingsStyles.textarea}
+                />
+            </div>
         </div>
     );
 };

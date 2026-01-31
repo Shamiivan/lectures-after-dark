@@ -1,3 +1,3 @@
 // Re-export all about components from the about directory
 // This maintains backwards compatibility with existing imports
-export { AboutHeader, AboutMission, OurVision } from './about';
+export { AboutHeader, AboutMission, OurVision } from './about/index';

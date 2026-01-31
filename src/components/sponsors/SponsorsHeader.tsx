@@ -14,7 +14,7 @@ export const SponsorsHeader = ({
     return (
         <header
             ref={(ref: HTMLElement | null) => { if (ref) connect(drag(ref)); }}
-            className="text-center py-16 px-8 bg-cover bg-center relative flex flex-col items-center justify-center"
+            className="h-[50vh] text-center py-16 px-8 bg-cover bg-center relative flex flex-col items-center justify-center"
             style={{
                 backgroundImage: 'url(https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80)',
                 padding: 'clamp(2rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem) clamp(1.5rem, 6vw, 4rem)'

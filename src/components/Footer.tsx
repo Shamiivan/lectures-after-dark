@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
                     </div>
 
                     <div className={styles.col}>
-                        <h4>Venues</h4>
+                        <h4>Resources</h4>
                         <ul>
                             <li><Link to="/bars">Bars</Link></li>
                             <li><Link to="/speakers">Speakers</Link></li>

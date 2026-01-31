@@ -6,6 +6,9 @@
 }
 
 .header {
+    height: 50vh;
+    display: flex;
+    align-items: center;
     text-align: center;
     padding: 6rem 0 4rem;
     background: linear-gradient(to bottom, rgba(26, 22, 18, 0.8), var(--bg-primary)),

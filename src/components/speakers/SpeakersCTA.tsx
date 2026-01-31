@@ -7,16 +7,12 @@ interface SpeakersCTAProps {
     title?: string;
     description?: string;
     buttonText?: string;
-    secondaryButtonText?: string;
-    secondaryButtonLink?: string;
 }
 
 export const SpeakersCTA = ({
     title = "Share Your Voice",
     description = "If you have a topic you're passionate about, we'd love to hear from you.",
     buttonText = "Apply to Speak",
-    secondaryButtonText = "Learn More",
-    secondaryButtonLink = "/about"
 }: SpeakersCTAProps) => {
     const { connectors: { connect, drag } } = useNode();
     return (
@@ -32,7 +28,6 @@ export const SpeakersCTA = ({
                 <p className={styles.ctaText}>{description}</p>
                 <div className={styles.ctaButtons}>
                     <button className="btn btn-primary">{buttonText}</button>
-                    <a href={secondaryButtonLink} className="btn btn-secondary">{secondaryButtonText}</a>
                 </div>
             </div>
         </section>

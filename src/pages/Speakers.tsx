@@ -20,7 +20,7 @@ const Speakers: React.FC = () => {
                 <Element is="div" canvas>
                     <SpeakersHeader />
                     <SpeakersInfo />
-                    <SpeakersList />
+                    {/* <SpeakersList /> */}
                     <SpeakersCTA />
                 </Element>
             </MigratingFrame>
