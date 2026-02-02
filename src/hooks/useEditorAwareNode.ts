@@ -6,7 +6,7 @@ import { useNode, useEditor } from '@craftjs/core';
  */
 export const useEditorAwareNode = () => {
     try {
-        // eslint-disable-next-line react-hooks/rules-of-hooks
+         
         return useNode();
     } catch {
         return {
@@ -24,7 +24,7 @@ export const useEditorAwareNode = () => {
  */
 export const useEditorAwareState = () => {
     try {
-        // eslint-disable-next-line react-hooks/rules-of-hooks
+         
         return useEditor((state) => ({
             enabled: state.options.enabled
         }));

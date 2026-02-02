@@ -3,7 +3,7 @@ import { useEditor } from '@craftjs/core';
 
 
 export const SettingsPanel = () => {
-    const { selected } = useEditor((state, query) => {
+    const { selected, actions } = useEditor((state, query) => {
         const [currentNodeId] = state.events.selected;
         let selected;
 
@@ -55,7 +55,33 @@ export const SettingsPanel = () => {
                 }}
             >
                 {selected && selected.settings ? (
-                    React.createElement(selected.settings)
+                    <>
+                        {React.createElement(selected.settings)}
+                        {selected.isDeletable && (
+                            <div style={{ marginTop: '24px' }}>
+                                <button
+                                    onClick={() => {
+                                        if (window.confirm('Are you sure you want to delete this component?')) {
+                                            actions.delete(selected.id);
+                                        }
+                                    }}
+                                    style={{
+                                        width: '100%',
+                                        padding: '10px',
+                                        background: '#e74c3c',
+                                        color: '#ffffff',
+                                        border: 'none',
+                                        borderRadius: '6px',
+                                        cursor: 'pointer',
+                                        fontWeight: 600,
+                                        fontSize: '14px',
+                                    }}
+                                >
+                                    Delete Component
+                                </button>
+                            </div>
+                        )}
+                    </>
                 ) : (
                     <div style={{
                         textAlign: 'center',
