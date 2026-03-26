@@ -1,6 +1,4 @@
 
-import { useNode } from '@craftjs/core';
-
 interface IdeaSectionProps {
     title?: string;
     description1?: string;
@@ -12,15 +10,8 @@ export const IdeaSection = ({
     description1 = "Lectures After Dark is a growing movement of intellectual social events that combine academic learning settings with the social experience of a bar.",
     description2 = "Our events are designed to be accessible to everyone while still offering deep insights. Curiosity is the only requirement."
 }: IdeaSectionProps) => {
-    const { connectors: { connect, drag } } = useNode();
-
     return (
         <section
-            ref={(ref: HTMLElement | null) => {
-                if (ref) {
-                    connect(drag(ref));
-                }
-            }}
             id="about"
             className="py-32 bg-white relative overflow-hidden"
         >
@@ -55,56 +46,6 @@ export const IdeaSection = ({
             </div>
         </section>
     );
-};
-
-const IdeaSectionSettings = () => {
-    const { actions: { setProp }, title, description1, description2 } = useNode((node) => ({
-        title: node.data.props.title,
-        description1: node.data.props.description1,
-        description2: node.data.props.description2,
-    }));
-
-    return (
-        <div>
-            <div style={{ marginBottom: '10px' }}>
-                <label style={{ display: 'block', marginBottom: '5px' }}>Title</label>
-                <input
-                    type="text"
-                    value={title || ''}
-                    onChange={(e) => setProp((props: IdeaSectionProps) => props.title = e.target.value)}
-                    style={{ width: '100%', padding: '5px' }}
-                />
-            </div>
-            <div style={{ marginBottom: '10px' }}>
-                <label style={{ display: 'block', marginBottom: '5px' }}>Description 1</label>
-                <textarea
-                    value={description1 || ''}
-                    onChange={(e) => setProp((props: IdeaSectionProps) => props.description1 = e.target.value)}
-                    style={{ width: '100%', padding: '5px', minHeight: '80px' }}
-                />
-            </div>
-            <div style={{ marginBottom: '10px' }}>
-                <label style={{ display: 'block', marginBottom: '5px' }}>Description 2</label>
-                <textarea
-                    value={description2 || ''}
-                    onChange={(e) => setProp((props: IdeaSectionProps) => props.description2 = e.target.value)}
-                    style={{ width: '100%', padding: '5px', minHeight: '80px' }}
-                />
-            </div>
-        </div>
-    );
-};
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(IdeaSection as any).craft = {
-    props: {
-        title: "The Idea",
-        description1: "Lectures After Dark is a growing movement of intellectual social events that combine academic learning settings with the social experience of a bar.",
-        description2: "Our events are designed to be accessible to everyone while still offering deep insights. Curiosity is the only requirement."
-    },
-    related: {
-        settings: IdeaSectionSettings
-    }
 };
 
 export default IdeaSection;

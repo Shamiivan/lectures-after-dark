@@ -1,4 +1,3 @@
-import { useEditorAwareNode } from '../hooks/useEditorAwareNode';
 import { Card } from './Card';
 import styles from './SpeakerCard.module.css';
 import { Twitter, Linkedin, Globe } from 'lucide-react';
@@ -22,14 +21,8 @@ export const SpeakerCard = ({
     linkedin,
     website,
 }: SpeakerCardProps) => {
-    const { connectors: { connect, drag } } = useEditorAwareNode();
-
     return (
-        <div
-            ref={(ref: HTMLDivElement | null) => {
-                if (ref) connect(drag(ref));
-            }}
-        >
+        <div>
             <Card
                 variant="image-top"
                 image={image}
@@ -48,18 +41,4 @@ export const SpeakerCard = ({
             </Card>
         </div>
     );
-};
-
-// Minimal CraftJS config for resolver compatibility (content managed by TinaCMS)
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(SpeakerCard as any).craft = {
-    props: {
-        name: "Speaker Name",
-        topic: "Topic of Discussion",
-        bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        image: "/logo.png",
-        twitter: "",
-        linkedin: "",
-        website: "",
-    },
 };

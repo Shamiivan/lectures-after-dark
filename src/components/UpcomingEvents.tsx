@@ -1,6 +1,4 @@
-import { useNode, Element } from '@craftjs/core';
 import { EventCardRedesign } from './EventCardRedesign';
-import { useEditorAwareNode } from '../hooks/useEditorAwareNode';
 
 interface UpcomingEventsProps {
     title?: string;
@@ -11,15 +9,8 @@ export const UpcomingEvents = ({
     title = "UPCOMING EVENTS",
     subtitle = "Curated nights for the curious mind.",
 }: UpcomingEventsProps) => {
-    const { connectors: { connect, drag } } = useEditorAwareNode();
-
     return (
         <section
-            ref={(ref: HTMLElement | null) => {
-                if (ref) {
-                    connect(drag(ref));
-                }
-            }}
             id="events"
             className="py-16 bg-cream"
         >
@@ -47,11 +38,8 @@ export const UpcomingEvents = ({
                     </div>
                 </div>
 
-                {/* Cards Grid - Using Element canvas for editable cards */}
-                <Element
-                    is="div"
-                    id="events-cards"
-                    canvas
+                {/* Cards Grid */}
+                <div
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
                 >
                     {/* Default cards - will be replaced by saved state from database */}
@@ -82,51 +70,10 @@ export const UpcomingEvents = ({
                         price="$35.00"
                         image="/how_power_works.webp"
                     />
-                </Element>
+                </div>
             </div>
         </section>
     );
-};
-
-const UpcomingEventsSettings = () => {
-    const { actions: { setProp }, title, subtitle } = useNode((node) => ({
-        title: node.data.props.title,
-        subtitle: node.data.props.subtitle,
-    }));
-
-    return (
-        <div className="space-y-4">
-            <div>
-                <label className="block mb-2 text-sm font-medium text-gray-700">Title</label>
-                <input
-                    type="text"
-                    value={title || ''}
-                    onChange={(e) => setProp((props: UpcomingEventsProps) => props.title = e.target.value)}
-                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md"
-                />
-            </div>
-            <div>
-                <label className="block mb-2 text-sm font-medium text-gray-700">Subtitle</label>
-                <input
-                    type="text"
-                    value={subtitle || ''}
-                    onChange={(e) => setProp((props: UpcomingEventsProps) => props.subtitle = e.target.value)}
-                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md"
-                />
-            </div>
-        </div>
-    );
-};
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(UpcomingEvents as any).craft = {
-    props: {
-        title: "UPCOMING EVENTS",
-        subtitle: "Curated nights for the curious mind.",
-    },
-    related: {
-        settings: UpcomingEventsSettings
-    }
 };
 
 export default UpcomingEvents;

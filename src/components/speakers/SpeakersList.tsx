@@ -1,8 +1,6 @@
-import { useNode } from '@craftjs/core';
 import styles from '../../pages/Speakers.module.css';
 import { SpeakerCard } from '../SpeakerCard';
 import { useSpeakers } from '../../hooks/useTinaContent';
-import { settingsStyles } from '../settings/settingsStyles';
 
 interface SpeakersListProps {
     title?: string;
@@ -11,12 +9,10 @@ interface SpeakersListProps {
 export const SpeakersList = ({
     title = "Past & Future Speakers"
 }: SpeakersListProps) => {
-    const { connectors: { connect, drag } } = useNode();
     const { speakers, loading } = useSpeakers();
 
     return (
         <section
-            ref={(ref: HTMLElement | null) => { if (ref) connect(drag(ref)); }}
             className={styles.speakersSection}
         >
             <div className="container">
@@ -44,29 +40,4 @@ export const SpeakersList = ({
             </div>
         </section>
     );
-};
-
-const SpeakersListSettings = () => {
-    const { actions: { setProp }, title } = useNode((node) => ({
-        title: node.data.props.title,
-    }));
-    return (
-        <div>
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Title</label>
-                <input
-                    type="text"
-                    value={title}
-                    onChange={e => setProp((p: SpeakersListProps) => p.title = e.target.value)}
-                    style={settingsStyles.input}
-                />
-            </div>
-        </div>
-    );
-};
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(SpeakersList as any).craft = {
-    props: { title: "Past & Future Speakers" },
-    related: { settings: SpeakersListSettings }
 };

@@ -1,5 +1,3 @@
-import { useNode } from '@craftjs/core';
-
 interface SponsorsWhyProps {
     title?: string;
 }
@@ -7,10 +5,8 @@ interface SponsorsWhyProps {
 export const SponsorsWhy = ({
     title = "Why Sponsor Us?"
 }: SponsorsWhyProps) => {
-    const { connectors: { connect, drag } } = useNode();
     return (
         <section
-            ref={(ref: HTMLElement | null) => { if (ref) connect(drag(ref)); }}
             className="pt-16 pb-32 bg-white relative overflow-hidden"
         >
             <div className="container">
@@ -44,10 +40,4 @@ export const SponsorsWhy = ({
             </div>
         </section>
     );
-};
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(SponsorsWhy as any).craft = {
-    props: { title: "Why Sponsor Us?" },
-    related: { settings: () => <div>Static content for now</div> }
 };

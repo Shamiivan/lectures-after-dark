@@ -21,8 +21,6 @@ export default defineConfig({
         manualChunks: {
           // Vendor chunk for better caching
           vendor: ['react', 'react-dom', 'react-router-dom'],
-          // Separate chunk for Convex
-          convex: ['convex/react'],
         },
       },
     },

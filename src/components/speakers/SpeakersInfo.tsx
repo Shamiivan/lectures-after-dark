@@ -1,6 +1,4 @@
-import { useNode } from '@craftjs/core';
 import styles from '../../pages/Speakers.module.css';
-import { settingsStyles } from '../settings/settingsStyles';
 
 interface SpeakersInfoProps {
     title?: string;
@@ -13,10 +11,8 @@ export const SpeakersInfo = ({
     text1 = "Lectures After Dark features speakers from academia, industry, art, technology and everything in-between.",
     text2 = "Each talk triggers conversations and sparks new ideas, from speaker to audience. We want ideas that stick and shape our guests."
 }: SpeakersInfoProps) => {
-    const { connectors: { connect, drag } } = useNode();
     return (
         <section
-            ref={(ref: HTMLElement | null) => { if (ref) connect(drag(ref)); }}
             className={styles.infoSection}
         >
             <div className="container">
@@ -37,51 +33,4 @@ export const SpeakersInfo = ({
             </div>
         </section>
     );
-};
-
-const SpeakersInfoSettings = () => {
-    const { actions: { setProp }, title, text1, text2 } = useNode((node) => ({
-        title: node.data.props.title,
-        text1: node.data.props.text1,
-        text2: node.data.props.text2,
-    }));
-    return (
-        <div>
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Title</label>
-                <input
-                    type="text"
-                    value={title}
-                    onChange={e => setProp((p: SpeakersInfoProps) => p.title = e.target.value)}
-                    style={settingsStyles.input}
-                />
-            </div>
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Text 1</label>
-                <textarea
-                    value={text1}
-                    onChange={e => setProp((p: SpeakersInfoProps) => p.text1 = e.target.value)}
-                    style={settingsStyles.textarea}
-                />
-            </div>
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Text 2</label>
-                <textarea
-                    value={text2}
-                    onChange={e => setProp((p: SpeakersInfoProps) => p.text2 = e.target.value)}
-                    style={settingsStyles.textarea}
-                />
-            </div>
-        </div>
-    );
-};
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(SpeakersInfo as any).craft = {
-    props: {
-        title: "Information for Speakers",
-        text1: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-        text2: "Duis aute irure dolor in reprehenderit...",
-    },
-    related: { settings: SpeakersInfoSettings }
 };

@@ -1,6 +1,3 @@
-import { useNode } from '@craftjs/core';
-import { settingsStyles } from '../settings/settingsStyles';
-
 interface SponsorsHeaderProps {
     title?: string;
     subtitle?: string;
@@ -10,10 +7,8 @@ export const SponsorsHeader = ({
     title = "Partner With Lectures After Dark",
     subtitle = "Reach an audience that thinks, drinks, and engages"
 }: SponsorsHeaderProps) => {
-    const { connectors: { connect, drag } } = useNode();
     return (
         <header
-            ref={(ref: HTMLElement | null) => { if (ref) connect(drag(ref)); }}
             className="h-[50vh] text-center py-16 px-8 bg-cover bg-center relative flex flex-col items-center justify-center"
             style={{
                 backgroundImage: 'url(https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80)',
@@ -27,38 +22,4 @@ export const SponsorsHeader = ({
             </div>
         </header>
     );
-};
-
-const SponsorsHeaderSettings = () => {
-    const { actions: { setProp }, title, subtitle } = useNode((node) => ({
-        title: node.data.props.title,
-        subtitle: node.data.props.subtitle,
-    }));
-    return (
-        <div>
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Title</label>
-                <input
-                    type="text"
-                    value={title}
-                    onChange={e => setProp((p: SponsorsHeaderProps) => p.title = e.target.value)}
-                    style={settingsStyles.input}
-                />
-            </div>
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Subtitle</label>
-                <textarea
-                    value={subtitle}
-                    onChange={e => setProp((p: SponsorsHeaderProps) => p.subtitle = e.target.value)}
-                    style={settingsStyles.textarea}
-                />
-            </div>
-        </div>
-    );
-};
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(SponsorsHeader as any).craft = {
-    props: { title: "Partner With Lectures After Dark", subtitle: "Reach an audience that thinks, drinks, and engages" },
-    related: { settings: SponsorsHeaderSettings }
 };

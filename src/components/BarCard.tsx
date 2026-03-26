@@ -1,4 +1,3 @@
-import { useEditorAwareNode } from '../hooks/useEditorAwareNode';
 import styles from '../pages/Venues.module.css';
 import { MapPin } from 'lucide-react';
 
@@ -17,13 +16,8 @@ export const BarCard = ({
     imageUrl = "https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     mapsLink = "https://maps.app.goo.gl/sLmJFrbS25dbyEzR7"
 }: BarCardProps) => {
-    const { connectors: { connect, drag } } = useEditorAwareNode();
-
     return (
         <div
-            ref={(ref: HTMLDivElement | null) => {
-                if (ref) connect(drag(ref));
-            }}
             className={styles.speakerCard}
         >
             <a target='_blank' href={mapsLink}>
@@ -38,15 +32,4 @@ export const BarCard = ({
             </a>
         </div>
     );
-};
-
-// Minimal CraftJS config for resolver compatibility (content managed by TinaCMS)
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(BarCard as any).craft = {
-    props: {
-        name: "Bar Name",
-        neighborhood: "Neighborhood",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        imageUrl: "https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    },
 };

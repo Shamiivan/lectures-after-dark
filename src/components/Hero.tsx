@@ -1,5 +1,4 @@
 
-import { useNode } from '@craftjs/core';
 import styles from './Hero.module.css';
 
 interface HeroProps {
@@ -15,15 +14,8 @@ export const Hero = ({
     buttonText = "Upcoming Events",
     secondaryButtonText = "Join Our Email List"
 }: HeroProps) => {
-    const { connectors: { connect, drag } } = useNode();
-
     return (
         <section
-            ref={(ref: HTMLElement | null) => {
-                if (ref) {
-                    connect(drag(ref));
-                }
-            }}
             className={styles.hero}
         >
             <div className={styles.background}>
@@ -76,72 +68,6 @@ export const Hero = ({
             </div>
         </section>
     );
-};
-
-const HeroSettings = () => {
-    const { actions: { setProp }, title, subtitle, buttonText, secondaryButtonText } = useNode((node) => ({
-        title: node.data.props.title,
-        subtitle: node.data.props.subtitle,
-        buttonText: node.data.props.buttonText,
-        secondaryButtonText: node.data.props.secondaryButtonText,
-    }));
-
-    return (
-        <div>
-            <div style={{ marginBottom: '10px' }}>
-                <label style={{ display: 'block', marginBottom: '5px' }}>Title</label>
-                <input
-                    type="text"
-                    value={title || ''}
-                    onChange={(e) => setProp((props: HeroProps) => props.title = e.target.value)}
-                    style={{ width: '100%', padding: '5px' }}
-                />
-            </div>
-            <div style={{ marginBottom: '10px' }}>
-                <label style={{ display: 'block', marginBottom: '5px' }}>Subtitle</label>
-                <input
-                    type="text"
-                    value={subtitle || ''}
-                    onChange={(e) => setProp((props: HeroProps) => props.subtitle = e.target.value)}
-                    style={{ width: '100%', padding: '5px' }}
-                />
-            </div>
-            <div style={{ marginBottom: '10px' }}>
-                <label style={{ display: 'block', marginBottom: '5px' }}>Button Text</label>
-                <input
-                    type="text"
-                    value={buttonText || ''}
-                    onChange={(e) => setProp((props: HeroProps) => props.buttonText = e.target.value)}
-                    style={{ width: '100%', padding: '5px' }}
-                />
-            </div>
-            <div style={{ marginBottom: '10px' }}>
-                <label style={{ display: 'block', marginBottom: '5px' }}>Secondary Button Text</label>
-                <input
-                    type="text"
-                    value={secondaryButtonText || ''}
-                    onChange={(e) => setProp((props: HeroProps) => props.secondaryButtonText = e.target.value)}
-                    style={{ width: '100%', padding: '5px' }}
-                />
-            </div>
-        </div>
-    );
-};
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(Hero as any).craft = {
-    props: {
-        title: "Lectures After Dark",
-        subtitle: "Where Ambition, Psychology & Culture Collide",
-        buttonText: "Upcoming Events",
-        secondaryButtonText: "Join Our Email List"
-    },
-    related: {
-        settings: HeroSettings
-    },
-    rules: {
-        deletable: false
-    }
 };
 
 export default Hero;

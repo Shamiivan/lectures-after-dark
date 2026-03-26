@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNode } from '@craftjs/core';
 import styles from './FAQ.module.css';
 import { Plus } from 'lucide-react';
 import { useFaq } from '../hooks/useTinaContent';
@@ -11,7 +10,6 @@ interface FAQProps {
 export const FAQ = ({
     title = "Frequently Asked Questions"
 }: FAQProps) => {
-    const { connectors: { connect, drag } } = useNode();
     const [openIndex, setOpenIndex] = useState<number | null>(0);
     const { faq, loading } = useFaq();
 
@@ -23,11 +21,6 @@ export const FAQ = ({
 
     return (
         <section
-            ref={(ref: HTMLElement | null) => {
-                if (ref) {
-                    connect(drag(ref));
-                }
-            }}
             id="faq"
             className={styles.section}
         >
@@ -60,36 +53,6 @@ export const FAQ = ({
             </div>
         </section>
     );
-};
-
-const FAQSettings = () => {
-    const { actions: { setProp }, title } = useNode((node) => ({
-        title: node.data.props.title,
-    }));
-
-    return (
-        <div>
-            <div style={{ marginBottom: '10px' }}>
-                <label style={{ display: 'block', marginBottom: '5px' }}>Title</label>
-                <input
-                    type="text"
-                    value={title || ''}
-                    onChange={(e) => setProp((props: FAQProps) => props.title = e.target.value)}
-                    style={{ width: '100%', padding: '5px' }}
-                />
-            </div>
-        </div>
-    );
-};
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(FAQ as any).craft = {
-    props: {
-        title: "Frequently Asked Questions"
-    },
-    related: {
-        settings: FAQSettings
-    }
 };
 
 export default FAQ;

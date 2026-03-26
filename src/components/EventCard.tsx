@@ -1,9 +1,5 @@
-import { useNode } from '@craftjs/core';
 import { Card, CardContent } from './ui/Card';
 import { Calendar, MapPin, DollarSign } from 'lucide-react';
-import { ImageUploadField } from './ImageUploadField';
-import { useEditorAwareNode, useEditorAwareState } from '../hooks/useEditorAwareNode';
-import { settingsStyles } from './settings/settingsStyles';
 
 interface EventCardProps {
     category?: string;
@@ -34,9 +30,6 @@ export const EventCard = ({
     attendeeCount = '23+',
     eventbriteUrl = 'https://www.eventbrite.com'
 }: EventCardProps) => {
-    const { connectors: { connect, drag } } = useEditorAwareNode();
-    const { enabled } = useEditorAwareState();
-
     const cardContent = (
         <div className="max-w-[380px] h-full p-[10px] bg-cream border-2 border-cream-dark rounded-lg shadow-event-card hover:shadow-event-card-hover transition-all duration-300">
             <Card className="h-full flex flex-col relative overflow-hidden rounded-lg bg-cream">
@@ -120,205 +113,16 @@ export const EventCard = ({
 
     return (
         <div
-            ref={(ref: HTMLDivElement | null) => {
-                if (ref) {
-                    connect(drag(ref));
-                }
-            }}
             className="w-[380px] h-[460px] shrink-0 max-md:w-[280px] max-md:h-[320px] scroll-snap-align-start transform transition-transform duration-300 hover:scale-[1.02]"
         >
-            {enabled ? (
-                cardContent
-            ) : (
-                <a
-                    href={eventbriteUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block h-full no-underline cursor-pointer"
-                >
-                    {cardContent}
-                </a>
-            )}
+            <a
+                href={eventbriteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block h-full no-underline cursor-pointer"
+            >
+                {cardContent}
+            </a>
         </div>
     );
-};
-
-const EventCardSettings = () => {
-    const {
-        actions: { setProp },
-        category,
-        title,
-        day,
-        month,
-        date,
-        time,
-        location,
-        image,
-        price,
-        organizer,
-        attendeeCount,
-        eventbriteUrl
-    } = useNode((node) => ({
-        category: node.data.props.category,
-        title: node.data.props.title,
-        day: node.data.props.day,
-        month: node.data.props.month,
-        date: node.data.props.date,
-        time: node.data.props.time,
-        location: node.data.props.location,
-        image: node.data.props.image,
-        price: node.data.props.price,
-        organizer: node.data.props.organizer,
-        attendeeCount: node.data.props.attendeeCount,
-        eventbriteUrl: node.data.props.eventbriteUrl,
-    }));
-
-    return (
-        <div>
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Category</label>
-                <input
-                    type="text"
-                    value={category || ''}
-                    onChange={(e) => setProp((props: EventCardProps) => props.category = e.target.value)}
-                    style={settingsStyles.input}
-                    placeholder="e.g., Psychology, Music, Dance"
-                />
-            </div>
-
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Title</label>
-                <input
-                    type="text"
-                    value={title || ''}
-                    onChange={(e) => setProp((props: EventCardProps) => props.title = e.target.value)}
-                    style={settingsStyles.input}
-                />
-            </div>
-
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Day (for badge)</label>
-                <input
-                    type="text"
-                    value={day || ''}
-                    onChange={(e) => setProp((props: EventCardProps) => props.day = e.target.value)}
-                    style={settingsStyles.input}
-                    placeholder="e.g., 22"
-                />
-            </div>
-
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Month (for badge)</label>
-                <input
-                    type="text"
-                    value={month || ''}
-                    onChange={(e) => setProp((props: EventCardProps) => props.month = e.target.value)}
-                    style={settingsStyles.input}
-                    placeholder="e.g., JAN"
-                />
-            </div>
-
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Full Date</label>
-                <input
-                    type="text"
-                    value={date || ''}
-                    onChange={(e) => setProp((props: EventCardProps) => props.date = e.target.value)}
-                    style={settingsStyles.input}
-                    placeholder="e.g., January 22, 2025"
-                />
-            </div>
-
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Time</label>
-                <input
-                    type="text"
-                    value={time || ''}
-                    onChange={(e) => setProp((props: EventCardProps) => props.time = e.target.value)}
-                    style={settingsStyles.input}
-                    placeholder="e.g., 06:00 PM"
-                />
-            </div>
-
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Location</label>
-                <input
-                    type="text"
-                    value={location || ''}
-                    onChange={(e) => setProp((props: EventCardProps) => props.location = e.target.value)}
-                    style={settingsStyles.input}
-                />
-            </div>
-
-            <ImageUploadField
-                label="Image URL"
-                value={image || ''}
-                onChange={(newUrl) => setProp((props: EventCardProps) => props.image = newUrl)}
-            />
-
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Price</label>
-                <input
-                    type="text"
-                    value={price || ''}
-                    onChange={(e) => setProp((props: EventCardProps) => props.price = e.target.value)}
-                    style={settingsStyles.input}
-                    placeholder="e.g., From $99.99"
-                />
-            </div>
-
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Organizer</label>
-                <input
-                    type="text"
-                    value={organizer || ''}
-                    onChange={(e) => setProp((props: EventCardProps) => props.organizer = e.target.value)}
-                    style={settingsStyles.input}
-                    placeholder="e.g., World Fusion Events"
-                />
-            </div>
-
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Attendee Count</label>
-                <input
-                    type="text"
-                    value={attendeeCount || ''}
-                    onChange={(e) => setProp((props: EventCardProps) => props.attendeeCount = e.target.value)}
-                    style={settingsStyles.input}
-                    placeholder="e.g., 23+"
-                />
-            </div>
-
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Eventbrite URL</label>
-                <input
-                    type="text"
-                    value={eventbriteUrl || ''}
-                    onChange={(e) => setProp((props: EventCardProps) => props.eventbriteUrl = e.target.value)}
-                    style={settingsStyles.input}
-                />
-            </div>
-        </div>
-    );
-};
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(EventCard as any).craft = {
-    props: {
-        category: 'Psychology',
-        title: "The Psychology of Ambition: Why Some People Win and Most Don't",
-        day: '22',
-        month: 'JAN',
-        date: 'January 22, 2025',
-        time: '06:00 PM',
-        location: 'Central Park, New York City, United States',
-        image: 'https://images.unsplash.com/photo-1528720208104-3d9bd03cc9d4?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        price: 'From $99.99',
-        organizer: 'World Fusion Events',
-        attendeeCount: '23+',
-        eventbriteUrl: 'https://www.eventbrite.com'
-    },
-    related: {
-        settings: EventCardSettings
-    }
 };

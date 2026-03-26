@@ -1,8 +1,6 @@
-import { useNode } from '@craftjs/core';
 import styles from '../../pages/Venues.module.css';
 import { BarCard } from '../BarCard';
 import { useVenues } from '../../hooks/useTinaContent';
-import { settingsStyles } from '../settings/settingsStyles';
 
 interface BarsListProps {
     title?: string;
@@ -11,12 +9,10 @@ interface BarsListProps {
 export const BarsList = ({
     title = "Partner Bars"
 }: BarsListProps) => {
-    const { connectors: { connect, drag } } = useNode();
     const { venues, loading } = useVenues();
 
     return (
         <section
-            ref={(ref: HTMLElement | null) => { if (ref) connect(drag(ref)); }}
             className={styles.speakersSection}
         >
             <div className="container">
@@ -42,29 +38,4 @@ export const BarsList = ({
             </div>
         </section>
     );
-};
-
-const BarsListSettings = () => {
-    const { actions: { setProp }, title } = useNode((node) => ({
-        title: node.data.props.title,
-    }));
-    return (
-        <div>
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Title</label>
-                <input
-                    type="text"
-                    value={title}
-                    onChange={e => setProp((p: BarsListProps) => p.title = e.target.value)}
-                    style={settingsStyles.input}
-                />
-            </div>
-        </div>
-    );
-};
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(BarsList as any).craft = {
-    props: { title: "Partner Bars" },
-    related: { settings: BarsListSettings }
 };

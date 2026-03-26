@@ -1,8 +1,3 @@
-import { useNode } from '@craftjs/core';
-import { ImageUploadField } from './ImageUploadField';
-import { useEditorAwareNode, useEditorAwareState } from '../hooks/useEditorAwareNode';
-import { settingsStyles } from './settings/settingsStyles';
-
 interface EventCardRedesignProps {
     title?: string;
     day?: string;
@@ -24,9 +19,6 @@ export const EventCardRedesign = ({
     image = '/the_psychology_of_ambition.webp',
     eventbriteUrl = 'https://www.eventbrite.com'
 }: EventCardRedesignProps) => {
-    const { connectors: { connect, drag } } = useEditorAwareNode();
-    const { enabled } = useEditorAwareState();
-
     const cardContent = (
         <div className="relative w-full h-full rounded-2xl overflow-hidden group cursor-pointer bg-black">
             {/* Background Image */}
@@ -83,154 +75,18 @@ export const EventCardRedesign = ({
 
     return (
         <div
-            ref={(ref: HTMLDivElement | null) => {
-                if (ref) {
-                    connect(drag(ref));
-                }
-            }}
             className="aspect-[4/5] max-w-[340px] w-full"
         >
-            {enabled ? (
-                cardContent
-            ) : (
-                <a
-                    href={eventbriteUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block h-full no-underline"
-                >
-                    {cardContent}
-                </a>
-            )}
+            <a
+                href={eventbriteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block h-full no-underline"
+            >
+                {cardContent}
+            </a>
         </div>
     );
-};
-
-const EventCardRedesignSettings = () => {
-    const {
-        actions: { setProp },
-        title,
-        day,
-        month,
-        time,
-        location,
-        image,
-        price,
-        eventbriteUrl
-    } = useNode((node) => ({
-        title: node.data.props.title,
-        day: node.data.props.day,
-        month: node.data.props.month,
-        time: node.data.props.time,
-        location: node.data.props.location,
-        image: node.data.props.image,
-        price: node.data.props.price,
-        eventbriteUrl: node.data.props.eventbriteUrl,
-    }));
-
-    return (
-        <div>
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Title</label>
-                <input
-                    type="text"
-                    value={title || ''}
-                    onChange={(e) => setProp((props: EventCardRedesignProps) => props.title = e.target.value)}
-                    style={settingsStyles.input}
-                />
-            </div>
-
-            <div style={settingsStyles.row}>
-                <div style={settingsStyles.flexItem}>
-                    <label style={settingsStyles.label}>Day</label>
-                    <input
-                        type="text"
-                        value={day || ''}
-                        onChange={(e) => setProp((props: EventCardRedesignProps) => props.day = e.target.value)}
-                        style={settingsStyles.input}
-                        placeholder="22"
-                    />
-                </div>
-                <div style={settingsStyles.flexItem}>
-                    <label style={settingsStyles.label}>Month</label>
-                    <input
-                        type="text"
-                        value={month || ''}
-                        onChange={(e) => setProp((props: EventCardRedesignProps) => props.month = e.target.value)}
-                        style={settingsStyles.input}
-                        placeholder="JAN"
-                    />
-                </div>
-            </div>
-
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Time</label>
-                <input
-                    type="text"
-                    value={time || ''}
-                    onChange={(e) => setProp((props: EventCardRedesignProps) => props.time = e.target.value)}
-                    style={settingsStyles.input}
-                    placeholder="7:00"
-                />
-            </div>
-
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Location</label>
-                <input
-                    type="text"
-                    value={location || ''}
-                    onChange={(e) => setProp((props: EventCardRedesignProps) => props.location = e.target.value)}
-                    style={settingsStyles.input}
-                    placeholder="Montreal"
-                />
-            </div>
-
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Price</label>
-                <input
-                    type="text"
-                    value={price || ''}
-                    onChange={(e) => setProp((props: EventCardRedesignProps) => props.price = e.target.value)}
-                    style={settingsStyles.input}
-                    placeholder="$29.99"
-                />
-            </div>
-
-            <ImageUploadField
-                label="Event Image"
-                value={image || ''}
-                onChange={(newUrl) => setProp((props: EventCardRedesignProps) => props.image = newUrl)}
-            />
-
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Eventbrite URL</label>
-                <input
-                    type="text"
-                    value={eventbriteUrl || ''}
-                    onChange={(e) => setProp((props: EventCardRedesignProps) => props.eventbriteUrl = e.target.value)}
-                    style={settingsStyles.input}
-                    placeholder="https://www.eventbrite.com/..."
-                />
-            </div>
-        </div>
-    );
-};
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(EventCardRedesign as any).craft = {
-    props: {
-        title: "The Psychology of Ambition: Why Some People Win and Most Don't",
-        day: '22',
-        month: 'JAN',
-        time: '7:00',
-        location: 'Montreal',
-        price: '$29.99',
-        image: '/the_psychology_of_ambition.webp',
-        eventbriteUrl: 'https://www.eventbrite.com'
-    },
-    related: {
-        settings: EventCardRedesignSettings
-    }
 };
 
 export default EventCardRedesign;
