@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 
 convex/_generated/
+tina/__generated__/

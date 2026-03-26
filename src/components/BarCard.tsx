@@ -1,8 +1,6 @@
-import { useNode } from '@craftjs/core';
+import { useEditorAwareNode } from '../hooks/useEditorAwareNode';
 import styles from '../pages/Venues.module.css';
 import { MapPin } from 'lucide-react';
-import { ImageUploadField } from './ImageUploadField';
-import { settingsStyles } from './settings/settingsStyles';
 
 interface BarCardProps {
     name?: string;
@@ -19,14 +17,12 @@ export const BarCard = ({
     imageUrl = "https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     mapsLink = "https://maps.app.goo.gl/sLmJFrbS25dbyEzR7"
 }: BarCardProps) => {
-    const { connectors: { connect, drag } } = useNode();
+    const { connectors: { connect, drag } } = useEditorAwareNode();
 
     return (
         <div
             ref={(ref: HTMLDivElement | null) => {
-                if (ref) {
-                    connect(drag(ref));
-                }
+                if (ref) connect(drag(ref));
             }}
             className={styles.speakerCard}
         >
@@ -40,73 +36,17 @@ export const BarCard = ({
                 </span>
                 <p className={styles.speakerBio}>{description}</p>
             </a>
-        </div >
-    );
-};
-
-const BarCardSettings = () => {
-    const { actions: { setProp }, name, neighborhood, description, imageUrl, mapsLink } = useNode((node) => ({
-        name: node.data.props.name,
-        neighborhood: node.data.props.neighborhood,
-        description: node.data.props.description,
-        imageUrl: node.data.props.imageUrl,
-        mapsLink: node.data.props.mapsLink,
-    }));
-
-    return (
-        <div>
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Name</label>
-                <input
-                    type="text"
-                    value={name || ''}
-                    onChange={(e) => setProp((props: BarCardProps) => props.name = e.target.value)}
-                    style={settingsStyles.input}
-                />
-            </div>
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Neighborhood</label>
-                <input
-                    type="text"
-                    value={neighborhood || ''}
-                    onChange={(e) => setProp((props: BarCardProps) => props.neighborhood = e.target.value)}
-                    style={settingsStyles.input}
-                />
-            </div>
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Description</label>
-                <textarea
-                    value={description || ''}
-                    onChange={(e) => setProp((props: BarCardProps) => props.description = e.target.value)}
-                    style={settingsStyles.textarea}
-                />
-            </div>
-            <ImageUploadField
-                label="Image URL"
-                value={imageUrl || ''}
-                onChange={(newUrl) => setProp((props: BarCardProps) => props.imageUrl = newUrl)}
-            />
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Maps Link</label>
-                <textarea
-                    value={mapsLink || ''}
-                    onChange={(e) => setProp((props: BarCardProps) => props.mapsLink = e.target.value)}
-                    style={settingsStyles.textarea}
-                />
-            </div>
         </div>
     );
 };
 
+// Minimal CraftJS config for resolver compatibility (content managed by TinaCMS)
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 (BarCard as any).craft = {
     props: {
         name: "Bar Name",
         neighborhood: "Neighborhood",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        imageUrl: "https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+        imageUrl: "https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     },
-    related: {
-        settings: BarCardSettings
-    }
 };

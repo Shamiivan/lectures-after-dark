@@ -1,0 +1,8 @@
+{
+  "name": "Library Bar",
+  "neighborhood": "Downtown",
+  "description": "",
+  "imageUrl": "https://images.unsplash.com/photo-1543007630-9710e4a00a20?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+  "mapsLink": "https://maps.app.goo.gl/sLmJFrbS25dbyEzR7",
+  "order": 2
+}

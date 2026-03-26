@@ -1,9 +1,7 @@
-import { useNode } from '@craftjs/core';
+import { useEditorAwareNode } from '../hooks/useEditorAwareNode';
 import { Card } from './Card';
 import styles from './SpeakerCard.module.css';
 import { Twitter, Linkedin, Globe } from 'lucide-react';
-import { ImageUploadField } from './ImageUploadField';
-import { settingsStyles } from './settings/settingsStyles';
 
 interface SpeakerCardProps {
     name?: string;
@@ -24,14 +22,12 @@ export const SpeakerCard = ({
     linkedin,
     website,
 }: SpeakerCardProps) => {
-    const { connectors: { connect, drag } } = useNode();
+    const { connectors: { connect, drag } } = useEditorAwareNode();
 
     return (
         <div
             ref={(ref: HTMLDivElement | null) => {
-                if (ref) {
-                    connect(drag(ref));
-                }
+                if (ref) connect(drag(ref));
             }}
         >
             <Card
@@ -54,93 +50,16 @@ export const SpeakerCard = ({
     );
 };
 
-const SpeakerCardSettings = () => {
-    const { actions: { setProp }, name, topic, bio, image, twitter, linkedin, website } = useNode((node) => ({
-        name: node.data.props.name,
-        topic: node.data.props.topic,
-        bio: node.data.props.bio,
-        image: node.data.props.image,
-        twitter: node.data.props.twitter,
-        linkedin: node.data.props.linkedin,
-        website: node.data.props.website,
-    }));
-
-    return (
-        <div>
-            <ImageUploadField
-                label="Image URL"
-                value={image || ''}
-                onChange={(newUrl) => setProp((props: SpeakerCardProps) => props.image = newUrl)}
-            />
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Name</label>
-                <input
-                    type="text"
-                    value={name || ''}
-                    onChange={(e) => setProp((props: SpeakerCardProps) => props.name = e.target.value)}
-                    style={settingsStyles.input}
-                />
-            </div>
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Topic</label>
-                <input
-                    type="text"
-                    value={topic || ''}
-                    onChange={(e) => setProp((props: SpeakerCardProps) => props.topic = e.target.value)}
-                    style={settingsStyles.input}
-                />
-            </div>
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Bio</label>
-                <textarea
-                    value={bio || ''}
-                    onChange={(e) => setProp((props: SpeakerCardProps) => props.bio = e.target.value)}
-                    style={settingsStyles.textarea}
-                />
-            </div>
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Twitter URL</label>
-                <input
-                    type="text"
-                    value={twitter || ''}
-                    onChange={(e) => setProp((props: SpeakerCardProps) => props.twitter = e.target.value)}
-                    style={settingsStyles.input}
-                />
-            </div>
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>LinkedIn URL</label>
-                <input
-                    type="text"
-                    value={linkedin || ''}
-                    onChange={(e) => setProp((props: SpeakerCardProps) => props.linkedin = e.target.value)}
-                    style={settingsStyles.input}
-                />
-            </div>
-            <div style={settingsStyles.field}>
-                <label style={settingsStyles.label}>Website URL</label>
-                <input
-                    type="text"
-                    value={website || ''}
-                    onChange={(e) => setProp((props: SpeakerCardProps) => props.website = e.target.value)}
-                    style={settingsStyles.input}
-                />
-            </div>
-        </div>
-    );
-};
-
+// Minimal CraftJS config for resolver compatibility (content managed by TinaCMS)
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 (SpeakerCard as any).craft = {
     props: {
         name: "Speaker Name",
         topic: "Topic of Discussion",
-        bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         image: "/logo.png",
         twitter: "",
         linkedin: "",
         website: "",
     },
-    related: {
-        settings: SpeakerCardSettings
-    }
 };

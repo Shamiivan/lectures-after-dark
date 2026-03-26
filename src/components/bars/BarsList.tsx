@@ -1,6 +1,7 @@
-import { useNode, Element } from '@craftjs/core';
+import { useNode } from '@craftjs/core';
 import styles from '../../pages/Venues.module.css';
 import { BarCard } from '../BarCard';
+import { useVenues } from '../../hooks/useTinaContent';
 import { settingsStyles } from '../settings/settingsStyles';
 
 interface BarsListProps {
@@ -11,6 +12,8 @@ export const BarsList = ({
     title = "Partner Bars"
 }: BarsListProps) => {
     const { connectors: { connect, drag } } = useNode();
+    const { venues, loading } = useVenues();
+
     return (
         <section
             ref={(ref: HTMLElement | null) => { if (ref) connect(drag(ref)); }}
@@ -18,11 +21,24 @@ export const BarsList = ({
         >
             <div className="container">
                 <h2 className={styles.sectionTitle}>{title}</h2>
-                <Element is="div" id="bars-grid" canvas className={styles.speakersGrid}>
-                    <BarCard name="The Velvet Lounge" neighborhood="Plateau" imageUrl="https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" />
-                    <BarCard name="Library Bar" neighborhood="Downtown" imageUrl="https://images.unsplash.com/photo-1543007630-9710e4a00a20?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" />
-                    <BarCard name="Alchemy & Co." neighborhood="Old Port" imageUrl="https://images.unsplash.com/photo-1551024709-8f23befc6f87?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" />
-                </Element>
+                {loading ? (
+                    <p style={{ textAlign: 'center', opacity: 0.6 }}>Loading venues...</p>
+                ) : venues.length > 0 ? (
+                    <div className={styles.speakersGrid}>
+                        {venues.map((venue) => (
+                            <BarCard
+                                key={venue.id}
+                                name={venue.name}
+                                neighborhood={venue.neighborhood}
+                                description={venue.description ?? undefined}
+                                imageUrl={venue.imageUrl ?? undefined}
+                                mapsLink={venue.mapsLink ?? undefined}
+                            />
+                        ))}
+                    </div>
+                ) : (
+                    <p style={{ textAlign: 'center', opacity: 0.6 }}>No venues yet. Add venues in the TinaCMS admin.</p>
+                )}
             </div>
         </section>
     );

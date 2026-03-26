@@ -35,5 +35,12 @@ export default defineConfig({
     hmr: {
       overlay: false, // Reduce overhead
     },
+    proxy: {
+      '/api/tina/gql': {
+        target: 'http://localhost:4001',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/tina\/gql/, '/graphql'),
+      },
+    },
   },
 })

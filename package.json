@@ -10,20 +10,29 @@
     "lint:fix": "npx eslint --fix --max-warnings 0",
     "type-check": "npx tsc --noEmit --pretty",
     "check": "pnpm run lint:fix && pnpm run type-check && pnpm run build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "tina:dev": "tinacms dev -c \"pnpm dev\"",
+    "tina:build": "tinacms build"
   },
   "dependencies": {
     "@craftjs/core": "^0.2.12",
     "@tailwindcss/vite": "^4.1.18",
+    "@tinacms/datalayer": "^2.0.13",
+    "@upstash/redis": "^1.37.0",
     "convex": "^1.31.2",
     "lucide-react": "^0.562.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^6.28.0",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^4.1.18",
+    "tinacms": "^3.7.0",
+    "tinacms-authjs": "^21.0.0",
+    "tinacms-gitprovider-github": "^4.1.0",
+    "upstash-redis-level": "^1.1.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@tinacms/cli": "^2.2.0",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
