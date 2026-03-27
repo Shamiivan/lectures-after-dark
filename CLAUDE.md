@@ -17,13 +17,15 @@ pnpm lint         # Run ESLint
 pnpm lint:fix     # Fix ESLint issues (--max-warnings 0)
 pnpm type-check   # TypeScript checking only
 pnpm check        # Full validation: lint:fix + type-check + build
+pnpm workers:dev  # Start Cloudflare Workers local dev server
+pnpm workers:deploy # Deploy to Cloudflare Workers
 ```
 
 ## Environment Variables
 
 - `GITHUB_OWNER`, `GITHUB_REPO`, `GITHUB_BRANCH` — GitHub repo details for TinaCMS git provider
 - `GITHUB_PERSONAL_ACCESS_TOKEN` — GitHub PAT for TinaCMS content commits
-- `KV_REST_API_URL`, `KV_REST_API_TOKEN` — Vercel KV (Upstash Redis) for TinaCMS database
+- `KV_REST_API_URL`, `KV_REST_API_TOKEN` — Upstash Redis for TinaCMS database
 - `NEXTAUTH_SECRET` — Auth.js secret for TinaCMS production auth
 
 ## Architecture
@@ -41,7 +43,8 @@ TinaCMS (self-hosted) manages structured content: speakers, venues, and FAQ. Con
 - **Generated types:** `tina/__generated__/` — auto-generated client and TypeScript types (do not edit)
 - **Content files:** `content/speakers/*.json`, `content/venues/*.json`, `content/faq/faq.json`
 - **Data hooks:** `src/hooks/useTinaContent.ts` — `useSpeakers()`, `useVenues()`, `useFaq()` fetch content from TinaCMS GraphQL API
-- **Backend API:** `api/tina/[...routes].ts` — Vercel serverless function for production TinaCMS backend
+- **Backend API:** `worker/tina-handler.ts` — Cloudflare Worker handler for production TinaCMS backend
+- **Worker entry:** `worker/index.ts` — routes API requests, serves static assets, SPA fallback
 - **Vite proxy:** `/api/tina/gql` proxied to `http://localhost:4001/graphql` during dev
 
 Components are pure presentational. `SpeakerCard` and `BarCard` receive data from TinaCMS via list components (`SpeakersList`, `BarsList`). FAQ fetches its items via `useFaq()`.
@@ -52,4 +55,4 @@ Custom design tokens in `tailwind.config.js`: color palette (midnight, warm-brow
 
 ### Build Optimization
 
-Vite config splits vendor into a separate chunk. React Compiler (Babel plugin) is enabled. Deployed to Vercel as a SPA (all routes rewrite to `index.html`).
+Vite config splits vendor into a separate chunk. React Compiler (Babel plugin) is enabled. Deployed to Cloudflare Workers with Assets binding for static file serving. Worker entry point (`worker/index.ts`) handles API routing and SPA fallback. Config in `wrangler.toml`.

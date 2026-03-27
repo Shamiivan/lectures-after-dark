@@ -12,7 +12,17 @@
     "check": "pnpm run lint:fix && pnpm run type-check && pnpm run build",
     "preview": "vite preview",
     "tina:dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"pnpm dev\"",
-    "tina:build": "tinacms build"
+    "tina:build": "tinacms build",
+    "workers:dev": "wrangler dev",
+    "workers:deploy": "wrangler deploy"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "workerd",
+      "esbuild",
+      "better-sqlite3",
+      "sharp"
+    ]
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
@@ -29,6 +39,7 @@
     "upstash-redis-level": "^1.1.1"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260317.1",
     "@eslint/js": "^9.39.1",
     "@tinacms/cli": "^2.2.0",
     "@types/node": "^24.10.1",
@@ -42,6 +53,7 @@
     "globals": "^16.5.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
-    "vite": "^7.2.4"
+    "vite": "^7.2.4",
+    "wrangler": "^4.77.0"
   }
 }
