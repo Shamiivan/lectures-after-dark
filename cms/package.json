@@ -1,0 +1,41 @@
+{
+  "name": "cms",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=4096\" next build",
+    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev --no-server-fast-refresh",
+    "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:importmap",
+    "generate:types": "cross-env NODE_OPTIONS=--no-deprecation PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:types",
+    "lint": "cross-env NODE_OPTIONS=--no-deprecation eslint .",
+    "payload": "cross-env NODE_OPTIONS=--no-deprecation PAYLOAD_CONFIG_PATH=src/payload.config.ts payload",
+    "seed": "cross-env NODE_OPTIONS=--no-deprecation PAYLOAD_CONFIG_PATH=src/payload.config.ts tsx src/scripts/seed.ts",
+    "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.940.0",
+    "@payloadcms/db-sqlite": "^3.77.0",
+    "@payloadcms/next": "^3.77.0",
+    "@payloadcms/richtext-lexical": "^3.77.0",
+    "@payloadcms/storage-s3": "^3.77.0",
+    "@payloadcms/ui": "^3.77.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.6.1",
+    "graphql": "^16.11.0",
+    "next": "^16.0.1",
+    "payload": "^3.77.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "eslint": "^9.39.1",
+    "eslint-config-next": "^16.0.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
